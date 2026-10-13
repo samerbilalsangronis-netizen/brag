@@ -10,3 +10,6 @@ out/tierra-santa/*.mp4
 ts-catalogo/node_modules/
 out/tierra-santa/**/composition*/assets/
 out/tierra-santa/hf-historia-*/assets/
+out/tierra-santa-comercial*.mp4
+out/portada.png
+out/tierra-santa/*.png
