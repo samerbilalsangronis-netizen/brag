@@ -52,7 +52,7 @@
     <rect width="1080" height="1080" fill="url(#halo)"/>
     <g transform="translate(120 120)" fill="none" stroke="url(#goldline)" stroke-width="6" opacity="0.1"><rect x="-60" y="-60" width="120" height="120" rx="6"/><rect x="-60" y="-60" width="120" height="120" rx="6" transform="rotate(45)"/></g><g transform="translate(960 140)" fill="none" stroke="url(#goldline)" stroke-width="6" opacity="0.08"><rect x="-44" y="-44" width="88" height="88" rx="6"/><rect x="-44" y="-44" width="88" height="88" rx="6" transform="rotate(45)"/></g><g transform="translate(110 960)" fill="none" stroke="url(#goldline)" stroke-width="6" opacity="0.08"><rect x="-44" y="-44" width="88" height="88" rx="6"/><rect x="-44" y="-44" width="88" height="88" rx="6" transform="rotate(45)"/></g><g transform="translate(970 950)" fill="none" stroke="url(#goldline)" stroke-width="6" opacity="0.1"><rect x="-60" y="-60" width="120" height="120" rx="6"/><rect x="-60" y="-60" width="120" height="120" rx="6" transform="rotate(45)"/></g>
     <path d="M150 1080 V430 a390 390 0 0 1 780 0 V1080" fill="none" stroke="#e1b35c" stroke-width="4" opacity=".16"/>
-  </g>
+  </g><!--/fondo-->
   <ellipse id="sombra" cx="540" cy="880" rx="430" ry="46" fill="#000" opacity=".45" filter="url(#soft)"/><g class="vapor" id="vapor"><path d="M360 330 c-26 -32 26 -64 0 -96 s26 -64 0 -96"/><path d="M430 330 c-26 -32 26 -64 0 -96 s26 -64 0 -96"/></g>
   <g id="bebida" filter="url(#grain)">
     <path d="M690 300 L720 120" stroke="#c8553d" stroke-width="16" stroke-linecap="round"/>

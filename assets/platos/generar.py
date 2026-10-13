@@ -105,7 +105,7 @@ def fondo(sombra_y=860, sombra_rx=380):
     <rect width="1080" height="1080" fill="url(#halo)"/>
     {star(120, 120, 60, .10)}{star(960, 140, 44, .08)}{star(110, 960, 44, .08)}{star(970, 950, 60, .10)}
     <path d="M150 1080 V430 a390 390 0 0 1 780 0 V1080" fill="none" stroke="{GOLD}" stroke-width="4" opacity=".16"/>
-  </g>
+  </g><!--/fondo-->
   <ellipse id="sombra" cx="540" cy="{sombra_y}" rx="{sombra_rx}" ry="46" fill="#000" opacity=".45" filter="url(#soft)"/>"""
 
 

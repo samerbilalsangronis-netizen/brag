@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Reem Kufi"; src: url(assets/ReemKufi.woff2) format("woff2"); font-weight: 400 700; }
+      @font-face { font-family: "Cairo"; src: url(assets/Cairo.woff2) format("woff2"); font-weight: 200 1000; }
+      :root {
+        --ink: #14201a; --ink9: #1c2b23; --ink8: #25382e; --ink7: #324a3c;
+        --sand: #f5ecdc; --sand4: #bab29c;
+        --gold: #e1b35c; --gold3: #f0c879; --terra: #c8553d;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--ink); color: var(--sand); font-family: "Cairo", sans-serif; }
+      .scene { position: absolute; inset: 0; }
+
+      /* Fondo nocturno */
+      #bg { position: absolute; inset: 0; }
+      .star { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
+      .halo { position: absolute; width: 1300px; height: 1300px; border-radius: 50%; right: -520px; top: -300px;
+        background: radial-gradient(circle, rgba(240, 200, 121, .30) 0%, rgba(240, 200, 121, .08) 40%, rgba(240, 200, 121, 0) 66%); }
+      .montes { position: absolute; left: 0; bottom: 0; width: 1080px; height: 640px; }
+      .farol { position: absolute; right: 150px; top: 0; width: 160px; height: 520px; }
+
+      /* Escena 1 */
+      .hook { position: absolute; left: 90px; right: 90px; top: 600px; }
+      .kicker { font: 700 34px "Cairo"; letter-spacing: .32em; color: var(--gold); text-transform: uppercase; margin-bottom: 40px; display: block; }
+      .hook-line { display: block; font: 700 140px/1.06 "Reem Kufi"; letter-spacing: -.01em; color: var(--sand); }
+      .hook-line.gold { color: var(--gold3); }
+
+      /* Escena 2 */
+      .hero-svg { position: absolute; left: 50px; top: 60px; width: 980px; height: 980px; }
+      .hero-text { position: absolute; left: 90px; right: 90px; bottom: 300px; }
+      .pill { display: inline-block; font: 700 36px "Cairo"; padding: 8px 28px; border-radius: 999px; background: #3a3826; color: var(--gold3); }
+      .hero-name { display: block; font: 700 116px/1.05 "Reem Kufi"; margin-top: 28px; color: var(--sand); }
+      .hero-price { display: block; font: 800 84px "Cairo"; color: var(--gold3); margin-top: 6px; }
+
+      /* Escena 3: la carta real, construida a 390 px y escalada x2,5 */
+      .ui-scale { position: absolute; left: 52px; top: 120px; width: 390px; height: 610px; transform: scale(2.5); transform-origin: 0 0; }
+      .ui { position: absolute; inset: 0; }
+      .hdr { height: 56px; display: flex; align-items: center; gap: 8px; }
+      .hdr .logo-mini { width: 36px; height: 36px; display: block; }
+      .hdr .marca { font: 700 22px "Reem Kufi"; color: var(--gold3); flex: 1; }
+      .seg { position: relative; width: 156px; height: 36px; border-radius: 999px; background: var(--ink9); border: 1px solid var(--ink7); display: flex; }
+            .seg { padding: 2px; }
+      .seg span { position: relative; width: 50px; height: 30px; border-radius: 999px; text-align: center; font: 700 13px/30px "Cairo"; color: var(--sand); }
+      .seg span.on { color: var(--ink); background: var(--gold); }
+      .cart { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--ink7); background: var(--ink9); display: grid; place-items: center; }
+      .chips { display: flex; gap: 8px; margin-top: 8px; height: 36px; }
+      .chip { flex: none; padding: 0 14px; font: 600 14px/34px "Cairo"; border-radius: 999px; border: 1px solid var(--ink7); color: var(--sand); }
+      .chip.on { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+      .sec { font: 700 26px "Reem Kufi"; color: var(--gold3); margin: 18px 0 10px; }
+      .card { position: relative; height: 140px; margin-bottom: 12px; border-radius: 16px; background: var(--ink9); border: 1px solid var(--ink8); padding: 12px 132px 12px 14px; }
+      .card h3 { font: 600 17px/1.2 "Cairo"; color: var(--sand); }
+      .card p { font: 400 11.5px/1.35 "Cairo"; color: var(--sand4); margin-top: 3px; }
+      .tag { display: inline-block; margin-top: 5px; font: 600 10.5px/20px "Cairo"; padding: 0 7px; border-radius: 999px; background: #3a3826; color: var(--gold3); }
+      .tag.nuevo { background: #17394a; color: #9ad6f5; }
+      .tag.veg { background: #23402c; color: #a9d98c; }
+      .price { position: absolute; left: 14px; bottom: 12px; width: 150px; height: 24px; overflow: hidden; }
+      .price b { position: absolute; left: 0; top: 0; font: 800 17px/24px "Cairo"; color: var(--gold3); white-space: nowrap; }
+      .add { position: absolute; right: 136px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; }
+      .tile { position: absolute; right: 12px; top: 14px; width: 112px; height: 112px; border-radius: 12px; overflow: hidden; }
+      .tile svg { width: 112px; height: 112px; display: block; }
+      .dedo { position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: rgba(245, 236, 220, .55); border: 2px solid var(--sand); }
+      .caption { position: absolute; left: 90px; right: 90px; top: 1660px; font: 700 64px/1.15 "Reem Kufi"; color: var(--sand); }
+      .caption em { font-style: normal; color: var(--gold3); }
+
+      /* Escena 4 */
+      .cierre { position: absolute; left: 90px; right: 90px; top: 420px; }
+      .logo-big { width: 340px; height: 340px; display: block; }
+      .wordmark { display: block; font: 700 170px/1 "Reem Kufi"; color: var(--gold3); margin-top: 40px; }
+      .btn { display: inline-block; margin-top: 60px; padding: 0 70px; height: 150px; border-radius: 36px; background: var(--terra); color: var(--sand); font: 700 64px/150px "Cairo"; }
+      .ig { display: block; margin-top: 64px; font: 700 54px "Cairo"; color: var(--sand); }
+      .info { display: block; margin-top: 14px; font: 600 40px/1.3 "Cairo"; color: var(--sand4); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <!-- Fondo: noche andina -->
+      <div id="bg" class="clip" data-start="0" data-duration="15" data-track-index="0">
+        <div class="halo" id="halo" data-layout-allow-overflow></div>
+        <div id="stars"></div>
+        <svg class="montes" viewBox="0 0 1080 640" preserveAspectRatio="none">
+          <path d="M0 330 L120 230 L210 300 L330 150 L450 280 L560 190 L700 320 L820 210 L940 290 L1080 200 V640 H0 Z" fill="#1c2b23"/>
+          <path d="M0 450 L150 360 L260 420 L400 320 L520 430 L660 350 L790 440 L930 360 L1080 420 V640 H0 Z" fill="#101a15"/>
+          <path d="M330 150 L300 190 L345 175 L370 205 Z M820 210 L795 245 L835 232 Z" fill="#324a3c"/>
+        </svg>
+        <svg class="farol" viewBox="0 0 160 520">
+          <path d="M80 0 V300" stroke="#324a3c" stroke-width="6"/>
+          <path d="M44 300 h72 l-10 26 h-52 Z" fill="#b08030"/>
+          <rect id="farol-luz" x="50" y="326" width="60" height="96" rx="6" fill="#f0c879"/>
+          <path d="M50 326 h60 M80 326 v96 M50 374 h60" stroke="#b08030" stroke-width="4"/>
+          <path d="M44 422 h72 l-14 20 h-44 Z" fill="#b08030"/>
+        </svg>
+      </div>
+
+      <!-- 1 · Gancho -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="3.4" data-track-index="1">
+        <div class="hook">
+          <span class="kicker" id="k1">La Grita · 9:00 p. m.</span>
+          <span class="hook-line" id="h1">¿Antojo de</span>
+          <span class="hook-line gold" id="h2">shawarma</span>
+          <span class="hook-line" id="h3">esta noche?</span>
+        </div>
+      </div>
+
+      <!-- 2 · El shawarma -->
+      <div id="s2" class="scene clip" data-start="3.4" data-duration="3.0" data-track-index="2">
+        <div class="hero-svg" id="hero"><!--svg:shawarma-de-pollo:nobg--></div>
+        <div class="hero-text">
+          <span class="pill" id="p-tag">★ Más pedido</span>
+          <span class="hero-name" id="p-name">Shawarma de pollo</span>
+          <span class="hero-price" id="p-price">22.000 COP</span>
+        </div>
+      </div>
+
+      <!-- 3 · La carta -->
+      <div id="s3" class="scene clip" data-start="6.4" data-duration="5.2" data-track-index="3">
+        <div class="ui-scale">
+          <div class="ui" id="ui">
+            <div class="hdr" id="hdr">
+              <div class="logo-mini"><!--svg:logo:as=logomini--></div>
+              <div class="marca">Habibis</div>
+              <div class="seg">
+                                <span id="c-cop" class="on">COP</span><span id="c-usdt">USDT</span><span id="c-bs">Bs</span>
+              </div>
+              <div class="cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5ecdc" stroke-width="2"><path d="M3 4h2l2.5 11h11L21 7H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></div>
+            </div>
+            <div class="chips" id="chips">
+              <span class="chip">Shawarmas</span><span class="chip on">Platos</span><span class="chip">Falafel</span><span class="chip">Cremas y dips</span>
+            </div>
+            <div class="sec" id="sec">Los favoritos</div>
+            <div class="card" id="card1">
+              <h3>Plato de shawarma</h3>
+              <p>Shawarma servido en plato con arroz, ensalada, hummus y pan árabe.</p>
+              <span class="tag">★ Más pedido</span>
+              <div class="price" data-cop="32000"><b class="cop">32.000 COP</b><b class="usdt"></b><b class="bs"></b></div>
+              <div class="add"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#14201a" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+              <div class="tile"><!--svg:plato-de-shawarma--></div>
+            </div>
+            <div class="card" id="card2">
+              <h3>Hummus (crema de garbanzo)</h3>
+              <p>Crema de garbanzo con tahini, limón y aceite de oliva. Incluye pan.</p>
+              <span class="tag veg">🌿 Vegetariano</span> <span class="tag">★ Más pedido</span>
+              <div class="price" data-cop="14000"><b class="cop">14.000 COP</b><b class="usdt"></b><b class="bs"></b></div>
+              <div class="add"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#14201a" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+              <div class="tile"><!--svg:hummus--></div>
+            </div>
+            <div class="card" id="card3">
+              <h3>Knafeh</h3>
+              <p>Postre de queso con masa kataifi y almíbar de azahar.</p>
+              <span class="tag nuevo">✨ Nuevo</span>
+              <div class="price" data-cop="14000"><b class="cop">14.000 COP</b><b class="usdt"></b><b class="bs"></b></div>
+              <div class="add"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#14201a" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+              <div class="tile"><!--svg:knafeh--></div>
+            </div>
+            <div class="dedo" id="dedo"></div>
+          </div>
+        </div>
+        <div class="caption" id="cap">Mira el precio en<br><em>COP, USDT o Bs.</em></div>
+      </div>
+
+      <!-- 4 · Cierre -->
+      <div id="s4" class="scene clip" data-start="11.3" data-duration="3.7" data-track-index="4">
+        <div class="cierre">
+          <div class="logo-big" id="logo"><!--svg:logo--></div>
+          <span class="wordmark" id="wm">Habibis</span>
+          <span class="btn" id="btn">Pide en línea</span>
+          <span class="ig" id="ig">@habibis_arabicfood</span>
+          <span class="info" id="info">Abrimos a las 5:00 p. m. · Delivery y retiro</span>
+        </div>
+      </div>
+
+      <!-- Sonido: musica de Brag + efectos suaves por debajo -->
+      <audio id="music" src="assets/musica.mp3" data-start="0" data-duration="15" data-track-index="10" data-volume="0.8"></audio>
+      <audio id="sfx-plancha" src="assets/plancha.wav" data-start="3.6" data-duration="2.8" data-track-index="11" data-volume="0.22"></audio>
+      <audio id="sfx-pop1" src="assets/pop.wav" data-start="6.34" data-duration="0.22" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-pop2" src="assets/pop.wav" data-start="6.86" data-duration="0.22" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-pop3" src="assets/pop.wav" data-start="7.40" data-duration="0.22" data-track-index="14" data-volume="0.45"></audio>
+      <audio id="sfx-tap1" src="assets/pop.wav" data-start="8.44" data-duration="0.22" data-track-index="15" data-volume="0.35"></audio>
+      <audio id="sfx-tap2" src="assets/pop.wav" data-start="9.50" data-duration="0.22" data-track-index="16" data-volume="0.35"></audio>
+      <audio id="sfx-logo" src="assets/pop.wav" data-start="12.12" data-duration="0.22" data-track-index="17" data-volume="0.45"></audio>
+    </div>
+    <!--js:helpers-->
+    <script>
+      // Estrellas con semilla (deterministas)
+      let seed = 42;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      const stars = document.getElementById("stars");
+      for (let i = 0; i < 46; i++) {
+        const s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.round(rnd() * 1060) + "px";
+        s.style.top = Math.round(rnd() * 1100) + "px";
+        s.style.opacity = (0.25 + rnd() * 0.6).toFixed(2);
+        const k = (0.5 + rnd() * 0.9).toFixed(2);
+        s.style.width = s.style.height = Math.round(6 * k) + "px";
+        stars.appendChild(s);
+      }
+      document.querySelectorAll(".price").forEach((p) => {
+        const cop = +p.dataset.cop;
+        p.querySelector(".usdt").textContent = fmtUSDT(cop);
+        p.querySelector(".bs").textContent = fmtBs(cop);
+      });
+
+      const tl = gsap.timeline({ paused: true });
+
+      // Fondo: farol que se enciende, halo que respira, estrellas que titilan
+      tl.fromTo("#farol-luz", { opacity: 0.15 }, { opacity: 1, duration: 0.25, ease: "steps(3)" }, 0.1);
+      tl.fromTo("#halo", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" }, 0.1);
+      tl.fromTo("#halo", { scale: 1 }, { scale: 1.06, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 5, immediateRender: false }, 1.5);
+      tl.fromTo("#stars", { y: 0 }, { y: -60, duration: 15, ease: "none" }, 0);
+      tl.fromTo(".montes", { y: 40 }, { y: 0, duration: 15, ease: "none" }, 0);
+
+      // El farol se aparta mientras la carta ocupa la pantalla
+      tl.fromTo(".farol", { y: 0, opacity: 1 }, { y: -560, opacity: 0, duration: 0.5, ease: "power2.in", immediateRender: false }, 6.1);
+      spring(tl, ".farol", { y: -560, opacity: 0 }, { y: 0, opacity: 1 }, 11.3, PESADO);
+
+      // 1 · Gancho: cada linea cae en un beat
+      spring(tl, "#k1", { opacity: 0, x: -40 }, { opacity: 1, x: 0 }, 0.0, SECO);
+      spring(tl, "#h1", { opacity: 0.25, y: 50 }, { opacity: 1, y: 0 }, 0.0, PESADO);
+      spring(tl, "#h2", { opacity: 0, scale: 1.35, transformOrigin: "0% 60%" }, { opacity: 1, scale: 1 }, 1.07, PESADO);
+      spring(tl, "#h3", { opacity: 0, y: 90 }, { opacity: 1, y: 0 }, 1.59, PESADO);
+      tl.fromTo(".hook", { opacity: 1, y: 0 }, { opacity: 0, y: -80, duration: 0.3, ease: "power2.in", immediateRender: false }, 3.1);
+
+      // 2 · Shawarma entra con resorte en el golpe 3,70 y humea
+      spring(tl, "#hero", { opacity: 0, y: 500, rotation: 12, scale: 1.25 }, { opacity: 1, y: 60, rotation: 0, scale: 1.4 }, 3.4, ESTANDAR);
+      tl.fromTo("#hero svg", { scale: 1 }, { scale: 1.08, duration: 2.6, ease: "none", transformOrigin: "50% 50%" }, 3.6);
+      vapor(tl, "shawarma-de-pollo", 4.0, 6.4);
+      brillos(tl, "shawarma-de-pollo", 4.2, 6.4);
+      spring(tl, "#p-tag", { opacity: 0, x: -60 }, { opacity: 1, x: 0 }, 4.23, SECO);
+      spring(tl, "#p-name", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, 4.40, ESTANDAR);
+      spring(tl, "#p-price", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 4.75, SECO);
+      tl.fromTo("#s2 .hero-text, #hero", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 6.12);
+
+      // 3 · La carta: encabezado, chips y platos en los beats
+      spring(tl, "#hdr", { opacity: 0, y: -30 }, { opacity: 1, y: 0 }, 6.4, SECO);
+      spring(tl, "#chips", { opacity: 0, x: 60 }, { opacity: 1, x: 0 }, 6.5, SECO);
+      spring(tl, "#sec", { opacity: 0, x: -30 }, { opacity: 1, x: 0 }, 6.6, SECO);
+      ["#card1", "#card2", "#card3"].forEach((c, i) => {
+        const t = [6.34, 6.86, 7.40][i] + 0.1;
+        spring(tl, c, { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 0, scale: 1 }, t, ESTANDAR);
+      });
+      vapor(tl, "plato-de-shawarma", 7.0, 11.4, 1.4);
+      vapor(tl, "knafeh", 7.6, 11.4, 1.4);
+      spring(tl, "#cap", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 7.7, ESTANDAR);
+      tl.set(".price .usdt, .price .bs", { y: 24, opacity: 0 }, 0);
+
+      // Dedo: toca USDT (8,44) y luego Bs (9,50)
+      const press = (t, x) => {
+        spring(tl, "#dedo", { x: x + 30, y: 60, opacity: 0 }, { x: x, y: 14, opacity: 1 }, t - 0.42, ESTANDAR);
+        tl.fromTo("#dedo", { scale: 1 }, { scale: 0.7, duration: 0.08, yoyo: true, repeat: 1, ease: "power1.inOut", immediateRender: false }, t - 0.06);
+      };
+      press(8.44, 254);
+      tl.set("#c-cop", { color: "#f5ecdc", backgroundColor: "rgba(225,179,92,0)" }, 8.44).set("#c-usdt", { color: "#14201a", backgroundColor: "#e1b35c" }, 8.44);
+      spring(tl, "#c-usdt", { scale: 0.8 }, { scale: 1 }, 8.44, SECO);
+      spring(tl, ".price .cop", { y: 0, opacity: 1 }, { y: -24, opacity: 0 }, 8.44, SECO);
+      spring(tl, ".price .usdt", { y: 24, opacity: 0 }, { y: 0, opacity: 1 }, 8.44, SECO);
+      press(9.50, 306);
+      tl.set("#c-usdt", { color: "#f5ecdc", backgroundColor: "rgba(225,179,92,0)" }, 9.50).set("#c-bs", { color: "#14201a", backgroundColor: "#e1b35c" }, 9.50);
+      spring(tl, "#c-bs", { scale: 0.8 }, { scale: 1 }, 9.50, SECO);
+      spring(tl, ".price .usdt", { y: 0, opacity: 1 }, { y: -24, opacity: 0 }, 9.50, SECO);
+      spring(tl, ".price .bs", { y: 24, opacity: 0 }, { y: 0, opacity: 1 }, 9.50, SECO);
+      tl.fromTo("#dedo", { opacity: 1 }, { opacity: 0, duration: 0.3, immediateRender: false }, 10.0);
+      tl.fromTo("#ui, #cap", { opacity: 1, y: 0 }, { opacity: 0, y: -60, duration: 0.25, ease: "power2.in", immediateRender: false }, 11.15);
+
+      // 4 · Cierre: el logo se arma en el golpe 12,12 y cae el boton
+      const L = "#logo svg";
+      tl.fromTo(L + " > rect", { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 11.3);
+      spring(tl, L + " g rect:nth-child(1)", { rotation: -90, scale: 0.4, opacity: 0, svgOrigin: "256 256" }, { rotation: 0, scale: 1, opacity: 1 }, 11.35, PESADO);
+      spring(tl, L + " g rect:nth-child(2)", { rotation: 135, scale: 0.4, opacity: 0, svgOrigin: "256 256" }, { rotation: 45, scale: 1, opacity: 1 }, 11.45, PESADO);
+      spring(tl, L + " circle", { scale: 0, svgOrigin: "256 256" }, { scale: 1 }, 12.12, ESTANDAR);
+      spring(tl, L + " text", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 12.25, SECO);
+      spring(tl, "#wm", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 12.4, PESADO);
+      spring(tl, "#btn", { opacity: 0, scale: 0.7, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1 }, 12.65, SECO);
+      spring(tl, "#ig", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 12.85, SECO);
+      spring(tl, "#info", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 12.95, SECO);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

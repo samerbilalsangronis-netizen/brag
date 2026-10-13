@@ -1,2 +1,4 @@
 node_modules/
 .env
+out/**/work/*.mp4
+out/**/composition/assets/
