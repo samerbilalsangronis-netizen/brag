@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{W}}, height={{H}}" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Archivo Black"; src: url(assets/ArchivoBlack.woff2) format("woff2"); }
+      @font-face { font-family: "Montserrat"; src: url(assets/Montserrat.woff2) format("woff2"); font-weight: 100 900; }
+      :root { --fondo: #0a2b28; --mango: #f2a20c; --fresa: #d6263f; --guayaba: #ee6e68; --crema: #fff6e3; --oro: #ffc94a; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: {{W}}px; height: {{H}}px; overflow: hidden; background: var(--fondo); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--fondo); font-family: "Montserrat", sans-serif; color: var(--crema); }
+      .stage { position: absolute; left: {{SX}}px; top: {{SY}}px; width: 1080px; height: 1920px; transform: scale({{S}}); transform-origin: 0 0; }
+      .full { position: absolute; inset: 0; }
+      .capa { position: absolute; left: -1200px; top: -1200px; width: 3480px; height: 4320px; }
+      .pregunta { position: absolute; left: 90px; right: 90px; top: 720px; font: 400 152px/1.02 "Archivo Black"; letter-spacing: -.015em; color: var(--crema); }
+      .pregunta span { display: inline-block; }
+      .bolsa { position: absolute; left: 410px; top: 1060px; width: 260px; height: 380px; opacity: 0; }
+      .bolsa img { width: 260px; height: 380px; object-fit: contain; display: block; filter: drop-shadow(0 26px 30px rgba(0,0,0,.45)); }
+      .logo { position: absolute; left: 90px; top: 250px; width: 560px; color: var(--crema); opacity: 0; }
+      .logo svg { width: 560px; height: auto; display: block; }
+      .lema1 { position: absolute; left: 90px; top: 610px; font: 400 98px/1 "Archivo Black"; color: var(--oro); opacity: 0; }
+      .lema2 { position: absolute; left: 90px; top: 720px; font: 400 76px/1.05 "Archivo Black"; color: var(--crema); opacity: 0; }
+      .contacto { position: absolute; left: 90px; top: 850px; display: flex; align-items: center; gap: 18px; font: 800 52px/1 "Montserrat"; color: var(--crema); opacity: 0; }
+      .contacto svg { width: 54px; height: 54px; flex: none; }
+      .splash { position: absolute; inset: 0; pointer-events: none; }
+      .fh { position: absolute; width: 440px; height: 440px; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="7.39" data-width="{{W}}" data-height="{{H}}">
+      <div id="escena" class="clip full" data-start="0" data-duration="7.39" data-track-index="0">
+        <!-- 1 · Gancho: la salpicadura llena la pantalla y forma la pregunta -->
+        <svg class="splash" id="estallido" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice"></svg>
+        <div class="stage">
+          <div class="pregunta" id="pregunta"><span id="w1">¿Antojo</span> <span id="w2">de</span><br /><span id="w3">algo</span> <span id="w4">natural?</span></div>
+          <div id="gotas"></div>
+          <img class="fh" id="fh1" src="assets/frutas/fresa.svg" style="left: 560px; top: 250px" alt="" />
+          <img class="fh" id="fh2" src="assets/frutas/mango.svg" style="left: 40px; top: 1180px" alt="" />
+          <img class="fh" id="fh3" src="assets/frutas/guayaba.svg" style="left: 600px; top: 1250px" alt="" />
+        </div>
+
+        <!-- 7 · Cierre: empaques en abanico, logo, lema y contacto -->
+        <div class="stage" id="cierre">
+          <div id="abanico"></div>
+          <div class="logo" id="logo"><!--logo-ts--></div>
+          <div class="lema1" id="lema1">100% Natural</div>
+          <div class="lema2" id="lema2">Lista para tu batido</div>
+          <div class="contacto" id="contacto">
+            <svg viewBox="0 0 24 24"><path fill="#ffc94a" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <span>0424-7017223 · 0424-7284475</span>
+          </div>
+        </div>
+
+        <svg class="splash" id="cubre" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice"></svg>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      let seed = 11;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      const NS = "http://www.w3.org/2000/svg";
+      const mancha = (cx, cy, r) => {
+        const n = 18, pts = [];
+        for (let k = 0; k < n; k++) {
+          const a = (k / n) * Math.PI * 2, rr = r * (0.9 + rnd() * 0.16) * (k % 4 === 0 ? 1.12 : 1);
+          pts.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]);
+        }
+        let d = "M" + ((pts[0][0] + pts[n - 1][0]) / 2).toFixed(0) + " " + ((pts[0][1] + pts[n - 1][1]) / 2).toFixed(0);
+        for (let k = 0; k < n; k++) {
+          const p = pts[k], q = pts[(k + 1) % n];
+          d += " Q" + p[0].toFixed(0) + " " + p[1].toFixed(0) + " " + ((p[0] + q[0]) / 2).toFixed(0) + " " + ((p[1] + q[1]) / 2).toFixed(0);
+        }
+        return d + "Z";
+      };
+      const llenar = (svgId, colores, n, cls) => {
+        const g = document.createElementNS(NS, "g");
+        g.setAttribute("id", svgId + "G");
+        document.getElementById(svgId).appendChild(g);
+        for (let i = 0; i < n; i++) {
+          const x = (i % 4) * 360 - 60 + rnd() * 120, y = Math.floor(i / 4) * 560 + rnd() * 200, r = 430 + rnd() * 160;
+          const b = document.createElementNS(NS, "g");
+          b.setAttribute("class", cls);
+          let h = '<path d="' + mancha(x, y, r) + '" fill="' + colores[i % colores.length] + '"/>';
+          for (let k = 0; k < 4; k++) {
+            const a = rnd() * Math.PI * 2, dd = r * (1.15 + rnd() * 0.35);
+            h += '<circle cx="' + (x + Math.cos(a) * dd).toFixed(0) + '" cy="' + (y + Math.sin(a) * dd).toFixed(0) + '" r="' + (18 + rnd() * 40).toFixed(0) + '" fill="' + colores[i % colores.length] + '"/>';
+          }
+          b.innerHTML = h;
+          g.appendChild(b);
+        }
+        return Array.from(document.querySelectorAll("." + cls));
+      };
+      // Estallido de fruta (fresa, guayaba, mango) y capa final de fresa bajo la pregunta
+      const est = llenar("estallido", ["#d6263f", "#ee6e68", "#f2a20c", "#d6263f"], 14, "est");
+      const fondoFresa = document.createElementNS(NS, "rect");
+      Object.entries({ x: -600, y: -600, width: 2280, height: 3120, fill: "#d6263f", id: "fresaFondo" }).forEach(([k, v]) => fondoFresa.setAttribute(k, v));
+      document.getElementById("estallido").appendChild(fondoFresa);
+      // Gotas que vuelan hacia la pregunta
+      const gotas = document.getElementById("gotas");
+      for (let i = 0; i < 16; i++) {
+        const d = document.createElement("div");
+        const s = 16 + rnd() * 30;
+        Object.assign(d.style, { position: "absolute", width: s + "px", height: s + "px", borderRadius: "50%", background: ["#f2a20c", "#ffc94a", "#fff6e3"][i % 3], left: 90 + rnd() * 860 + "px", top: 700 + rnd() * 340 + "px", opacity: 0 });
+        d.className = "gotita";
+        gotas.appendChild(d);
+      }
+      // Cubierta de mango para pasar a la historia (mismos colores con que arranca la historia)
+      const cub = llenar("cubre", ["#f2a20c", "#ffc94a", "#e8740a"], 14, "cub");
+      // Abanico con los 12 empaques reales
+      const sabores = ["mango", "parchita", "lulo", "pina", "durazno-melocoton", "guayaba", "tomate-de-arbol", "fresa", "mora", "tamarindo", "guanabana", "guanabana-con-fresa"];
+      const abanico = document.getElementById("abanico");
+      sabores.forEach((s, i) => {
+        const d = document.createElement("div");
+        d.className = "bolsa";
+        d.innerHTML = '<img src="assets/empaques/' + s + '.png" alt="" />';
+        abanico.appendChild(d);
+      });
+
+      // ===== 1 · Gancho (0 - 2,11)
+      tl.fromTo("#estallidoG", { scale: 0.04, svgOrigin: "540 960" }, { scale: 1, duration: 0.42, ease: "expo.out" }, 0);
+      est.forEach((b, i) => spring(tl, b, { scale: 0.5, transformOrigin: "50% 50%" }, { scale: 1.05 }, i * 0.01, ESTANDAR));
+      tl.fromTo("#fresaFondo", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.25);
+      [["#w1", 0.05], ["#w2", 0.3], ["#w3", 0.53], ["#w4", 0.78]].forEach(([w, t]) =>
+        spring(tl, w, { opacity: 0, scale: 0.2, y: 60, filter: "blur(18px)", transformOrigin: "30% 70%" }, { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }, t, ESTANDAR));
+      document.querySelectorAll(".gotita").forEach((g, i) => {
+        tl.fromTo(g, { opacity: 0, x: (i % 2 ? 1 : -1) * (220 + i * 14), y: (i % 3 - 1) * 260, scale: 1.6 }, { opacity: 1, x: 0, y: 0, scale: 0.4, duration: 0.5, ease: "power3.out" }, 0.05 + i * 0.03);
+        tl.to(g, { opacity: 0, duration: 0.2 }, 0.5 + i * 0.03);
+      });
+      [["#fh1", 0.12, 1], ["#fh2", 0.3, -1], ["#fh3", 0.45, 1]].forEach(([f, t, l]) => {
+        tl.fromTo(f, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t);
+        spring(tl, f, { scale: 0.2, rotation: -40 * l, x: 200 * l, y: 120 }, { scale: 1, rotation: 0, x: 0, y: 0, immediateRender: false }, t, ESTANDAR);
+        tl.fromTo(f, { y: 0 }, { y: -26, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, t + 0.5);
+      });
+      // salida a mango
+      cub.forEach((b, i) => spring(tl, b, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1.05 }, 1.72 + i * 0.012, ESTANDAR));
+      tl.fromTo("#pregunta, .fh", { opacity: 1 }, { opacity: 0, duration: 0.12, immediateRender: false }, 1.86);
+      tl.fromTo("#estallido", { opacity: 1 }, { opacity: 0, duration: 0.01, immediateRender: false }, 2.1);
+
+      // ===== 7 · Cierre (2,11 - 7,39): arranca cubierto por el verde que deja el catalogo
+      tl.fromTo("#cubre", { opacity: 1 }, { opacity: 0, duration: 0.01, immediateRender: false }, 2.11);
+      const abiertos = document.querySelectorAll(".bolsa");
+      abiertos.forEach((b, i) => {
+        const ang = -42 + (84 / (abiertos.length - 1)) * i;
+        tl.fromTo(b, { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, 2.11 + i * 0.025);
+        spring(tl, b, { rotation: 0, y: 420, transformOrigin: "50% 860px" }, { rotation: ang, y: 0, immediateRender: false }, 2.11 + i * 0.025, ESTANDAR);
+      });
+      tl.fromTo("#abanico", { y: 0 }, { y: -18, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 2.6);
+      spring(tl, "#logo", { opacity: 0, y: -80, scale: 0.85, transformOrigin: "0% 50%" }, { opacity: 1, y: 0, scale: 1, immediateRender: false }, 3.18, PESADO);
+      spring(tl, "#lema1", { opacity: 0, x: -80 }, { opacity: 1, x: 0, immediateRender: false }, 3.72, PESADO);
+      spring(tl, "#lema2", { opacity: 0, x: -80 }, { opacity: 1, x: 0, immediateRender: false }, 3.9, PESADO);
+      spring(tl, "#contacto", { opacity: 0, y: 40 }, { opacity: 1, y: 0, immediateRender: false }, 4.76, ESTANDAR);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

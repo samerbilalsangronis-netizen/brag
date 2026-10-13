@@ -24,7 +24,7 @@ Los tiempos están en segundos del comercial y caen sobre los beats.
 | — | 16,32 | — | ensamble | Transición: el batido salpica y barre hacia el catálogo. | — | — |
 | 6 | 16,32–24,72 | 8,4 s | **Remotion** (`sabores.csv`) | **Catálogo:** 16 beats. Primero el título (2 beats); después cada sabor con su **empaque real recortado**, su fruta ilustrada alrededor, el fondo de su color y el nombre en grande. Uno por beat; los nombres de 3 palabras ocupan 2 beats para que se lean. | "Escoge tu sabor" → Mango · Parchita · Lulo · Piña · Durazno · Guayaba · Tomate de árbol (2) · Fresa · Mora · Tamarindo · Guanábana · Guanábana con fresa (2) | Un golpe suave por sabor (14) |
 | — | 24,72 | — | ensamble | Transición: salpicadura multicolor. | — | — |
-| 7 | 24,72–30,00 | 5,3 s | **Brag** (`/brag --full`) | Los 12 empaques se abren en abanico (24,72), aparece el logo de Tierra Santa (25,79), luego el texto (26,33) y el contacto (27,37). Se sostiene hasta 30,0. | "100% fruta · Lista para tu batido" + **[contacto: pendiente]** | Golpe en 24,72; cierre musical |
+| 7 | 24,72–30,00 | 5,3 s | **Brag** (`/brag --full`) | Los 12 empaques se abren en abanico (24,72), aparece el logo de Tierra Santa (25,79), luego el texto (26,33) y el contacto (27,37). Se sostiene hasta 30,0. | "100% Natural · Lista para tu batido" + "0424-7017223 · 0424-7284475" | Golpe en 24,72; cierre musical |
 
 ## Reparto y ensamble
 
@@ -34,8 +34,8 @@ Los tiempos están en segundos del comercial y caen sobre los beats.
 - **Ensamble:** ffmpeg une los cuatro clips sin cortes secos; cada unión lleva una salpicadura animada encima (≈0,45 s) que tapa el cambio. Se agrega la música continua con los efectos mezclados por debajo y se normaliza a −14 LUFS.
 - **Versión 1:1 (1080×1080):** se reencuadra; no se recorta el 9:16. Cada herramienta vuelve a renderizar en 1080×1080 con el mismo tiempo y el diseño reacomodado.
 
-## Pendientes para la puerta
+## Decisiones de la puerta (aprobadas)
 
-1. **Contacto del cierre:** ¿Instagram o WhatsApp, y cuál exactamente? No uso los teléfonos de las etiquetas porque salen deformados.
-2. **"100% fruta":** la etiqueta dice "100% Natural", no "100% fruta". ¿Lo mantengo así o uso el texto de la etiqueta?
-3. **Logo:** no hay un archivo oficial. Si no tienes uno, recorto el emblema y "Tierra Santa C.A" de la etiqueta más nítida (la de Guanábana con fresa).
+1. Contacto del cierre: **0424-7017223 · 0424-7284475**.
+2. Texto del cierre: **"100% Natural · Lista para tu batido"**. Es lo que dice la etiqueta.
+3. Logo: el archivo oficial que enviaste (`refs/logo-tierra-santa.jpg`), vectorizado en `assets/tierra-santa/logo.svg` con `tools/vectorizar_logo.py`.

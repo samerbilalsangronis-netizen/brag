@@ -1,0 +1,13 @@
+sabor,color,empaque,fruta,beats
+Mango,#f2a20c,assets/empaques/mango.png,assets/frutas/mango.svg,1
+Parchita,#e3b11a,assets/empaques/parchita.png,assets/frutas/parchita.svg,1
+Lulo,#ef8a14,assets/empaques/lulo.png,assets/frutas/lulo.svg,1
+Piña,#f2c541,assets/empaques/pina.png,assets/frutas/pina.svg,1
+Durazno,#f59a4a,assets/empaques/durazno-melocoton.png,assets/frutas/durazno.svg,1
+Guayaba,#ee6e68,assets/empaques/guayaba.png,assets/frutas/guayaba.svg,1
+Tomate de árbol,#b3283a,assets/empaques/tomate-de-arbol.png,assets/frutas/tomate-de-arbol.svg,2
+Fresa,#d6263f,assets/empaques/fresa.png,assets/frutas/fresa.svg,1
+Mora,#5e1f4a,assets/empaques/mora.png,assets/frutas/mora.svg,1
+Tamarindo,#8a4a22,assets/empaques/tamarindo.png,assets/frutas/tamarindo.svg,1
+Guanábana,#7fb04e,assets/empaques/guanabana.png,assets/frutas/guanabana.svg,1
+Guanábana con fresa,#e5677a,assets/empaques/guanabana-con-fresa.png,assets/frutas/guanabana.svg,2

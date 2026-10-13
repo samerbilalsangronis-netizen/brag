@@ -8,6 +8,7 @@ Marcadores que reemplaza en la fuente:
   <!--svg:logo-->          logo real de Habibis (assets/habibis/logo.svg)
   <!--js:helpers-->        resortes y vapor (tools/hf-helpers.js)
   <!--css:platos-->         estilo estatico del vapor y los brillos
+  <!--logo-ts-->            logo vectorial de Tierra Santa (assets/tierra-santa/logo.svg, color = currentColor)
 
 Escenas (opcional): cada bloque
   <scene id="sA" start="0" dur="3.1" track="1"> marcado + <script> </scene>
@@ -108,6 +109,9 @@ def build(src_path, comp):
 
     out = re.sub(r"<!--svg:([a-z0-9-]+)(?::([a-zA-Z=0-9-]+))?-->", rep, src)
     out = out.replace("<!--css:platos-->", PLATOS_CSS)
+    logo_ts = ROOT / "assets/tierra-santa/logo.svg"
+    if logo_ts.exists():
+        out = out.replace("<!--logo-ts-->", logo_ts.read_text().replace("<svg ", '<svg class="logo-ts" ', 1))
     out = split_scenes(out, comp)
     out = out.replace("<!--js:helpers-->", "<script>\n" + (ROOT / "tools/hf-helpers.js").read_text() + "\n</script>")
     (comp / "index.html").write_text(out)
@@ -117,9 +121,12 @@ def build(src_path, comp):
         shutil.copy(f, a / f.name)
     for f in (ROOT / "assets/audio").glob("*"):
         shutil.copy(f, a / f.name)
-    (a / "platos").mkdir(exist_ok=True)
-    for f in (ROOT / "assets/platos").glob("*.png"):
-        shutil.copy(f, a / "platos" / f.name)
+    for carpeta, patron in (("platos", "*.png"), ("empaques", "*.png"), ("frutas", "*.svg")):
+        if not (ROOT / "assets" / carpeta).exists():
+            continue
+        (a / carpeta).mkdir(exist_ok=True)
+        for f in (ROOT / "assets" / carpeta).glob(patron):
+            shutil.copy(f, a / carpeta / f.name)
     print("ok", comp / "index.html")
 
 

@@ -1,0 +1,33 @@
+{
+ "bpm": 112.35,
+ "golpe_mas_fuerte_11_15s": 12.52,
+ "cortes": {
+  "historia": {
+   "t": 2.11,
+   "beat_mas_cercano": 2.11,
+   "desfase_ms": 3
+  },
+  "licuadora": {
+   "t": 9.47,
+   "beat_mas_cercano": 9.47,
+   "desfase_ms": 3
+  },
+  "explosion": {
+   "t": 13.16,
+   "beat_mas_cercano": 13.17,
+   "desfase_ms": 5
+  },
+  "catalogo": {
+   "t": 16.32,
+   "beat_mas_cercano": 16.32,
+   "desfase_ms": 3
+  },
+  "cierre": {
+   "t": 24.72,
+   "beat_mas_cercano": 24.73,
+   "desfase_ms": 9
+  }
+ },
+ "nota": "Medido con librosa sobre la mezcla final. El punto de mayor energia (RMS) de los 30 s cae en 13,17 s = explosion de la licuadora (drop de la musica). El onset de 12,52 s es un redoble de la musica dentro del silencio previo al drop.",
+ "rms_maximo_s": 13.17
+}

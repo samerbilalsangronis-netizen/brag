@@ -5,3 +5,8 @@ out/**/composition/assets/
 plato-noche/node_modules/
 out/plato-noche-work/**/*.mp4
 work/
+out/tierra-santa/**/*.mp4
+out/tierra-santa/*.mp4
+ts-catalogo/node_modules/
+out/tierra-santa/**/composition*/assets/
+out/tierra-santa/hf-historia-*/assets/

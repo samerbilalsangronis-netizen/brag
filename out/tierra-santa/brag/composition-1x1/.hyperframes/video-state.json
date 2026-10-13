@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "historyId": "0c2073da-efd9-4cee-afe5-f457d6d9839f",
+  "currentRevision": "1afc13f1-a6cf-47ae-85a3-ee420a54ee6f",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "CLAUDE.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "assets/ArchivoBlack.woff2": {
+      "hash": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/25/25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30"
+    },
+    "assets/Cairo.woff2": {
+      "hash": "82c13cbd1352d76e97c3d335caa912ae68fecdc3949a43cf8d149eb892384c1b",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/82/82c13cbd1352d76e97c3d335caa912ae68fecdc3949a43cf8d149eb892384c1b"
+    },
+    "assets/Montserrat.woff2": {
+      "hash": "06b16db7a969135d48d38c49183be7fb88d4452e2a3011957c7851941f4e4879",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/06/06b16db7a969135d48d38c49183be7fb88d4452e2a3011957c7851941f4e4879"
+    },
+    "assets/ReemKufi.woff2": {
+      "hash": "99554d5210754377fe095595168cd44ea16fa84c6c21b3a37157f58a5fd66e8a",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/99/99554d5210754377fe095595168cd44ea16fa84c6c21b3a37157f58a5fd66e8a"
+    },
+    "assets/empaques/durazno-melocoton.png": {
+      "hash": "2b62448ed7e508807f3c3d974f2190200545489dedd334c58be217b225a492cc",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/2b/2b62448ed7e508807f3c3d974f2190200545489dedd334c58be217b225a492cc"
+    },
+    "assets/frutas/durazno.svg": {
+      "hash": "5f19f6ca384a0632d5960d696fceece6054ba3871c43353417228e2e11046e88",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/5f/5f19f6ca384a0632d5960d696fceece6054ba3871c43353417228e2e11046e88"
+    },
+    "assets/frutas/fresa.svg": {
+      "hash": "468a2b1000ed91d759a19f124be740585bb8eed117bd4eb04ea9fda0ef409da1",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/46/468a2b1000ed91d759a19f124be740585bb8eed117bd4eb04ea9fda0ef409da1"
+    },
+    "assets/frutas/guanabana.svg": {
+      "hash": "80754947541534c1126a5bc525796e376e4d884def7d5b4842cba414af19d8e0",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/80/80754947541534c1126a5bc525796e376e4d884def7d5b4842cba414af19d8e0"
+    },
+    "assets/frutas/guayaba.svg": {
+      "hash": "de44e0f131137f7524f6d5f4e72fe32a13a04036adcdd1d7a6de4b4f75c2984e",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/de/de44e0f131137f7524f6d5f4e72fe32a13a04036adcdd1d7a6de4b4f75c2984e"
+    },
+    "assets/frutas/lulo.svg": {
+      "hash": "b52bf81896f66336a725e53c08070fd98d56b6644868489e6525bd3b31d50cd7",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/b5/b52bf81896f66336a725e53c08070fd98d56b6644868489e6525bd3b31d50cd7"
+    },
+    "assets/frutas/mango.svg": {
+      "hash": "76a6bddaac2fe9754240c0888ca688a652b4089315637c519d94b6b544884d5a",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/76/76a6bddaac2fe9754240c0888ca688a652b4089315637c519d94b6b544884d5a"
+    },
+    "assets/frutas/mora.svg": {
+      "hash": "0ce4504ce550cccb56a2dea613ab9070fb47c97db148554cbd32ef1d7d36dfae",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/0c/0ce4504ce550cccb56a2dea613ab9070fb47c97db148554cbd32ef1d7d36dfae"
+    },
+    "assets/frutas/parchita.svg": {
+      "hash": "b5b4db7e1953af2967a4619d99701292a8a12ac76bc009c2836345174937819e",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/b5/b5b4db7e1953af2967a4619d99701292a8a12ac76bc009c2836345174937819e"
+    },
+    "assets/frutas/pina.svg": {
+      "hash": "3d3f22e9cb3b9c885b866fea684252e9378a0d7e06830c8bdc959c133d1c9370",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/3d/3d3f22e9cb3b9c885b866fea684252e9378a0d7e06830c8bdc959c133d1c9370"
+    },
+    "assets/frutas/tamarindo.svg": {
+      "hash": "46ddbaccbc2955cbf0bc71bdd280bc5f75790a2083f071e28c32b499a0e5c5aa",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/46/46ddbaccbc2955cbf0bc71bdd280bc5f75790a2083f071e28c32b499a0e5c5aa"
+    },
+    "assets/frutas/tomate-de-arbol.svg": {
+      "hash": "15b6d4f7a6cd591cfec4e5c5d20ffb02140e9ecb8d60b854aff8bd2c9eea32cd",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/15/15b6d4f7a6cd591cfec4e5c5d20ffb02140e9ecb8d60b854aff8bd2c9eea32cd"
+    },
+    "assets/plancha.wav": {
+      "hash": "4fdff1bc3aff6399464d5725c149756b4b08178c1c5198b22b1fb56e743437e5",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/4f/4fdff1bc3aff6399464d5725c149756b4b08178c1c5198b22b1fb56e743437e5"
+    },
+    "assets/platos/combo-habibi.png": {
+      "hash": "01bb3dd403fb9f13f9ec8c57915d513c27c634ce772af5331d81578ac86a1258",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/01/01bb3dd403fb9f13f9ec8c57915d513c27c634ce772af5331d81578ac86a1258"
+    },
+    "assets/platos/falafel.png": {
+      "hash": "77740a81006a10c961d6e4c5a6ee464c2095f0fae6fb74da3b4c64f35b42cc22",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/77/77740a81006a10c961d6e4c5a6ee464c2095f0fae6fb74da3b4c64f35b42cc22"
+    },
+    "assets/platos/hummus.png": {
+      "hash": "b0026228fb4cf2d5d967877ad38763fc9542b22e22337911fcff4d19968c53ba",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/b0/b0026228fb4cf2d5d967877ad38763fc9542b22e22337911fcff4d19968c53ba"
+    },
+    "assets/platos/knafeh.png": {
+      "hash": "361b611e34fab0dedb61d20e6f484322e41761bf08abe25154f6ac2756466245",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/36/361b611e34fab0dedb61d20e6f484322e41761bf08abe25154f6ac2756466245"
+    },
+    "assets/platos/plato-de-shawarma.png": {
+      "hash": "cca098fb25dd48402fb22eb32fc8dd9b0bf9ca72d518716342c0b2a49f2826e2",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/cc/cca098fb25dd48402fb22eb32fc8dd9b0bf9ca72d518716342c0b2a49f2826e2"
+    },
+    "assets/platos/shawarma-de-pollo.png": {
+      "hash": "72709750e58d99ff28e4406a559ff58b3af9bc8138bc6feb33b85f6b31057479",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/72/72709750e58d99ff28e4406a559ff58b3af9bc8138bc6feb33b85f6b31057479"
+    },
+    "assets/pop.wav": {
+      "hash": "b33ea26aca71696bd210eb82f3d7907655195e9b4398c10b8ca382505ffcd4d4",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/b3/b33ea26aca71696bd210eb82f3d7907655195e9b4398c10b8ca382505ffcd4d4"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "a0ad6db812dd5bc104799ab15a8796fa35b84ccfc2cc5b8ac981631c0e18346f",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/a0/a0ad6db812dd5bc104799ab15a8796fa35b84ccfc2cc5b8ac981631c0e18346f"
+    },
+    "meta.json": {
+      "hash": "f8472e1edcf8315cf171107153254a83389b1747eef9cca423c666b839e96fff",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/f8/f8472e1edcf8315cf171107153254a83389b1747eef9cca423c666b839e96fff"
+    },
+    "package.json": {
+      "hash": "81b17a09847d844267be29da867e4bd8c41deaf603b074677cfc784db03a75dd",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/81/81b17a09847d844267be29da867e4bd8c41deaf603b074677cfc784db03a75dd"
+    },
+    "assets/empaques/fresa.png": {
+      "hash": "d597db04997a32e82941f7addedd2d30bd50cf0f74dd5f3f6b0a044b22dd4d99",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/d5/d597db04997a32e82941f7addedd2d30bd50cf0f74dd5f3f6b0a044b22dd4d99"
+    },
+    "assets/empaques/guanabana-con-fresa.png": {
+      "hash": "3823429dfda77b31308423ad213f37a29a8cc65b04555355a0d8a75eca985e54",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/38/3823429dfda77b31308423ad213f37a29a8cc65b04555355a0d8a75eca985e54"
+    },
+    "assets/empaques/guanabana.png": {
+      "hash": "81071eeb7d4624f9df8311e3df41bd1a58f96fec28896f072448bffa8bfdfe83",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/81/81071eeb7d4624f9df8311e3df41bd1a58f96fec28896f072448bffa8bfdfe83"
+    },
+    "assets/empaques/guayaba.png": {
+      "hash": "aebe35e3f16360d7f87fb00b51ae3c17ac417b654e5936758aa406658ddb02f0",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/ae/aebe35e3f16360d7f87fb00b51ae3c17ac417b654e5936758aa406658ddb02f0"
+    },
+    "assets/empaques/lulo.png": {
+      "hash": "813cc94700d332a628694210984027d0ddfc884ab88a57dc4e503b229b214aac",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/81/813cc94700d332a628694210984027d0ddfc884ab88a57dc4e503b229b214aac"
+    },
+    "assets/empaques/mango.png": {
+      "hash": "ae644e9cf3832cd2065289bee74309b71f7395ed52ad7759517e626eae5ac430",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/ae/ae644e9cf3832cd2065289bee74309b71f7395ed52ad7759517e626eae5ac430"
+    },
+    "assets/empaques/mora.png": {
+      "hash": "680a7d1c42e625f6aee0efc999db90afbaa0b0de18a61d218e92ea3437c9aa2a",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/68/680a7d1c42e625f6aee0efc999db90afbaa0b0de18a61d218e92ea3437c9aa2a"
+    },
+    "assets/empaques/parchita.png": {
+      "hash": "5de34bd83aea68487e91413ef7b586a2c7752c701a1139e3a7e21f7e597cca92",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/5d/5de34bd83aea68487e91413ef7b586a2c7752c701a1139e3a7e21f7e597cca92"
+    },
+    "assets/empaques/pina.png": {
+      "hash": "b0a6d690f24bd8adbd0a6dea75e34fde331706724615f359e56da932b23c0416",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/b0/b0a6d690f24bd8adbd0a6dea75e34fde331706724615f359e56da932b23c0416"
+    },
+    "assets/empaques/tamarindo.png": {
+      "hash": "d8461b017286da68c054aa31ddaedf06c83c6d5bded4d49457e0a79cc6b72a89",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/d8/d8461b017286da68c054aa31ddaedf06c83c6d5bded4d49457e0a79cc6b72a89"
+    },
+    "assets/empaques/tomate-de-arbol.png": {
+      "hash": "f4f757ed288b9478fb14e1b55cf3855d843e0165a52a96cd3e4a82595bea8764",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/f4/f4f757ed288b9478fb14e1b55cf3855d843e0165a52a96cd3e4a82595bea8764"
+    },
+    "assets/musica.mp3": {
+      "hash": "f5793597e520aa8fa9cce91086816fc1e15e3aac0128bcf375df51ba70c0dc63",
+      "content": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/f5/f5793597e520aa8fa9cce91086816fc1e15e3aac0128bcf375df51ba70c0dc63"
+    }
+  },
+  "revisions": {
+    "1afc13f1-a6cf-47ae-85a3-ee420a54ee6f": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1791899427293,
+      "endedAt": 1791899427528,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/5c/5cbf298150d8658c6c0cae364f370887038afd9fd5c874ddac3b7ee7f2006acb",
+          "after": "/root/.cache/hyperframes/history/0c2073da-efd9-4cee-afe5-f457d6d9839f/blobs/a0/a0ad6db812dd5bc104799ab15a8796fa35b84ccfc2cc5b8ac981631c0e18346f"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "7776fdf6-e40a-489d-8456-8e42fcf51d34"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "7776fdf6-e40a-489d-8456-8e42fcf51d34",
+        "scope": "project",
+        "report": "/home/user/brag/out/tierra-santa/brag/composition-1x1/.hyperframes/artifacts/checks/7776fdf6-e40a-489d-8456-8e42fcf51d34.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1791898952799,
+        "contentHash": "b016fd22c4ff137763a223cb0591de41a7ee98b05763d7253e356c760f524899",
+        "revision": null,
+        "inputFingerprint": "27a1c96ce3df0e6386a262b2bb9f2d1449991e5f6238d43b5449601b3f0f1734",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "147d679c-5e8f-4d71-a0ab-a554dabfe216",
+      "completedAt": 1791899447773,
+      "output": "/home/user/brag/out/tierra-santa/brag/brag-1x1.mp4",
+      "status": "completed",
+      "revision": "1afc13f1-a6cf-47ae-85a3-ee420a54ee6f"
+    },
+    "retainedRevisions": [
+      "1afc13f1-a6cf-47ae-85a3-ee420a54ee6f"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

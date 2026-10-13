@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600"><defs>
+  <filter id="grano" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="5" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0" result="g"/>
+    <feComponentTransfer in="g" result="t">
+      <feFuncR type="linear" slope=".38" intercept=".7"/><feFuncG type="linear" slope=".38" intercept=".7"/>
+      <feFuncB type="linear" slope=".38" intercept=".7"/><feFuncA type="linear" slope="0" intercept="1"/>
+    </feComponentTransfer>
+    <feComposite in="t" in2="SourceGraphic" operator="in" result="m"/>
+    <feBlend in="SourceGraphic" in2="m" mode="multiply"/>
+  </filter>
+  <radialGradient id="tm" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#c9995d"/><stop offset="1" stop-color="#8a5a2c"/></radialGradient>
+</defs><g filter="url(#grano)"><g id="entera"><path d="M90 260 C120 200 180 230 210 210 C250 186 300 220 340 200 C380 182 430 210 440 250 C450 300 400 300 360 310 C320 320 270 300 230 320 C180 344 110 330 90 260Z" fill="url(#tm)"/><path d="M210 214 C214 260 220 300 228 320 M340 204 C346 246 352 286 360 310" stroke="#7a4a1e" stroke-width="5" fill="none" opacity=".6"/></g><g id="mitad"><path d="M200 400 C250 350 330 360 400 380 C450 394 480 430 450 460 C420 490 330 480 280 470 C230 460 170 440 200 400Z" fill="#c9995d"/><path d="M222 410 C268 376 330 384 392 398 C430 408 452 432 432 452 C408 470 336 462 292 456 C244 448 200 432 222 410Z" fill="#6b3417"/><path d="M250 420 C300 400 360 410 410 430" stroke="#a5582a" stroke-width="8" fill="none" opacity=".7"/></g></g></svg>

@@ -1,0 +1,257 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "overlapping_gsap_tweens",
+        "severity": "warning",
+        "message": "GSAP tweens overlap on \".gotita\" for opacity between 0.50s and 0.55s.",
+        "selector": ".gotita",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/brag/composition-1x1/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Shorten the earlier tween, move the later tween, or add `overwrite: \"auto\"`."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"escena\"> is a timeline element that contains nested <svg id=\"estallido\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#escena",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/brag/composition-1x1/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"escena\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 0.411,
+        "selector": "#fresaFondo",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -600,
+          "top": -600,
+          "right": 1680,
+          "bottom": 2520,
+          "width": 2280,
+          "height": 3120
+        },
+        "containerSelector": "#estallido",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 600,
+          "right": 600,
+          "top": 600,
+          "bottom": 600
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -600,
+          "y": -600,
+          "width": 2280,
+          "height": 3120
+        },
+        "firstSeen": 0.411,
+        "lastSeen": 2.053,
+        "occurrences": 3,
+        "heldMs": 1642,
+        "times": [
+          0.411,
+          1.232,
+          2.053
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 0.411,
+        "selector": "#cubreG",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -65.67,
+          "top": 87,
+          "right": 1071.5,
+          "bottom": 1724.41,
+          "width": 1137.17,
+          "height": 1637.41
+        },
+        "containerSelector": "#cubre",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 65.67
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -65.67,
+          "y": 87,
+          "width": 1137.17,
+          "height": 1637.41
+        },
+        "firstSeen": 0.411,
+        "lastSeen": 2.053,
+        "occurrences": 3,
+        "heldMs": 1642,
+        "times": [
+          0.411,
+          1.232,
+          2.053
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 1.232,
+        "selector": "#estallidoG",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -715.25,
+          "top": -546.85,
+          "right": 1719.86,
+          "bottom": 2429.51,
+          "width": 2435.11,
+          "height": 2976.36
+        },
+        "containerSelector": "#estallido",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 715.25,
+          "right": 639.86,
+          "top": 546.85,
+          "bottom": 509.51
+        },
+        "dataAttributes": {
+          "data-svg-origin": "540 960"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -715.25,
+          "y": -546.85,
+          "width": 2435.11,
+          "height": 2976.36
+        },
+        "firstSeen": 0.411,
+        "lastSeen": 2.053,
+        "occurrences": 3,
+        "heldMs": 1642,
+        "times": [
+          0.411,
+          1.232,
+          2.053
+        ]
+      }
+    ],
+    "duration": 7.39,
+    "samples": [
+      0.411,
+      1.232,
+      2.053,
+      2.874,
+      3.695,
+      4.516,
+      5.337,
+      6.158,
+      6.979
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 3,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      0.411,
+      2.053,
+      3.695,
+      5.337,
+      6.979
+    ],
+    "checked": 8,
+    "passed": 8
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

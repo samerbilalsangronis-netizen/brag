@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{W}}, height={{H}}" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Archivo Black"; src: url(assets/ArchivoBlack.woff2) format("woff2"); }
+      @font-face { font-family: "Montserrat"; src: url(assets/Montserrat.woff2) format("woff2"); font-weight: 100 900; }
+      :root { --fondo: #0a2b28; --mango: #f2a20c; --mango2: #ffc94a; --crema: #fff6e3; --hielo: #dff3ff; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: {{W}}px; height: {{H}}px; overflow: hidden; background: var(--fondo); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--fondo); font-family: "Montserrat", sans-serif; color: var(--crema); }
+      /* Escenario de diseño 1080x1920. En 1:1 se reencuadra a escala (no se recorta): lo importante vive en y 240-1680. */
+      .stage { position: absolute; left: {{SX}}px; top: {{SY}}px; width: 1080px; height: 1920px; transform: scale({{S}}); transform-origin: 0 0; }
+      .full { position: absolute; inset: 0; }
+      .cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      .luz { position: absolute; left: 40px; top: 360px; width: 1000px; height: 1000px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(242,162,12,.34) 0%, rgba(242,162,12,.08) 45%, rgba(242,162,12,0) 70%); }
+      .vapor { position: absolute; border-radius: 50%; background: rgba(223,243,255,.5); filter: blur(46px); }
+      .cristal { position: absolute; }
+      .gota, .hielo, #corte, #vaso, #pajilla, #fruta1, #fruta2 { opacity: 0; }
+      .gc { opacity: 0; }
+      .bag-rot { position: absolute; left: 230px; top: 470px; width: 620px; height: 828px; }
+      .bag-part { position: absolute; inset: 0; }
+      .bag-part img { width: 620px; height: 828px; display: block; }
+      #bagTop { clip-path: inset(0 0 77% 0); }
+      #bagBot { clip-path: inset(23% 0 0 0); }
+      .escarcha { position: absolute; inset: 0; -webkit-mask: url(assets/empaques/mango.png) center / 100% 100% no-repeat; mask: url(assets/empaques/mango.png) center / 100% 100% no-repeat;
+        background: radial-gradient(ellipse at 50% 55%, rgba(255,255,255,0) 38%, rgba(235,248,255,.8) 100%); }
+      .escarcha svg { width: 100%; height: 100%; display: block; opacity: .3; mix-blend-mode: screen; }
+      .corte { position: absolute; left: 236px; top: 655px; width: 608px; height: 8px; border-radius: 4px; background: #fff; box-shadow: 0 0 24px #fff; transform-origin: 0 50%; }
+      .titulo { position: absolute; left: 90px; right: 90px; top: 1430px; font: 400 104px/1.02 "Archivo Black"; letter-spacing: -.01em; color: var(--crema); }
+      .titulo em { font-style: normal; color: var(--mango2); }
+      .chorro { position: absolute; left: 470px; top: 760px; width: 140px; height: 420px; transform-origin: 50% 0; }
+      .gota { position: absolute; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 35% 30%, #ffd77a, #f29a0c 70%); }
+      .licuadora { position: absolute; left: 290px; top: 980px; width: 500px; height: 780px; }
+      .hielo { position: absolute; width: 96px; height: 96px; }
+      .vaso { position: absolute; left: 330px; top: 520px; width: 420px; height: 900px; }
+      .fruta-fondo { position: absolute; width: 360px; height: 360px; opacity: .9; }
+      .splash { position: absolute; inset: 0; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14.21" data-width="{{W}}" data-height="{{H}}">
+      <div id="escena" class="clip full" data-start="0" data-duration="14.21" data-track-index="0">
+        <div class="stage">
+          <div class="cam" id="cam">
+          <div class="luz" id="luz"></div>
+          <div id="vapores"></div>
+          <div id="cristales"></div>
+
+          <!-- 2-3 · El empaque real de Mango, con escarcha; se abre y vierte -->
+          <div class="bag-rot" id="bagRot">
+            <div class="bag-part" id="bagBot"><img src="assets/empaques/mango.png" alt="" /><div class="escarcha" id="escarchaBot"><svg viewBox="0 0 620 828"><filter id="fr1"><feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -.75"/></filter><rect width="620" height="828" filter="url(#fr1)"/></svg></div></div>
+            <div class="bag-part" id="bagTop"><img src="assets/empaques/mango.png" alt="" /><div class="escarcha" id="escarchaTop"><svg viewBox="0 0 620 828"><filter id="fr2"><feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -.75"/></filter><rect width="620" height="828" filter="url(#fr2)"/></svg></div></div>
+          </div>
+          <div class="corte" id="corte"></div>
+          <div class="titulo" id="titulo">Pulpa de fruta<br /><em>congelada</em></div>
+
+          <svg class="chorro" id="chorro" viewBox="0 0 140 420" preserveAspectRatio="none">
+            <defs><linearGradient id="gch" x1="0" x2="1"><stop offset="0" stop-color="#e88a06" /><stop offset=".45" stop-color="#ffc94a" /><stop offset="1" stop-color="#e88a06" /></linearGradient></defs>
+            <path d="M30 0 C40 120 20 260 44 420 L96 420 C120 260 100 120 110 0 Z" fill="url(#gch)" />
+          </svg>
+          <div id="gotas"></div>
+
+          <!-- 3-4 · Licuadora ilustrada -->
+          <svg class="licuadora" id="licuadora" viewBox="0 0 500 780">
+            <defs>
+              <clipPath id="jarra"><path d="M70 60 L430 60 L380 560 L120 560 Z" /></clipPath>
+              <linearGradient id="liq" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffc94a" /><stop offset="1" stop-color="#e98a05" /></linearGradient>
+              <linearGradient id="vidrio" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".30" /><stop offset=".25" stop-color="#ffffff" stop-opacity=".06" /><stop offset=".8" stop-color="#ffffff" stop-opacity=".04" /><stop offset="1" stop-color="#ffffff" stop-opacity=".22" /></linearGradient>
+            </defs>
+            <g clip-path="url(#jarra)">
+              <g id="liquido"><rect x="0" y="0" width="500" height="600" fill="url(#liq)" /></g>
+              <g id="vortice" style="transform-origin: 250px 330px"></g>
+              <g id="trozos"></g>
+            </g>
+            <path d="M70 60 L430 60 L380 560 L120 560 Z" fill="url(#vidrio)" stroke="#eaf6ff" stroke-opacity=".75" stroke-width="7" stroke-linejoin="round" />
+            <path d="M104 100 L140 520" stroke="#ffffff" stroke-opacity=".45" stroke-width="12" stroke-linecap="round" />
+            <path d="M430 120 C490 140 490 330 405 380" stroke="#eaf6ff" stroke-opacity=".7" stroke-width="16" fill="none" stroke-linecap="round" />
+            <rect x="56" y="30" width="388" height="40" rx="14" fill="#1f2a27" />
+            <rect x="200" y="6" width="100" height="34" rx="10" fill="#2c3a36" />
+            <path d="M110 560 L390 560 L420 760 L80 760 Z" fill="#1d2523" />
+            <rect x="80" y="700" width="340" height="60" rx="14" fill="#151b1a" />
+            <circle cx="250" cy="650" r="34" fill="#2e3a37" /><circle cx="250" cy="650" r="20" fill="#f2a20c" />
+            <rect x="244" y="622" width="12" height="22" rx="4" fill="#151b1a" id="perilla" style="transform-origin: 250px 650px" />
+          </svg>
+          <div id="hielos"></div>
+
+          <!-- 5 · El vaso -->
+          <img class="fruta-fondo" id="fruta1" src="assets/frutas/mango.svg" style="left: 20px; top: 1140px" alt="" />
+          <div class="fruta-fondo" id="fruta2" style="left: 720px; top: 360px; background: url(assets/frutas/mango.svg) center / contain no-repeat"></div>
+          <svg class="vaso" id="vaso" viewBox="0 0 420 900">
+            <defs>
+              <clipPath id="vasoIn"><path d="M40 40 L380 40 L346 860 L74 860 Z" /></clipPath>
+              <linearGradient id="batido" x1="0" x2="1"><stop offset="0" stop-color="#e98a05" /><stop offset=".4" stop-color="#ffbf3a" /><stop offset="1" stop-color="#e48004" /></linearGradient>
+              <linearGradient id="brilloG" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".5" stop-color="#fff" stop-opacity=".75" /><stop offset="1" stop-color="#fff" stop-opacity="0" /></linearGradient>
+            </defs>
+            <g clip-path="url(#vasoIn)">
+              <rect id="nivel" x="0" y="140" width="420" height="760" fill="url(#batido)" />
+              <rect id="espuma" x="0" y="130" width="420" height="26" fill="#ffe2a0" />
+              <g id="condensa"></g>
+              <rect id="brillo" x="-160" y="0" width="110" height="900" fill="url(#brilloG)" transform="skewX(-14)" />
+            </g>
+            <path d="M40 40 L380 40 L346 860 L74 860 Z" fill="rgba(255,255,255,.07)" stroke="#eaf6ff" stroke-opacity=".8" stroke-width="7" stroke-linejoin="round" />
+            <path d="M84 90 L112 820" stroke="#fff" stroke-opacity=".4" stroke-width="12" stroke-linecap="round" />
+          </svg>
+          <svg class="chorro" id="chorroVaso" viewBox="0 0 140 420" preserveAspectRatio="none" style="left: 470px; top: 0; height: 700px">
+            <path d="M40 0 C50 120 34 260 52 420 L88 420 C106 260 90 120 100 0 Z" fill="url(#gch)" />
+          </svg>
+          <svg id="pajilla" viewBox="0 0 60 760" style="position: absolute; left: 560px; top: 250px; width: 60px; height: 760px">
+            <rect x="12" y="0" width="36" height="760" rx="18" fill="#fff6e3" />
+            <g fill="#2fa36b"><rect x="12" y="40" width="36" height="34" /><rect x="12" y="140" width="36" height="34" /><rect x="12" y="240" width="36" height="34" /><rect x="12" y="340" width="36" height="34" /></g>
+          </svg>
+          </div>
+        </div>
+
+        <!-- Salpicadura que cubre la pantalla (entrada y salida) -->
+        <svg class="splash" id="splash" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice"></svg>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // PRNG con semilla (nada de Math.random)
+      let seed = 7;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      const NS = "http://www.w3.org/2000/svg";
+
+      // Vapor frio y cristales de escarcha
+      const vapores = document.getElementById("vapores");
+      for (let i = 0; i < 7; i++) {
+        const v = document.createElement("div");
+        v.className = "vapor";
+        const w = 300 + rnd() * 320;
+        Object.assign(v.style, { width: w + "px", height: w * 0.6 + "px", left: rnd() * 900 - 120 + "px", top: 300 + rnd() * 1100 + "px" });
+        vapores.appendChild(v);
+      }
+      const cristales = document.getElementById("cristales");
+      for (let i = 0; i < 34; i++) {
+        const c = document.createElementNS(NS, "svg");
+        c.setAttribute("viewBox", "-13 -13 26 26");
+        c.setAttribute("class", "cristal");
+        c.innerHTML = '<path d="M0 -12 V12 M-10.4 -6 L10.4 6 M-10.4 6 L10.4 -6" stroke="#eaf8ff" stroke-width="2.4" stroke-linecap="round"/>';
+        const s = Math.round(16 + rnd() * 36);
+        Object.assign(c.style, { left: 120 + rnd() * 840 + "px", top: 380 + rnd() * 1000 + "px", width: s + "px", height: s + "px" });
+        cristales.appendChild(c);
+      }
+      // Gotas de pulpa en camara lenta
+      const gotas = document.getElementById("gotas");
+      for (let i = 0; i < 9; i++) {
+        const g = document.createElement("div");
+        g.className = "gota";
+        const s = 26 + rnd() * 34;
+        Object.assign(g.style, { width: s + "px", height: s * 1.2 + "px", left: 450 + rnd() * 180 + "px", top: "760px" });
+        gotas.appendChild(g);
+      }
+      // Hielos translucidos
+      const hielos = document.getElementById("hielos");
+      for (let i = 0; i < 3; i++) {
+        const h = document.createElementNS(NS, "svg");
+        h.setAttribute("viewBox", "0 0 96 96");
+        h.setAttribute("class", "hielo");
+        h.innerHTML = '<rect x="6" y="6" width="84" height="84" rx="20" fill="rgba(223,243,255,.55)" stroke="#fff" stroke-opacity=".8" stroke-width="4"/><path d="M20 26 L44 20" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".8"/><rect x="18" y="40" width="30" height="30" rx="10" fill="#fff" opacity=".25"/>';
+        Object.assign(h.style, { left: 380 + i * 110 + "px", top: "600px" });
+        hielos.appendChild(h);
+      }
+      // Vortice: tres brazos en espiral y trozos de mango que orbitan
+      const vort = document.getElementById("vortice");
+      ["#fff4d6", "#a84f00", "#fff4d6"].forEach((col, b) => {
+        let d = "";
+        for (let k = 0; k <= 60; k++) {
+          const a = k * 0.16 + (b * Math.PI * 2) / 3, r = 6 + k * 3.6;
+          d += (k ? " L" : "M") + (250 + Math.cos(a) * r).toFixed(1) + " " + (330 + Math.sin(a) * r * 0.55).toFixed(1);
+        }
+        const p = document.createElementNS(NS, "path");
+        p.setAttribute("d", d); p.setAttribute("stroke", col); p.setAttribute("stroke-width", b === 1 ? 20 : 24);
+        p.setAttribute("fill", "none"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("opacity", b === 1 ? ".7" : ".85");
+        vort.appendChild(p);
+      });
+      const trozos = document.getElementById("trozos");
+      for (let i = 0; i < 9; i++) {
+        const g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "trozo");
+        g.innerHTML = '<rect x="-17" y="-17" width="34" height="34" rx="9" fill="#ffb21f"/><rect x="-12" y="-14" width="24" height="10" rx="5" fill="#ffe08a" opacity=".85"/>';
+        trozos.appendChild(g);
+      }
+
+      // Gotas de condensacion en el vaso
+      const condensa = document.getElementById("condensa");
+      for (let i = 0; i < 26; i++) {
+        const e = document.createElementNS(NS, "ellipse");
+        const x = 70 + rnd() * 280, y = 120 + rnd() * 700, r = 4 + rnd() * 7;
+        e.setAttribute("cx", x.toFixed(1)); e.setAttribute("cy", y.toFixed(1)); e.setAttribute("rx", r.toFixed(1)); e.setAttribute("ry", (r * 1.3).toFixed(1));
+        e.setAttribute("fill", "rgba(255,255,255,.55)"); e.setAttribute("class", "gc");
+        condensa.appendChild(e);
+      }
+      // Salpicadura: manchas organicas con gotas satelite que cubren toda la pantalla
+      const splash = document.getElementById("splash");
+      const colores = ["#f2a20c", "#ffc94a", "#e8740a"];
+      const mancha = (cx, cy, r) => {
+        const n = 18, pts = [];
+        for (let k = 0; k < n; k++) {
+          const a = (k / n) * Math.PI * 2, rr = r * (0.9 + rnd() * 0.16) * (k % 4 === 0 ? 1.12 : 1);
+          pts.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]);
+        }
+        let d = "M" + ((pts[0][0] + pts[n - 1][0]) / 2).toFixed(0) + " " + ((pts[0][1] + pts[n - 1][1]) / 2).toFixed(0);
+        for (let k = 0; k < n; k++) {
+          const p = pts[k], q = pts[(k + 1) % n];
+          d += " Q" + p[0].toFixed(0) + " " + p[1].toFixed(0) + " " + ((p[0] + q[0]) / 2).toFixed(0) + " " + ((p[1] + q[1]) / 2).toFixed(0);
+        }
+        return d + "Z";
+      };
+      const grupo = document.createElementNS(NS, "g");
+      grupo.setAttribute("id", "splashG");
+      splash.appendChild(grupo);
+      for (let i = 0; i < 14; i++) {
+        const x = (i % 4) * 360 - 60 + rnd() * 120, y = Math.floor(i / 4) * 560 + rnd() * 200, r = 430 + rnd() * 160;
+        const g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "sp");
+        g.innerHTML = '<path d="' + mancha(x, y, r) + '" fill="' + colores[i % 3] + '"/>';
+        for (let k = 0; k < 4; k++) {
+          const a = rnd() * Math.PI * 2, dd = r * (1.15 + rnd() * 0.35), rs = 18 + rnd() * 40;
+          g.innerHTML += '<circle cx="' + (x + Math.cos(a) * dd).toFixed(0) + '" cy="' + (y + Math.sin(a) * dd).toFixed(0) + '" r="' + rs.toFixed(0) + '" fill="' + colores[i % 3] + '"/>';
+        }
+        grupo.appendChild(g);
+      }
+      const sp = Array.from(document.querySelectorAll(".sp"));
+      const cubrir = (t, desde, hasta) => sp.forEach((c, i) => spring(tl, c, { scale: desde, transformOrigin: "50% 50%" }, { scale: hasta, immediateRender: false }, t + i * 0.012, ESTANDAR));
+
+      // Estado inicial de lo que entra despues
+      tl.fromTo("#chorro, #chorroVaso", { scaleY: 0 }, { scaleY: 0, duration: 0.01 }, 0);
+      tl.fromTo("#licuadora", { y: 900 }, { y: 900, duration: 0.01 }, 0);
+
+      // ===== 2 · Vapor frio: el empaque real aparece girando con escarcha (0 - 3,16)
+      cubrir(0, 1, 0); // la salpicadura del gancho se retira
+      tl.fromTo(".vapor", { opacity: 0, x: -40 }, { opacity: 0.5, x: 40, duration: 3.2, ease: "sine.inOut", stagger: 0.08 }, 0);
+      tl.fromTo(".cristal", { opacity: 0, rotation: -40, transformOrigin: "50% 50%" }, { opacity: 0.9, rotation: 40, duration: 3.0, ease: "sine.out", stagger: 0.02 }, 0.05);
+      spring(tl, "#bagRot", { rotationY: -95, rotationZ: -10, scale: 0.6, transformPerspective: 1400 }, { rotationY: 0, rotationZ: -3, scale: 1 }, 0.05, PESADO);
+      tl.fromTo("#bagRot", { rotationZ: -3 }, { rotationZ: 3, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 1.4);
+      tl.fromTo(".escarcha", { opacity: 0 }, { opacity: 1, duration: 1.3, ease: "sine.out" }, 0.35);
+      spring(tl, "#luz", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1 }, 0.2, PESADO);
+      spring(tl, "#titulo", { opacity: 0, y: 70 }, { opacity: 1, y: 0 }, 1.04, PESADO);
+
+      // ===== 3 · Se abre y la pulpa cae en camara lenta a la licuadora (3,16 - 7,36)
+      tl.to("#titulo", { opacity: 0, y: -40, duration: 0.25, ease: "power2.in" }, 2.95);
+      tl.to(".escarcha", { opacity: 0.35, duration: 0.6 }, 3.0);
+      tl.fromTo("#corte", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 3.15);
+      spring(tl, "#corte", { scaleX: 0 }, { scaleX: 1 }, 3.16, SECO);
+      tl.to("#corte", { opacity: 0, duration: 0.2 }, 3.45);
+      spring(tl, "#bagTop", { rotation: 0, x: 0, y: 0 }, { rotation: -24, x: -170, y: -260, opacity: 0, immediateRender: false }, 3.3, ESTANDAR);
+      spring(tl, "#bagRot", { y: 0, rotation: 0, scale: 1 }, { y: -420, rotation: 168, scale: 0.62, immediateRender: false }, 3.45, ESTANDAR);
+      tl.to(".cristal, .vapor", { opacity: 0.15, duration: 0.8 }, 3.4);
+      spring(tl, "#licuadora", { y: 900 }, { y: 0, immediateRender: false }, 3.5, ESTANDAR);
+      spring(tl, "#chorro", { scaleY: 0 }, { scaleY: 1, immediateRender: false }, 3.85, PESADO);
+      tl.fromTo("#chorro", { scaleX: 1 }, { scaleX: 0.86, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 5, immediateRender: false }, 4.1);
+      document.querySelectorAll(".gota").forEach((g, i) => {
+        const t0 = 3.95 + i * 0.32;
+        tl.fromTo(g, { opacity: 0, y: 0, rotation: 0 }, { opacity: 1, y: 260 + (i % 3) * 40, rotation: 40 - i * 9, duration: 1.6, ease: "none", immediateRender: false }, t0);
+        tl.to(g, { opacity: 0, duration: 0.2 }, t0 + 1.5);
+      });
+      tl.fromTo("#liquido", { y: 560 }, { y: 300, duration: 3.2, ease: "sine.out", immediateRender: false }, 4.0);
+      document.querySelectorAll(".hielo").forEach((h, i) => {
+        const t0 = [4.73, 5.27, 5.78][i] - 0.55;
+        tl.fromTo(h, { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, t0);
+        spring(tl, h, { y: -300, rotation: -30 + i * 25 }, { y: 560 + i * 18, rotation: 15 - i * 20, immediateRender: false }, t0, ESTANDAR);
+      });
+      tl.to("#chorro", { scaleY: 0, transformOrigin: "50% 100%", duration: 0.4, ease: "power2.in" }, 6.7);
+      tl.to("#bagRot", { opacity: 0, y: -900, duration: 0.5, ease: "power2.in" }, 6.75);
+
+      // ===== 4 · La licuadora gira: vortice que se intensifica y explota (7,36 - 11,59; drop en 11,05)
+      tl.fromTo("#perilla", { rotation: 0, svgOrigin: "250 650" }, { rotation: 110, duration: 0.25, ease: SECO.ease }, 7.36);
+      tl.fromTo("#vortice", { rotation: 0 }, { rotation: 4200, duration: 3.7, ease: "power3.in" }, 7.36);
+      tl.fromTo("#vortice", { scale: 0.6 }, { scale: 1.25, duration: 3.7, ease: "power2.in", immediateRender: false }, 7.36);
+      tl.to(".hielo", { scale: 0.2, opacity: 0, rotation: 360, duration: 1.2, ease: "power2.in" }, 7.5);
+      document.querySelectorAll(".trozo").forEach((g, i) => {
+        const o = { t: 0 };
+        tl.fromTo(o, { t: 0 }, { t: 1, duration: 3.69, ease: "none", onUpdate: () => {
+          const u = o.t, ang = i * 0.7 + 30 * u * u + 4 * u, r = 150 - 70 * u;
+          g.setAttribute("transform", "translate(" + (250 + Math.cos(ang) * r).toFixed(1) + " " + (330 + Math.sin(ang) * r * 0.5 - 40 * u).toFixed(1) + ") rotate(" + (ang * 57).toFixed(0) + ")");
+          g.setAttribute("opacity", u > 0 ? "1" : "0");
+        } }, 7.36);
+      });
+      tl.fromTo("#liquido", { y: 300 }, { y: 160, duration: 3.5, ease: "power2.in", immediateRender: false }, 7.5);
+      tl.fromTo("#cam", { scale: 1, x: 0, y: 0, transformOrigin: "0% 0%" }, { scale: 1.55, x: -300, y: -820, duration: 3.6, ease: "power2.in" }, 7.4);
+      // vibracion creciente, determinista
+      for (let k = 0; k < 28; k++) {
+        const t = 8.2 + k * 0.1, a = 1 + k * 0.45;
+        tl.to("#licuadora", { x: (k % 2 ? 1 : -1) * a, duration: 0.095, ease: "none" }, t);
+      }
+      spring(tl, "#luz", { scale: 1 }, { scale: 1.6, immediateRender: false }, 9.5, PESADO);
+      // EXPLOSION en el drop: la salpicadura llena la pantalla
+      tl.fromTo("#splashG", { scale: 0.05, svgOrigin: "540 1120" }, { scale: 1, duration: 0.45, ease: "expo.out", immediateRender: false }, 11.05);
+      cubrir(11.05, 0.4, 1);
+      tl.set("#splashG", { scale: 1, svgOrigin: "540 1120" }, 11.5);
+      tl.set("#cam", { scale: 1, x: 0, y: 0 }, 11.4);
+      tl.set("#licuadora, #vapores, #cristales, #gotas, #hielos", { opacity: 0 }, 11.4);
+
+      // ===== 5 · El batido cae en el vaso con condensacion; pajilla y destello (11,59 - 14,21)
+      tl.fromTo("#vaso, #fruta1, #fruta2", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 11.4);
+      cubrir(11.62, 1, 0);
+      spring(tl, "#vaso", { y: 240, scale: 0.9 }, { y: 0, scale: 1, immediateRender: false }, 11.62, ESTANDAR);
+      spring(tl, "#fruta1", { x: -260, rotation: -30 }, { x: 0, rotation: 0, immediateRender: false }, 11.8, PESADO);
+      spring(tl, "#fruta2", { x: 260, rotation: 30 }, { x: 0, rotation: 0, immediateRender: false }, 11.9, PESADO);
+      spring(tl, "#chorroVaso", { scaleY: 0 }, { scaleY: 1, immediateRender: false }, 11.7, ESTANDAR);
+      tl.fromTo("#nivel", { y: 760 }, { y: 0, duration: 1.2, ease: PESADO.ease, immediateRender: false }, 11.8);
+      tl.fromTo("#espuma", { y: 760 }, { y: 0, duration: 1.2, ease: PESADO.ease, immediateRender: false }, 11.8);
+      tl.to("#chorroVaso", { scaleY: 0, transformOrigin: "50% 100%", duration: 0.35, ease: "power2.in" }, 12.9);
+      document.querySelectorAll(".gc").forEach((e, i) => spring(tl, e, { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, immediateRender: false }, 12.5 + (i % 9) * 0.05, SECO));
+      tl.to(".gc:nth-child(3n)", { y: 140, duration: 1.4, ease: "power1.in" }, 12.8);
+      tl.fromTo("#pajilla", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 13.0);
+      spring(tl, "#pajilla", { y: -700, rotation: -2 }, { y: 0, rotation: 10, immediateRender: false }, 13.0, SECO);
+      tl.fromTo("#brillo", { x: -160 }, { x: 640, duration: 0.55, ease: "power2.inOut" }, 13.68);
+      // Salida: salpicadura que cubre y da paso al catalogo
+      cubrir(13.86, 0, 1);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

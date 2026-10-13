@@ -1,0 +1,1040 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 9,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "duplicate_media_discovery_risk",
+        "severity": "warning",
+        "message": "Detected 2 matching img entries with the same source/start/duration.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Avoid duplicated media nodes that can be discovered twice during compilation."
+      },
+      {
+        "code": "overlapping_gsap_tweens",
+        "severity": "warning",
+        "message": "GSAP tweens overlap on \"#licuadora\" for x between 8.20s and 8.30s.",
+        "selector": "#licuadora",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Shorten the earlier tween, move the later tween, or add `overwrite: \"auto\"`."
+      },
+      {
+        "code": "gsap_timeline_set_initial_hide",
+        "severity": "warning",
+        "message": "Initial hidden state for \".gota\" is set via tl.set(...) at position 0 inside the paused timeline. A zero-duration set at 0 does not render while the playhead sits exactly at 0, so frame 0 shows the un-hidden state.",
+        "selector": ".gota",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use gsap.set(...) (immediate, outside the timeline) for initial states, or author the hidden state directly in CSS/attributes."
+      },
+      {
+        "code": "gsap_timeline_set_initial_hide",
+        "severity": "warning",
+        "message": "Initial hidden state for \".hielo\" is set via tl.set(...) at position 0 inside the paused timeline. A zero-duration set at 0 does not render while the playhead sits exactly at 0, so frame 0 shows the un-hidden state.",
+        "selector": ".hielo",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use gsap.set(...) (immediate, outside the timeline) for initial states, or author the hidden state directly in CSS/attributes."
+      },
+      {
+        "code": "gsap_timeline_set_initial_hide",
+        "severity": "warning",
+        "message": "Initial hidden state for \"#vaso, #pajilla, #fruta1, #fruta2\" is set via tl.set(...) at position 0 inside the paused timeline. A zero-duration set at 0 does not render while the playhead sits exactly at 0, so frame 0 shows the un-hidden state.",
+        "selector": "#vaso, #pajilla, #fruta1, #fruta2",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use gsap.set(...) (immediate, outside the timeline) for initial states, or author the hidden state directly in CSS/attributes."
+      },
+      {
+        "code": "gsap_timeline_set_initial_hide",
+        "severity": "warning",
+        "message": "Initial hidden state for \"#corte\" is set via tl.set(...) at position 0 inside the paused timeline. A zero-duration set at 0 does not render while the playhead sits exactly at 0, so frame 0 shows the un-hidden state.",
+        "selector": "#corte",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use gsap.set(...) (immediate, outside the timeline) for initial states, or author the hidden state directly in CSS/attributes."
+      },
+      {
+        "code": "gsap_timeline_set_initial_hide",
+        "severity": "warning",
+        "message": "Initial hidden state for \".gc\" is set via tl.set(...) at position 0 inside the paused timeline. A zero-duration set at 0 does not render while the playhead sits exactly at 0, so frame 0 shows the un-hidden state.",
+        "selector": ".gc",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use gsap.set(...) (immediate, outside the timeline) for initial states, or author the hidden state directly in CSS/attributes."
+      },
+      {
+        "code": "composition_file_too_large",
+        "severity": "warning",
+        "message": "This HTML composition file has 310 lines. Smaller sub-compositions are easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Split coherent scenes or layers into separate .html files under compositions/, then mount them from the parent with data-composition-src so each file stays small enough to inspect, revise, and validate independently."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"escena\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#escena",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/brag/out/tierra-santa/hf-historia-9x16/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"escena\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 13,
+    "infoCount": 9,
+    "findings": [
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 151.065,
+          "y": 757.245,
+          "width": 73.27,
+          "height": 73.27
+        },
+        "rect": {
+          "left": 151.065,
+          "top": 757.245,
+          "right": 224.33499999999998,
+          "bottom": 830.515,
+          "width": 73.27,
+          "height": 73.27
+        },
+        "message": "Rotating element's bounding-box center drifts 122px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 696.915,
+          "y": 904.915,
+          "width": 80.13,
+          "height": 80.13
+        },
+        "rect": {
+          "left": 696.915,
+          "top": 904.915,
+          "right": 777.0450000000001,
+          "bottom": 985.0450000000001,
+          "width": 80.13,
+          "height": 80.13
+        },
+        "message": "Rotating element's bounding-box center drifts 95px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 924.18,
+          "y": 1221.01,
+          "width": 59.64,
+          "height": 59.64
+        },
+        "rect": {
+          "left": 924.18,
+          "top": 1221.01,
+          "right": 983.82,
+          "bottom": 1280.6499999999999,
+          "width": 59.64,
+          "height": 59.64
+        },
+        "message": "Rotating element's bounding-box center drifts 75px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 747.345,
+          "y": 1186.365,
+          "width": 58.45,
+          "height": 58.45
+        },
+        "rect": {
+          "left": 747.345,
+          "top": 1186.365,
+          "right": 805.7950000000001,
+          "bottom": 1244.8149999999998,
+          "width": 58.45,
+          "height": 58.45
+        },
+        "message": "Rotating element's bounding-box center drifts 63px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(10)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 82.07499999999999,
+          "y": 583.625,
+          "width": 79.29,
+          "height": 79.29
+        },
+        "rect": {
+          "left": 82.07499999999999,
+          "top": 583.625,
+          "right": 161.365,
+          "bottom": 662.915,
+          "width": 79.29,
+          "height": 79.29
+        },
+        "message": "Rotating element's bounding-box center drifts 147px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(16)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 646.875,
+          "y": 895.815,
+          "width": 76.57,
+          "height": 76.57
+        },
+        "rect": {
+          "left": 646.875,
+          "top": 895.815,
+          "right": 723.4449999999999,
+          "bottom": 972.385,
+          "width": 76.57,
+          "height": 76.57
+        },
+        "message": "Rotating element's bounding-box center drifts 95px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(18)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 413.09499999999997,
+          "y": 978.945,
+          "width": 81.11,
+          "height": 81.11
+        },
+        "rect": {
+          "left": 413.09499999999997,
+          "top": 978.945,
+          "right": 494.205,
+          "bottom": 1060.055,
+          "width": 81.11,
+          "height": 81.11
+        },
+        "message": "Rotating element's bounding-box center drifts 83px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(21)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 137.565,
+          "y": 1109.045,
+          "width": 77.43,
+          "height": 77.43
+        },
+        "rect": {
+          "left": 137.565,
+          "top": 1109.045,
+          "right": 214.995,
+          "bottom": 1186.475,
+          "width": 77.43,
+          "height": 77.43
+        },
+        "message": "Rotating element's bounding-box center drifts 82px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(24)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 177.065,
+          "y": 697.755,
+          "width": 62.89,
+          "height": 62.89
+        },
+        "rect": {
+          "left": 177.065,
+          "top": 697.755,
+          "right": 239.95499999999998,
+          "bottom": 760.6450000000001,
+          "width": 62.89,
+          "height": 62.89
+        },
+        "message": "Rotating element's bounding-box center drifts 129px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(25)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 171.94,
+          "y": 1236.19,
+          "width": 60.56,
+          "height": 60.56
+        },
+        "rect": {
+          "left": 171.94,
+          "top": 1236.19,
+          "right": 232.5,
+          "bottom": 1296.75,
+          "width": 60.56,
+          "height": 60.56
+        },
+        "message": "Rotating element's bounding-box center drifts 67px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(26)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 894.2900000000001,
+          "y": 1185.1899999999998,
+          "width": 77.84,
+          "height": 77.84
+        },
+        "rect": {
+          "left": 894.2900000000001,
+          "top": 1185.1899999999998,
+          "right": 972.13,
+          "bottom": 1263.03,
+          "width": 77.84,
+          "height": 77.84
+        },
+        "message": "Rotating element's bounding-box center drifts 75px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(27)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 767.9,
+          "y": 479.55999999999995,
+          "width": 79.22,
+          "height": 79.22
+        },
+        "rect": {
+          "left": 767.9,
+          "top": 479.55999999999995,
+          "right": 847.12,
+          "bottom": 558.78,
+          "width": 79.22,
+          "height": 79.22
+        },
+        "message": "Rotating element's bounding-box center drifts 153px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "rotation_pivot_drift",
+        "severity": "warning",
+        "time": 10.263,
+        "selector": "#cristales > svg:nth-of-type(30)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 508.95,
+          "y": 960.9000000000001,
+          "width": 69.34,
+          "height": 69.34
+        },
+        "rect": {
+          "left": 508.95,
+          "top": 960.9000000000001,
+          "right": 578.29,
+          "bottom": 1030.24,
+          "width": 69.34,
+          "height": 69.34
+        },
+        "message": "Rotating element's bounding-box center drifts 85px across rotation — it is not spinning about its own center (check transformOrigin/svgOrigin).",
+        "fixHint": "The bounding-box center should stay fixed while the element spins; check its transformOrigin/svgOrigin so rotation pivots about the element's own center rather than a point in a coordinate space it was resized out of.",
+        "firstSeen": 10.263,
+        "lastSeen": 10.263,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.263
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 0.789,
+        "selector": "#splash > circle:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -44.38,
+          "top": 39.62,
+          "right": -43.62,
+          "bottom": 40.38,
+          "width": 0.75,
+          "height": 0.75
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 44.38
+        },
+        "dataAttributes": {
+          "data-svg-origin": "-44 40"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -44.38,
+          "y": 39.62,
+          "width": 0.75,
+          "height": 0.75
+        },
+        "firstSeen": 0.789,
+        "lastSeen": 11.842,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          0.789,
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 0.789,
+        "selector": "#splash > circle:nth-of-type(5)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -33.05,
+          "top": 720.95,
+          "right": -30.95,
+          "bottom": 723.05,
+          "width": 2.11,
+          "height": 2.11
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 33.05
+        },
+        "dataAttributes": {
+          "data-svg-origin": "-32 722"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -33.05,
+          "y": 720.95,
+          "width": 2.11,
+          "height": 2.11
+        },
+        "firstSeen": 0.789,
+        "lastSeen": 11.842,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          0.789,
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 8.684,
+        "selector": "#perilla",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 1467.04,
+          "top": 2240.24,
+          "right": 1492.16,
+          "bottom": 2259.3,
+          "width": 25.12,
+          "height": 19.06
+        },
+        "containerSelector": "#licuadora",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 285.31,
+          "top": 970.97,
+          "right": 792.26,
+          "bottom": 1761.81,
+          "width": 506.95,
+          "height": 790.84
+        },
+        "overflow": {
+          "right": 699.9,
+          "bottom": 497.49
+        },
+        "dataAttributes": {
+          "data-svg-origin": "494 1272"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1467.04,
+          "y": 2240.24,
+          "width": 25.12,
+          "height": 19.06
+        },
+        "firstSeen": 8.684,
+        "lastSeen": 10.263,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          8.684,
+          10.263
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.842,
+        "selector": "#splash > circle:nth-of-type(4)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 1018.81,
+          "top": 33.81,
+          "right": 1117.19,
+          "bottom": 132.19,
+          "width": 98.38,
+          "height": 98.38
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "right": 37.19
+        },
+        "dataAttributes": {
+          "data-svg-origin": "1068 83"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1018.81,
+          "y": 33.81,
+          "width": 98.38,
+          "height": 98.38
+        },
+        "firstSeen": 11.842,
+        "lastSeen": 11.842,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.842,
+        "selector": "#splash > circle:nth-of-type(8)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 883.15,
+          "top": 419.15,
+          "right": 1196.85,
+          "bottom": 732.85,
+          "width": 313.69,
+          "height": 313.69
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "right": 116.85
+        },
+        "dataAttributes": {
+          "data-svg-origin": "1040 576"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 883.15,
+          "y": 419.15,
+          "width": 313.69,
+          "height": 313.69
+        },
+        "firstSeen": 11.842,
+        "lastSeen": 11.842,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.842,
+        "selector": "#splash > circle:nth-of-type(9)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -184.8,
+          "top": 1028.2,
+          "right": 220.8,
+          "bottom": 1433.8,
+          "width": 405.6,
+          "height": 405.6
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 184.8
+        },
+        "dataAttributes": {
+          "data-svg-origin": "18 1231"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -184.8,
+          "y": 1028.2,
+          "width": 405.6,
+          "height": 405.6
+        },
+        "firstSeen": 11.842,
+        "lastSeen": 11.842,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.842,
+        "selector": "#splash > circle:nth-of-type(12)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 776.26,
+          "top": 844.26,
+          "right": 1363.74,
+          "bottom": 1431.74,
+          "width": 587.49,
+          "height": 587.49
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "right": 283.74
+        },
+        "dataAttributes": {
+          "data-svg-origin": "1070 1138"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 776.26,
+          "y": 844.26,
+          "width": 587.49,
+          "height": 587.49
+        },
+        "firstSeen": 11.842,
+        "lastSeen": 11.842,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.842,
+        "selector": "#splash > circle:nth-of-type(13)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -339.43,
+          "top": 1444.57,
+          "right": 441.43,
+          "bottom": 2225.43,
+          "width": 780.86,
+          "height": 780.86
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 339.43,
+          "bottom": 305.43
+        },
+        "dataAttributes": {
+          "data-svg-origin": "51 1835"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -339.43,
+          "y": 1444.57,
+          "width": 780.86,
+          "height": 780.86
+        },
+        "firstSeen": 11.842,
+        "lastSeen": 11.842,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.842
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.842,
+        "selector": "#splash > circle:nth-of-type(14)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -105.33,
+          "top": 1393.67,
+          "right": 809.33,
+          "bottom": 2308.33,
+          "width": 914.66,
+          "height": 914.66
+        },
+        "containerSelector": "#splash",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 105.33,
+          "bottom": 388.33
+        },
+        "dataAttributes": {
+          "data-svg-origin": "352 1851"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -105.33,
+          "y": 1393.67,
+          "width": 914.66,
+          "height": 914.66
+        },
+        "firstSeen": 11.842,
+        "lastSeen": 11.842,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.842
+        ]
+      }
+    ],
+    "duration": 14.21,
+    "samples": [
+      0.789,
+      2.368,
+      3.947,
+      5.526,
+      7.105,
+      8.684,
+      10.263,
+      11.842,
+      13.421
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 22,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      0.789,
+      3.947,
+      7.105,
+      10.263,
+      13.421
+    ],
+    "checked": 0,
+    "passed": 0
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

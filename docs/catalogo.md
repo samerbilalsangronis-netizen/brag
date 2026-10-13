@@ -6,7 +6,8 @@ Fuente: las 12 fotos de `refs/pulpas/`. Solo se anota lo que se lee en ellas; lo
 
 - Varias fotos parecen **generadas con IA** (dos se llaman `Gemini_Generated_Image_…` y casi todas tienen la estrellita de marca de agua de Gemini abajo a la derecha).
 - La letra pequeña de las etiquetas (domicilio fiscal, RIF y teléfonos) sale **deformada y distinta en cada foto**. Por eso el video no usa teléfonos, RIF ni direcciones sacados de las etiquetas.
-- El logo cambia un poco de una foto a otra. **Pendiente:** el archivo oficial del logo.
+- El logo cambia un poco de una foto a otra. El video usa el **logo oficial** enviado por el cliente (`refs/logo-tierra-santa.jpg`, vectorizado en `assets/tierra-santa/logo.svg`): alas, círculo con monograma "TS" y "TierraSanta" en letra caligráfica.
+- **Contacto aprobado:** 0424-7017223 · 0424-7284475.
 - Ninguna foto muestra precios. **Precios: pendientes para todos los sabores.**
 
 ## Empaque (común a todos)
