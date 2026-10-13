@@ -4,3 +4,4 @@ out/**/work/*.mp4
 out/**/composition/assets/
 plato-noche/node_modules/
 out/plato-noche-work/**/*.mp4
+work/
