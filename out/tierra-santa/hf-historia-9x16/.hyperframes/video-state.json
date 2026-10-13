@@ -320,7 +320,6 @@
         {
           "id": "cb144112-76f0-413a-9567-bee4766c46f9",
           "scope": "project",
-          "report": "/home/user/brag/out/tierra-santa/hf-historia-9x16/.hyperframes/artifacts/checks/cb144112-76f0-413a-9567-bee4766c46f9.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -342,7 +341,9 @@
           "revision": "b3a7435a-3449-4d38-8f75-a057ca29642a",
           "inputFingerprint": "71a8739ce316b9b63c16d316cbdfd01eb99bfc08a29a5b530c04ea1a9c8ef448",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "fc08ff30-7e42-4092-8b1d-b9f79bd20abc"
         }
       ],
       "3b84e755-a921-4108-85a3-667731ac6eeb": [
@@ -980,15 +981,15 @@
   },
   "renders": {
     "latest": {
-      "id": "0f6f7363-b7e0-4818-b5cc-a9c61245852f",
-      "completedAt": 1791899339933,
+      "id": "fc08ff30-7e42-4092-8b1d-b9f79bd20abc",
+      "completedAt": 1791911688772,
       "output": "/home/user/brag/out/tierra-santa/hf-historia-9x16.mp4",
       "status": "completed",
-      "revision": "3b84e755-a921-4108-85a3-667731ac6eeb"
+      "revision": "f38730a6-de31-47bd-9895-2e16c7464642"
     },
     "retainedRevisions": [
-      "3b84e755-a921-4108-85a3-667731ac6eeb",
-      "b3a7435a-3449-4d38-8f75-a057ca29642a"
+      "f38730a6-de31-47bd-9895-2e16c7464642",
+      "3b84e755-a921-4108-85a3-667731ac6eeb"
     ]
   },
   "pendingArtifactCleanup": []

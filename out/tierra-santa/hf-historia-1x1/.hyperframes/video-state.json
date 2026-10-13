@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "854e50d3-2a98-446b-ad54-84743c19b759",
-  "currentRevision": "80535321-a146-430d-9c89-00c7aa689d38",
+  "currentRevision": "a56b8581-cb7a-4d41-9ed9-ef428c8378d3",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -113,8 +113,8 @@
       "content": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
     },
     "index.html": {
-      "hash": "3e7636409c08463f537e0b90e52fb97100b5298d9686f46b2432b8d015cde771",
-      "content": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/3e/3e7636409c08463f537e0b90e52fb97100b5298d9686f46b2432b8d015cde771"
+      "hash": "fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425",
+      "content": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/fe/fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425"
     },
     "meta.json": {
       "hash": "d0046adedab955fa539b3c91ba1a8809dcd441abdc0b77d34692c510ad6e807e",
@@ -188,6 +188,21 @@
           "after": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/3e/3e7636409c08463f537e0b90e52fb97100b5298d9686f46b2432b8d015cde771"
         }
       }
+    },
+    "a56b8581-cb7a-4d41-9ed9-ef428c8378d3": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1791911692631,
+      "endedAt": 1791911694450,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/3e/3e7636409c08463f537e0b90e52fb97100b5298d9686f46b2432b8d015cde771",
+          "after": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/fe/fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425"
+        }
+      }
     }
   },
   "checks": {
@@ -233,13 +248,14 @@
   },
   "renders": {
     "latest": {
-      "id": "aea81cb0-f1bd-4aad-9a0d-830e558841a4",
-      "completedAt": 1791899393021,
+      "id": "76d06b30-9867-43fc-858b-0d2ec03d4bf8",
+      "completedAt": 1791911752462,
       "output": "/home/user/brag/out/tierra-santa/hf-historia-1x1.mp4",
       "status": "completed",
-      "revision": "80535321-a146-430d-9c89-00c7aa689d38"
+      "revision": "a56b8581-cb7a-4d41-9ed9-ef428c8378d3"
     },
     "retainedRevisions": [
+      "a56b8581-cb7a-4d41-9ed9-ef428c8378d3",
       "80535321-a146-430d-9c89-00c7aa689d38"
     ]
   },
