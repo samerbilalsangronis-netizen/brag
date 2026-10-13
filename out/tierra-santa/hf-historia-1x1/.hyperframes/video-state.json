@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "854e50d3-2a98-446b-ad54-84743c19b759",
-  "currentRevision": "a56b8581-cb7a-4d41-9ed9-ef428c8378d3",
+  "currentRevision": "b9c9eda5-ec10-4999-93c3-735083174c34",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -113,8 +113,8 @@
       "content": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
     },
     "index.html": {
-      "hash": "fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425",
-      "content": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/fe/fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425"
+      "hash": "36bc9f22d63462bbd045feb8da7de6d8adb64891406e4989e38f749c96ff4fb1",
+      "content": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/36/36bc9f22d63462bbd045feb8da7de6d8adb64891406e4989e38f749c96ff4fb1"
     },
     "meta.json": {
       "hash": "d0046adedab955fa539b3c91ba1a8809dcd441abdc0b77d34692c510ad6e807e",
@@ -203,14 +203,59 @@
           "after": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/fe/fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425"
         }
       }
+    },
+    "b9c9eda5-ec10-4999-93c3-735083174c34": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1791913058256,
+      "endedAt": 1791913058500,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/fe/fe440be3d5352a101f6e33005a5ae5c9a659a56a96282f6ca34f3d59d4f44425",
+          "after": "/root/.cache/hyperframes/history/854e50d3-2a98-446b-ad54-84743c19b759/blobs/36/36bc9f22d63462bbd045feb8da7de6d8adb64891406e4989e38f749c96ff4fb1"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": null,
-      "id": "d8cf9b52-f245-4bb8-80e0-d67b64b73da3"
+      "revision": "b9c9eda5-ec10-4999-93c3-735083174c34",
+      "id": "2324fe0c-a306-4f49-affa-874b0ef56dde"
     },
-    "revisions": {},
+    "revisions": {
+      "b9c9eda5-ec10-4999-93c3-735083174c34": [
+        {
+          "id": "2324fe0c-a306-4f49-affa-874b0ef56dde",
+          "scope": "project",
+          "report": "/home/user/brag/out/tierra-santa/hf-historia-1x1/.hyperframes/artifacts/checks/2324fe0c-a306-4f49-affa-874b0ef56dde.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1791913076244,
+          "contentHash": "e5d4fe8b78d8c81fddb2ec446eb6483dd94533614441bad4e9481b4dabbf20b9",
+          "revision": "b9c9eda5-ec10-4999-93c3-735083174c34",
+          "inputFingerprint": "6f9b37e65df17c0b2707d62317dacb88f9ed471717c5ce903ee3f3e8478ea306",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
     "unversioned": [
       {
         "id": "d8cf9b52-f245-4bb8-80e0-d67b64b73da3",
@@ -248,15 +293,15 @@
   },
   "renders": {
     "latest": {
-      "id": "76d06b30-9867-43fc-858b-0d2ec03d4bf8",
-      "completedAt": 1791911752462,
+      "id": "8f1e4c1c-dacd-4fb0-b8b5-88aded3afebc",
+      "completedAt": 1791913128577,
       "output": "/home/user/brag/out/tierra-santa/hf-historia-1x1.mp4",
       "status": "completed",
-      "revision": "a56b8581-cb7a-4d41-9ed9-ef428c8378d3"
+      "revision": "b9c9eda5-ec10-4999-93c3-735083174c34"
     },
     "retainedRevisions": [
-      "a56b8581-cb7a-4d41-9ed9-ef428c8378d3",
-      "80535321-a146-430d-9c89-00c7aa689d38"
+      "b9c9eda5-ec10-4999-93c3-735083174c34",
+      "a56b8581-cb7a-4d41-9ed9-ef428c8378d3"
     ]
   },
   "pendingArtifactCleanup": []
