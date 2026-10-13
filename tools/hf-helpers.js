@@ -35,7 +35,6 @@ function vapor(tl, prefix, desde, hasta, ciclo = 1.6) {
       tl.fromTo(p, { y: -10, opacity: 0.32 }, { y: -60, opacity: 0, duration: ciclo * 0.6, ease: "sine.in", immediateRender: false }, t0 + ciclo * 0.4);
     }
   });
-  tl.set(paths, { opacity: 0 }, 0);
 }
 
 // Brillos de salsa: titilan de forma ciclica entre [desde, hasta].

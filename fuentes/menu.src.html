@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style id="fonts">
+      @font-face { font-family: "Reem Kufi"; src: url(assets/ReemKufi.woff2) format("woff2"); font-weight: 400 700; }
+      @font-face { font-family: "Cairo"; src: url(assets/Cairo.woff2) format("woff2"); font-weight: 200 1000; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #14201a; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: #14201a; }
+    </style>
+    <style id="shared">
+      @font-face { font-family: "Reem Kufi"; src: url(assets/ReemKufi.woff2) format("woff2"); font-weight: 400 700; }
+      @font-face { font-family: "Cairo"; src: url(assets/Cairo.woff2) format("woff2"); font-weight: 200 1000; }
+      <!--css:platos-->
+      :root { --ink: #14201a; --ink9: #1c2b23; --ink8: #25382e; --ink7: #324a3c; --sand: #f5ecdc; --sand4: #bab29c; --gold: #e1b35c; --gold3: #f0c879; --terra: #c8553d; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--ink); color: var(--sand); font-family: "Cairo", sans-serif; }
+      .scene { position: absolute; inset: 0; }
+            .patron { position: absolute; inset: -200px; opacity: .12;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23e1b35c' stroke-width='2'%3E%3Crect x='55' y='55' width='70' height='70'/%3E%3Crect x='55' y='55' width='70' height='70' transform='rotate(45 90 90)'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 180px 180px; }
+      .halo { position: absolute; left: 90px; top: 360px; width: 900px; height: 900px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(225, 179, 92, .26) 0%, rgba(225, 179, 92, .06) 45%, rgba(225, 179, 92, 0) 70%); }
+
+      /* A · Logo */
+      .logo-wrap { position: absolute; left: 270px; top: 520px; width: 540px; height: 540px; }
+      .logo-wrap svg { width: 540px; height: 540px; display: block; }
+      .marca { position: absolute; left: 90px; right: 90px; top: 1140px; text-align: center; }
+      .marca b { display: block; font: 700 190px/1 "Reem Kufi"; color: var(--gold3); }
+      .marca span { display: block; margin-top: 26px; font: 700 38px "Cairo"; letter-spacing: .3em; color: var(--sand); text-transform: uppercase; }
+
+      /* B · Shawarma capa por capa */
+      .sh-wrap { position: absolute; left: 0; top: 330px; width: 800px; height: 800px; }
+      .sh-wrap svg { width: 800px; height: 800px; display: block; transform: scale(1.3); transform-origin: 45% 35%; }
+      .capas { position: absolute; left: 680px; top: 380px; width: 380px; }
+      .capa { display: flex; align-items: center; gap: 16px; height: 108px; font: 700 48px "Cairo"; color: var(--sand); }
+      .capa i { width: 18px; height: 18px; border-radius: 50%; background: var(--gold); flex: none; }
+      .sh-titulo { position: absolute; left: 90px; right: 90px; top: 1280px; }
+      .sh-titulo b { display: block; font: 700 120px/1.02 "Reem Kufi"; color: var(--sand); }
+      .sh-titulo span { display: block; margin-top: 10px; font: 400 40px/1.35 "Cairo"; color: var(--sand4); }
+      .sh-titulo em { display: block; margin-top: 18px; font: 800 96px "Cairo"; font-style: normal; color: var(--gold3); }
+
+      /* C · La carta */
+      .carta-tit { position: absolute; left: 70px; top: 110px; font: 700 110px "Reem Kufi"; color: var(--gold3); }
+      .grid { position: absolute; left: 60px; top: 300px; width: 960px; height: 1560px; display: grid; grid-template-columns: 465px 465px; grid-auto-rows: 500px; gap: 30px; }
+      .item { position: relative; border-radius: 30px; background: var(--ink9); border: 3px solid var(--ink8); overflow: hidden; }
+      .item .t { width: 465px; height: 330px; display: block; overflow: hidden; }
+      .item .t img { width: 465px; height: 465px; display: block; margin-top: -60px; }
+      .item h3 { position: absolute; left: 30px; right: 20px; top: 350px; font: 700 44px/1.1 "Reem Kufi"; color: var(--sand); }
+      .item .pr { position: absolute; left: 30px; top: 418px; width: 420px; height: 60px; overflow: hidden; }
+      .item .pr b { position: absolute; left: 0; top: 0; font: 800 46px/60px "Cairo"; color: var(--gold3); white-space: nowrap; }
+      .monedas { position: absolute; left: 90px; top: 1700px; display: flex; gap: 18px; }
+      .monedas span { width: 200px; height: 96px; border-radius: 999px; border: 3px solid var(--ink7); background: var(--ink9); text-align: center; font: 800 42px/90px "Cairo"; color: var(--sand); }
+      .monedas span.on { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+      /* D · Cierre */
+      .cierre { position: absolute; left: 90px; right: 90px; top: 560px; }
+      .cierre .mini { width: 240px; height: 240px; display: block; }
+      .cierre .mini svg { width: 240px; height: 240px; display: block; }
+      .cierre b { display: block; margin-top: 60px; font: 700 128px/1.04 "Reem Kufi"; color: var(--sand); }
+      .cierre b.oro { color: var(--gold3); }
+      .cierre .ig { display: block; margin-top: 80px; font: 700 60px "Cairo"; color: var(--sand); }
+      .cierre .web { display: block; margin-top: 10px; font: 600 42px "Cairo"; color: var(--sand4); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      
+      <scene id="bg" start="0" dur="20" track="0">
+        <div class="patron" id="patron" data-layout-allow-overflow></div>
+        <div class="halo" id="halo"></div>
+      
+        <script>
+const out = (sel, at) => spring(tl, sel, { opacity: 1 }, { opacity: 0, immediateRender: false }, at, SECO);
+      // Fondo vivo: el patron arabe deriva y el halo respira (resortes encadenados)
+      tl.fromTo("#patron", { x: 0, y: 0 }, { x: -180, y: -180, duration: 20, ease: "none" }, 0);
+      spring(tl, "#halo", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1 }, 0, PESADO);
+
+
+        </script>
+      </scene>
+      <scene id="sA" start="0" dur="3.1" track="1">
+        <div class="logo-wrap" id="logoA"><!--svg:logo:as=logoA--></div>
+        <div class="marca" id="marcaA"><b id="mA1">Habibis</b><span id="mA2">Cocina árabe · La Grita</span></div>
+      
+        <script>
+const out = (sel, at) => spring(tl, sel, { opacity: 1 }, { opacity: 0, immediateRender: false }, at, SECO);
+      // A · Logo: fondo, dos cuadros que giran, circulo y H (pesado)
+      const LA = "#logoA svg";
+      spring(tl, LA + " > rect", { opacity: 0.5, scale: 0.8, svgOrigin: "256 256" }, { opacity: 1, scale: 1 }, 0.0, ESTANDAR);
+      spring(tl, LA + " g rect:nth-child(1)", { rotation: -180, scale: 0.5, opacity: 0.6, svgOrigin: "256 256" }, { rotation: 0, scale: 1, opacity: 1 }, 0.0, PESADO);
+      spring(tl, LA + " g rect:nth-child(2)", { rotation: 225, scale: 0.2, opacity: 0, svgOrigin: "256 256" }, { rotation: 45, scale: 1, opacity: 1 }, 0.3, PESADO);
+      spring(tl, LA + " circle", { scale: 0, svgOrigin: "256 256" }, { scale: 1 }, 0.55, PESADO);
+      spring(tl, LA + " text", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, 1.07, SECO);
+      spring(tl, "#mA1", { opacity: 0, y: 80 }, { opacity: 1, y: 0 }, 1.07, PESADO);
+      spring(tl, "#mA2", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 1.59, ESTANDAR);
+      spring(tl, "#logoA", { y: 0, scale: 1 }, { y: -120, scale: 0.8, immediateRender: false }, 2.65, ESTANDAR);
+      out("#marcaA, #logoA", 2.75);
+
+
+        </script>
+      </scene>
+      <scene id="sB" start="3.0" dur="5.1" track="2">
+        <div class="sh-wrap" id="shB"><!--svg:shawarma-de-pollo:nobg--></div>
+        <div class="capas" id="capas">
+          <div class="capa" id="cp1"><i></i>Pan árabe</div>
+          <div class="capa" id="cp2"><i></i>Pollo marinado</div>
+          <div class="capa" id="cp3"><i></i>Toum</div>
+          <div class="capa" id="cp4"><i></i>Papas</div>
+          <div class="capa" id="cp5"><i></i>Pepinillos</div>
+        </div>
+        <div class="sh-titulo" id="shT">
+          <b>Shawarma de pollo</b>
+          <em>22.000 COP</em>
+        </div>
+      
+        <script>
+const out = (sel, at) => spring(tl, sel, { opacity: 1 }, { opacity: 0, immediateRender: false }, at, SECO);
+      // B · Shawarma: cada capa cae en un beat, con su etiqueta
+      const S = "#shawarma-de-pollo-";
+      spring(tl, S + "pan", { opacity: 0, y: 260, scale: 0.7, transformOrigin: "50% 100%" }, { opacity: 1, y: 0, scale: 1 }, 3.18, ESTANDAR);
+      spring(tl, S + "pollo", { opacity: 0, y: -420 }, { opacity: 1, y: 0 }, 3.70, ESTANDAR);
+      spring(tl, S + "toum", { opacity: 0, y: -360, scaleY: 0.4, transformOrigin: "50% 0%" }, { opacity: 1, y: 0, scaleY: 1 }, 4.23, ESTANDAR);
+      spring(tl, S + "papas", { opacity: 0, y: -460 }, { opacity: 1, y: 0 }, 4.75, ESTANDAR);
+      spring(tl, S + "pepinillos", { opacity: 0, y: -400, rotation: -20, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, rotation: 0 }, 5.28, ESTANDAR);
+      ["#cp1", "#cp2", "#cp3", "#cp4", "#cp5"].forEach((c, i) => {
+        spring(tl, c, { opacity: 0, x: 80 }, { opacity: 1, x: 0 }, [3.18, 3.70, 4.23, 4.75, 5.28][i] + 0.05, SECO);
+      });
+      vapor(tl, "shawarma-de-pollo", 5.6, 8.3);
+      brillos(tl, "shawarma-de-pollo", 5.4, 8.3);
+      spring(tl, "#shT", { opacity: 0, y: 70 }, { opacity: 1, y: 0 }, 6.34, PESADO);
+      spring(tl, "#shB", { x: 0, scale: 1 }, { x: 130, scale: 1.05, immediateRender: false }, 6.34, ESTANDAR);
+      out("#capas", 6.2);
+      out("#shB, #shT", 7.75);
+
+
+        </script>
+      </scene>
+      <scene id="sC" start="7.9" dur="7.1" track="3">
+        <div class="carta-tit" id="cTit">La carta</div>
+        <div class="grid" id="grid">
+          <div class="item" id="it1"><div class="t"><img src="assets/platos/shawarma-de-pollo.png" alt=""></div><h3>Shawarma de pollo</h3><div class="pr"><b class="cop">22.000 COP</b><b class="usdt"></b><b class="bs"></b></div></div>
+          <div class="item" id="it2"><div class="t"><img src="assets/platos/plato-de-shawarma.png" alt=""></div><h3>Plato de shawarma</h3><div class="pr"><b class="cop">32.000 COP</b></div></div>
+          <div class="item" id="it3"><div class="t"><img src="assets/platos/hummus.png" alt=""></div><h3>Hummus</h3><div class="pr"><b class="cop">14.000 COP</b></div></div>
+          <div class="item" id="it4"><div class="t"><img src="assets/platos/falafel.png" alt=""></div><h3>Falafel (6 und.)</h3><div class="pr"><b class="cop">16.000 COP</b></div></div>
+          <div class="item" id="it5"><div class="t"><img src="assets/platos/combo-habibi.png" alt=""></div><h3>Combo Habibi</h3><div class="pr"><b class="cop">30.000 COP</b></div></div>
+          <div class="item" id="it6"><div class="t"><img src="assets/platos/knafeh.png" alt=""></div><h3>Knafeh</h3><div class="pr"><b class="cop">14.000 COP</b></div></div>
+        </div>
+        <div class="monedas" id="monedas"><span id="mCOP" class="on">COP</span><span id="mUSDT">USDT</span><span id="mBs">Bs</span></div>
+      
+        <script>
+const out = (sel, at) => spring(tl, sel, { opacity: 1 }, { opacity: 0, immediateRender: false }, at, SECO);
+const it1 = document.querySelector("#it1 .pr");
+      it1.querySelector(".usdt").textContent = fmtUSDT(22000);
+      it1.querySelector(".bs").textContent = fmtBs(22000);
+      // C · La carta: cada plato entra en un beat (pop) con su precio en COP
+      spring(tl, "#cTit", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 7.9, PESADO);
+      ["#it1", "#it2", "#it3", "#it4", "#it5", "#it6"].forEach((c, i) => {
+        spring(tl, c, { opacity: 0, scale: 0.6, y: 80, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, y: 0 }, [8.44, 8.96, 9.50, 10.01, 10.54, 11.06][i], ESTANDAR);
+      });
+
+      // El shawarma de pollo pasa al frente y su precio cambia COP -> USDT -> Bs
+      ["#it2", "#it3", "#it4", "#it5", "#it6", "#cTit"].forEach((c) => spring(tl, c, { opacity: 1 }, { opacity: 0.12, immediateRender: false }, 12.12, ESTANDAR));
+      spring(tl, "#grid", { scale: 1, x: 0, y: 0 }, { scale: 1.9, x: 38, y: 60, transformOrigin: "0% 0%", immediateRender: false }, 12.12, ESTANDAR);
+      spring(tl, "#monedas", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, 12.4, SECO);
+      tl.set("#it1 .usdt, #it1 .bs", { y: 60, opacity: 0 }, 7.9);
+      tl.set("#mCOP", { backgroundColor: "#1c2b23", borderColor: "#324a3c", color: "#f5ecdc" }, 13.18).set("#mUSDT", { backgroundColor: "#e1b35c", borderColor: "#e1b35c", color: "#14201a" }, 13.18);
+      spring(tl, "#mUSDT", { scale: 0.8 }, { scale: 1 }, 13.18, SECO);
+      spring(tl, "#it1 .cop", { y: 0, opacity: 1 }, { y: -60, opacity: 0 }, 13.18, SECO);
+      spring(tl, "#it1 .usdt", { y: 60, opacity: 0 }, { y: 0, opacity: 1 }, 13.18, SECO);
+      tl.set("#mUSDT", { backgroundColor: "#1c2b23", borderColor: "#324a3c", color: "#f5ecdc" }, 14.22).set("#mBs", { backgroundColor: "#e1b35c", borderColor: "#e1b35c", color: "#14201a" }, 14.22);
+      spring(tl, "#mBs", { scale: 0.8 }, { scale: 1 }, 14.22, SECO);
+      spring(tl, "#it1 .usdt", { y: 0, opacity: 1 }, { y: -60, opacity: 0, immediateRender: false }, 14.22, SECO);
+      spring(tl, "#it1 .bs", { y: 60, opacity: 0 }, { y: 0, opacity: 1, immediateRender: false }, 14.22, SECO);
+      out("#grid, #monedas, #cTit", 14.7);
+
+
+        </script>
+      </scene>
+      <scene id="sD" start="14.85" dur="5.15" track="4">
+        <div class="cierre">
+          <div class="mini" id="logoD"><!--svg:logo:as=logoD--></div>
+          <b id="d1">Abrimos a las 5:00 p. m.</b>
+          <b class="oro" id="d2">Delivery y retiro</b>
+          <span class="ig" id="d3">@habibis_arabicfood</span>
+          <span class="web" id="d4">habibis-chi.vercel.app</span>
+        </div>
+      
+        <script>
+const out = (sel, at) => spring(tl, sel, { opacity: 1 }, { opacity: 0, immediateRender: false }, at, SECO);
+      // D · Cierre (pesado para los titulares)
+      const LD = "#logoD svg";
+      spring(tl, "#logoD", { opacity: 0, scale: 0.5, rotation: -30, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, rotation: 0 }, 14.85, PESADO);
+      spring(tl, "#d1", { opacity: 0, y: 80 }, { opacity: 1, y: 0 }, 15.0, PESADO);
+      spring(tl, "#d2", { opacity: 0, y: 80 }, { opacity: 1, y: 0 }, 16.34, PESADO);
+      spring(tl, "#d3", { opacity: 0, x: -60 }, { opacity: 1, x: 0 }, 16.86, ESTANDAR);
+      spring(tl, "#d4", { opacity: 0, x: -60 }, { opacity: 1, x: 0 }, 17.1, ESTANDAR);
+
+
+        </script>
+      </scene>
+
+      <audio id="music" src="assets/musica.mp3" data-start="0" data-duration="20" data-track-index="10" data-volume="0.8"></audio>
+      <audio id="sfx-plancha" src="assets/plancha.wav" data-start="3.7" data-duration="4" data-track-index="11" data-volume="0.22"></audio>
+      <audio id="pop1" src="assets/pop.wav" data-start="8.44" data-duration="0.22" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="pop2" src="assets/pop.wav" data-start="8.96" data-duration="0.22" data-track-index="13" data-volume="0.4"></audio>
+      <audio id="pop3" src="assets/pop.wav" data-start="9.50" data-duration="0.22" data-track-index="14" data-volume="0.4"></audio>
+      <audio id="pop4" src="assets/pop.wav" data-start="10.01" data-duration="0.22" data-track-index="15" data-volume="0.4"></audio>
+      <audio id="pop5" src="assets/pop.wav" data-start="10.54" data-duration="0.22" data-track-index="16" data-volume="0.4"></audio>
+      <audio id="pop6" src="assets/pop.wav" data-start="11.06" data-duration="0.22" data-track-index="17" data-volume="0.4"></audio>
+      <audio id="pop7" src="assets/pop.wav" data-start="13.18" data-duration="0.22" data-track-index="18" data-volume="0.3"></audio>
+      <audio id="pop8" src="assets/pop.wav" data-start="14.22" data-duration="0.22" data-track-index="19" data-volume="0.3"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
