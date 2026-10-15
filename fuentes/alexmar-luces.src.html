@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Archivo Black"; src: url(assets/ArchivoBlack.woff2) format("woff2"); }
+      @font-face { font-family: "Montserrat"; src: url(assets/Montserrat.woff2) format("woff2"); font-weight: 100 900; }
+      :root { --naranja: #f04a12; --negro: #0b0b0c; --blanco: #ffffff; --gris: #9a9a9e; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; background: var(--negro); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--negro); color: var(--blanco); font-family: "Montserrat", sans-serif; }
+      .full { position: absolute; inset: 0; }
+      .luz { position: absolute; display: block; }
+      .glow { position: absolute; border-radius: 50%; mix-blend-mode: screen; opacity: 0; }
+      .ambar { background: radial-gradient(circle, rgba(255,170,40,.85) 0%, rgba(255,120,20,.35) 35%, rgba(255,100,0,0) 68%); }
+      .rojo { background: radial-gradient(circle, rgba(255,40,30,.8) 0%, rgba(220,20,20,.32) 38%, rgba(200,0,0,0) 68%); }
+      .tit { position: absolute; font: 400 112px/0.95 "Archivo Black"; letter-spacing: -0.02em; color: var(--blanco); }
+      .num { position: absolute; font: 400 64px/1 "Archivo Black"; color: var(--naranja); }
+      .dato { position: absolute; font: 700 38px/1.2 "Montserrat"; color: var(--gris); letter-spacing: .02em; }
+      .dato b { color: var(--blanco); font-weight: 800; }
+      #via { position: absolute; left: 0; right: 0; top: 1046px; height: 8px;
+        background: repeating-linear-gradient(90deg, var(--naranja) 0 90px, rgba(0,0,0,0) 90px 160px); background-size: 160px 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18" data-width="1080" data-height="1080">
+      <!-- Linea de carretera naranja que corre todo el video -->
+      <div id="fondo" class="clip full" data-start="0" data-duration="18" data-track-index="0">
+        <div id="via"></div>
+      </div>
+
+      <!-- 1 · Gancho: las cuatro luces se encienden una tras otra -->
+      <div id="s1" class="clip full" data-start="0" data-duration="2.9" data-track-index="1">
+        <div class="tit" id="h-tit" style="left: 70px; top: 64px; font-size: 104px">¿Te falta<br />una luz?</div>
+        <div class="glow ambar" id="h-g1" style="left: 20px; top: 300px; width: 560px; height: 480px"></div>
+        <div class="glow rojo" id="h-g2" style="left: 520px; top: 300px; width: 560px; height: 480px"></div>
+        <div class="glow rojo" id="h-g3" style="left: 20px; top: 600px; width: 560px; height: 480px"></div>
+        <div class="glow ambar" id="h-g4" style="left: 520px; top: 600px; width: 560px; height: 480px"></div>
+        <img class="luz" id="h-l1" src="assets/alexmar/cruce-caribe.png" style="left: 80px; top: 330px; width: 430px" alt="" />
+        <img class="luz" id="h-l2" src="assets/alexmar/stop-fiesta-max.png" style="left: 640px; top: 300px; width: 330px" alt="" />
+        <img class="luz" id="h-l3" src="assets/alexmar/tapa-stop-chevy500.png" style="left: 90px; top: 660px; width: 420px" alt="" />
+        <img class="luz" id="h-l4" src="assets/alexmar/cruce-npr.png" style="left: 610px; top: 690px; width: 380px" alt="" />
+      </div>
+
+      <!-- 2 · Cruce de Caribe (parpadea como direccional) -->
+      <div id="s2" class="clip full" data-start="2.9" data-duration="3.3" data-track-index="2">
+        <div class="num" id="a-num" style="left: 74px; top: 70px">01</div>
+        <div class="tit" id="a-tit" style="left: 70px; top: 148px">Cruce de<br />Caribe</div>
+        <div class="glow ambar" id="a-g" style="left: 90px; top: 330px; width: 900px; height: 700px"></div>
+        <img class="luz" id="a-l" src="assets/alexmar/cruce-caribe.png" style="left: 110px; top: 420px; width: 860px" alt="" />
+        <div class="dato" id="a-dato" style="left: 74px; top: 950px">Marca <b>DEPO</b> · el par</div>
+      </div>
+
+      <!-- 3 · Stop Fiesta Max (frena dos veces) -->
+      <div id="s3" class="clip full" data-start="6.2" data-duration="3.3" data-track-index="3">
+        <div class="glow rojo" id="b-g" style="left: -60px; top: 40px; width: 1200px; height: 1000px"></div>
+        <img class="luz" id="b-iz" src="assets/alexmar/stop-fiesta-max.png" style="left: 108px; top: 70px; height: 900px; clip-path: inset(0 50% 0 0)" alt="" />
+        <img class="luz" id="b-de" src="assets/alexmar/stop-fiesta-max.png" style="left: 108px; top: 70px; height: 900px; clip-path: inset(0 0 0 50%)" alt="" />
+        <div id="b-txt" style="position: absolute; left: 290px; width: 500px; top: 300px; text-align: center">
+          <div class="num" id="b-num" style="position: static">02</div>
+          <div class="tit" id="b-tit" style="position: static; font-size: 86px; margin-top: 18px">Stop<br />Fiesta<br />Max</div>
+        </div>
+      </div>
+
+      <!-- 4 · Tapa de stop Chevy 500 -->
+      <div id="s4" class="clip full" data-start="9.5" data-duration="3.3" data-track-index="4">
+        <div class="glow rojo" id="c-g" style="left: 90px; top: 0px; width: 900px; height: 720px"></div>
+        <img class="luz" id="c-l" src="assets/alexmar/tapa-stop-chevy500.png" style="left: 130px; top: 90px; width: 820px" alt="" />
+        <div class="num" id="c-num" style="left: 74px; top: 640px">03</div>
+        <div class="tit" id="c-tit" style="left: 70px; top: 716px; font-size: 104px">Tapa de stop<br />Chevy 500</div>
+        <div class="dato" id="c-dato" style="left: 74px; top: 955px">Marca <b>DEPO</b></div>
+      </div>
+
+      <!-- 5 · Cruce de NPR -->
+      <div id="s5" class="clip full" data-start="12.8" data-duration="2.5" data-track-index="5">
+        <div class="num" id="d-num" style="left: 74px; top: 250px">04</div>
+        <div class="tit" id="d-tit" style="left: 70px; top: 328px; font-size: 120px">Cruce<br />de<br />NPR</div>
+        <div class="dato" id="d-dato" style="left: 74px; top: 720px">Marca <b>DEPO</b></div>
+        <div class="glow ambar" id="d-g" style="left: 400px; top: 160px; width: 720px; height: 720px"></div>
+        <img class="luz" id="d-l" src="assets/alexmar/cruce-npr.png" style="left: 470px; top: 300px; width: 560px" alt="" />
+      </div>
+
+      <!-- 6 · Cierre -->
+      <div id="s6" class="clip full" data-start="15.3" data-duration="2.7" data-track-index="6">
+        <img id="e-logo" src="assets/alexmar/logo-hd.png" style="position: absolute; left: 340px; top: 110px; width: 400px" alt="" />
+        <div class="tit" id="e-tit" style="left: 0; right: 0; top: 560px; text-align: center; font-size: 84px">Pídela hoy mismo</div>
+        <div id="e-tel" style="position: absolute; left: 0; right: 0; top: 685px; text-align: center; font: 400 104px/1 'Archivo Black'; color: var(--naranja); letter-spacing: -0.01em">0416-676 83 93</div>
+        <div class="dato" id="e-dato" style="left: 0; right: 0; top: 840px; text-align: center; font-size: 36px">Autoperiquitos y rotulados · <b>Tovar, Mérida</b></div>
+      </div>
+
+      <!-- Apagon entre escenas -->
+      <div id="apagon-c" class="clip full" data-start="0" data-duration="18" data-track-index="7" style="pointer-events: none">
+        <div class="full" id="apagon" style="background: var(--negro); opacity: 0"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const BR = (v) => "brightness(" + v + ")";
+
+      // Carretera: la linea avanza todo el video
+      tl.fromTo("#via", { backgroundPosition: "0px 0px" }, { backgroundPosition: "-2880px 0px", duration: 18, ease: "none" }, 0);
+
+      // Encender una luz: arranca apagada, golpe de luz y queda prendida
+      const encender = (luz, glow, t, nivel) => {
+        tl.fromTo(luz, { filter: BR(0.14) }, { filter: BR(0.14), duration: 0.01 }, 0);
+        tl.to(luz, { filter: BR(1.5), duration: 0.06, ease: "none" }, t);
+        tl.to(luz, { filter: BR(1), duration: 0.45, ease: "power2.out" }, t + 0.06);
+        if (glow) {
+          tl.fromTo(glow, { opacity: 0 }, { opacity: 1, duration: 0.06, ease: "none" }, t);
+          tl.to(glow, { opacity: nivel, duration: 0.45, ease: "power2.out" }, t + 0.06);
+        }
+      };
+      // Direccional: prende y apaga a ritmo fijo
+      const parpadeo = (luz, glow, t0, veces, periodo) => {
+        for (let k = 0; k < veces; k++) {
+          const t = t0 + k * periodo;
+          tl.to(luz, { filter: BR(1.45), duration: 0.05, ease: "none" }, t);
+          tl.to(glow, { opacity: 1, duration: 0.05, ease: "none" }, t);
+          tl.to(luz, { filter: BR(0.55), duration: 0.12, ease: "power1.in" }, t + periodo / 2);
+          tl.to(glow, { opacity: 0.1, duration: 0.12, ease: "power1.in" }, t + periodo / 2);
+        }
+      };
+      // Frenazo: el rojo sube fuerte y vuelve a posicion
+      const frenar = (luces, glow, t) => {
+        tl.to(luces, { filter: BR(1.45), duration: 0.08, ease: "none" }, t);
+        tl.to(glow, { opacity: 1, duration: 0.08, ease: "none" }, t);
+        tl.to(luces, { filter: BR(1), duration: 0.5, ease: "power2.out" }, t + 0.5);
+        tl.to(glow, { opacity: 0.45, duration: 0.5, ease: "power2.out" }, t + 0.5);
+      };
+      // Apagon: todo a negro un instante para cambiar de escena
+      tl.fromTo("#apagon", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      const apagon = (t) => {
+        tl.to("#apagon", { opacity: 1, duration: 0.08, ease: "power1.in" }, t - 0.1);
+        tl.to("#apagon", { opacity: 0, duration: 0.05, ease: "none" }, t + 0.06);
+      };
+      [2.9, 6.2, 9.5, 12.8, 15.3].forEach(apagon);
+
+      // 1 · Gancho (0 - 2,9)
+      spring(tl, "#h-tit", { opacity: 0, y: -60 }, { opacity: 1, y: 0 }, 0.05, SECO);
+      encender("#h-l1", "#h-g1", 0.55, 0.4);
+      encender("#h-l2", "#h-g2", 0.85, 0.4);
+      encender("#h-l3", "#h-g3", 1.15, 0.4);
+      encender("#h-l4", "#h-g4", 1.45, 0.4);
+      tl.fromTo(["#h-l1", "#h-l2", "#h-l3", "#h-l4"], { scale: 1 }, { scale: 1.04, duration: 2.8, ease: "none", transformOrigin: "50% 50%" }, 0);
+
+      // 2 · Cruce de Caribe (2,9 - 6,2)
+      spring(tl, "#a-num", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 2.95, SECO);
+      spring(tl, "#a-tit", { opacity: 0, x: -140 }, { opacity: 1, x: 0 }, 3.0, ESTANDAR);
+      encender("#a-l", "#a-g", 3.05, 0.1);
+      parpadeo("#a-l", "#a-g", 3.6, 4, 0.66);
+      tl.fromTo("#a-l", { scale: 0.96 }, { scale: 1.04, duration: 3.3, ease: "none", transformOrigin: "50% 50%" }, 2.9);
+      spring(tl, "#a-dato", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 3.5, SECO);
+
+      // 3 · Stop Fiesta Max (6,2 - 9,5): las dos mitades se abren y frenan
+      encender(["#b-iz", "#b-de"], "#b-g", 6.25, 0.45);
+      spring(tl, "#b-iz", { x: 0 }, { x: -120 }, 6.4, PESADO);
+      spring(tl, "#b-de", { x: 0 }, { x: 120 }, 6.4, PESADO);
+      spring(tl, "#b-num", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 6.6, SECO);
+      spring(tl, "#b-tit", { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 6.7, ESTANDAR);
+      frenar(["#b-iz", "#b-de"], "#b-g", 7.5);
+      frenar(["#b-iz", "#b-de"], "#b-g", 8.6);
+
+      // 4 · Tapa de stop Chevy 500 (9,5 - 12,8)
+      encender("#c-l", "#c-g", 9.6, 0.4);
+      spring(tl, "#c-l", { y: -120 }, { y: 0 }, 9.5, ESTANDAR);
+      spring(tl, "#c-num", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 9.8, SECO);
+      spring(tl, "#c-tit", { opacity: 0, y: 70 }, { opacity: 1, y: 0 }, 9.85, ESTANDAR);
+      spring(tl, "#c-dato", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 10.3, SECO);
+      frenar("#c-l", "#c-g", 11.2);
+      tl.fromTo("#c-l", { scale: 1 }, { scale: 1.05, duration: 3, ease: "none", transformOrigin: "50% 30%", immediateRender: false }, 9.8);
+
+      // 5 · Cruce de NPR (12,8 - 15,3)
+      spring(tl, "#d-l", { x: 500, rotation: 8 }, { x: 0, rotation: 0 }, 12.8, ESTANDAR);
+      encender("#d-l", "#d-g", 13.0, 0.1);
+      parpadeo("#d-l", "#d-g", 13.5, 3, 0.62);
+      spring(tl, "#d-num", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 12.9, SECO);
+      spring(tl, "#d-tit", { opacity: 0, x: -140 }, { opacity: 1, x: 0 }, 12.95, ESTANDAR);
+      spring(tl, "#d-dato", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 13.4, SECO);
+
+      // 6 · Cierre (15,3 - 18)
+      spring(tl, "#e-logo", { opacity: 0, scale: 1.5, rotation: -8, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, rotation: 0 }, 15.35, SECO);
+      spring(tl, "#e-tit", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, 15.7, ESTANDAR);
+      spring(tl, "#e-tel", { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 16.0, SECO);
+      spring(tl, "#e-dato", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 16.3, ESTANDAR);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
