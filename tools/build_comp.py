@@ -121,7 +121,7 @@ def build(src_path, comp):
         shutil.copy(f, a / f.name)
     for f in (ROOT / "assets/audio").glob("*"):
         shutil.copy(f, a / f.name)
-    for carpeta, patron in (("platos", "*.png"), ("empaques", "*.png"), ("frutas", "*.svg")):
+    for carpeta, patron in (("platos", "*.png"), ("empaques", "*.png"), ("frutas", "*.svg"), ("alexmar", "*.png")):
         if not (ROOT / "assets" / carpeta).exists():
             continue
         (a / carpeta).mkdir(exist_ok=True)

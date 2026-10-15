@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Anton"; src: url(assets/Anton.woff2) format("woff2"); }
+      @font-face { font-family: "Montserrat"; src: url(assets/Montserrat.woff2) format("woff2"); font-weight: 100 900; }
+      :root { --naranja: #e8591e; --naranja2: #ff7a2e; --negro: #111111; --blanco: #ffffff; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--negro); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--negro); color: var(--blanco); font-family: "Montserrat", sans-serif; }
+      .full { position: absolute; inset: 0; }
+      /* Rayas diagonales naranjas, como en las publicaciones nuevas */
+      .raya { position: absolute; width: 90px; height: 3200px; left: 0; top: -600px; background: var(--naranja); transform-origin: 50% 50%; }
+      .estela { position: absolute; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(255,122,46,0), rgba(255,122,46,.9)); }
+      .halo { position: absolute; left: 40px; top: 520px; width: 1000px; height: 1000px; border-radius: 50%; background: radial-gradient(circle, rgba(232,89,30,.45) 0%, rgba(232,89,30,.1) 45%, rgba(232,89,30,0) 70%); }
+      .faro { position: absolute; display: block; filter: drop-shadow(0 30px 40px rgba(0,0,0,.6)); }
+      .brillo-faro { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(255,255,255,0) 35%, rgba(255,255,255,.75) 50%, rgba(255,255,255,0) 65%); background-size: 260% 100%; background-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%; mask-size: 100% 100%; mix-blend-mode: screen; }
+      .titular { position: absolute; left: 80px; right: 80px; font: 400 230px/0.92 "Anton"; letter-spacing: .01em; color: var(--blanco); text-transform: uppercase; }
+      .chip { position: absolute; display: inline-block; padding: 14px 34px; background: var(--naranja); color: var(--negro); font: 800 58px/1 "Montserrat"; text-transform: uppercase; letter-spacing: .02em; }
+      .chip.blanco { background: var(--blanco); }
+      .barra { position: absolute; left: -200px; top: -400px; width: 700px; height: 3000px; background: var(--naranja); }
+      .logo { position: absolute; left: 290px; top: 300px; width: 500px; height: 500px; }
+      .linea { position: absolute; left: 80px; right: 80px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18" data-width="1080" data-height="1920">
+      <!-- Fondo: rayas diagonales, halo y estelas de velocidad (todo el video) -->
+      <div id="fondo" class="clip full" data-start="0" data-duration="18" data-track-index="0">
+        <div class="halo" id="halo"></div>
+        <div id="rayas"></div>
+        <div id="estelas"></div>
+      </div>
+
+      <!-- 1 · Gancho: el faro se enciende -->
+      <div id="s1" class="clip full" data-start="0" data-duration="2.6" data-track-index="1">
+        <img class="faro" id="h-faro" src="assets/alexmar/faro-fiesta.png" style="left: 90px; top: 1060px; width: 900px" alt="" />
+        <div class="full" id="h-flash" style="background: radial-gradient(circle at 50% 66%, rgba(255,240,200,.95) 0%, rgba(255,160,60,.45) 25%, rgba(255,120,40,0) 55%); opacity: 0"></div>
+        <div class="titular" id="h-tit" style="top: 300px">¿Faro<br />roto?</div>
+        <div class="chip" id="h-chip" style="left: 80px; top: 780px; font-size: 72px">Lo tenemos.</div>
+      </div>
+
+      <!-- 2 · BT-50 -->
+      <div id="s2" class="clip full" data-start="2.5" data-duration="5.1" data-track-index="2">
+        <div class="titular" id="b-tit" style="top: 260px; font-size: 300px">BT-50</div>
+        <div class="chip" id="b-chip" style="left: 80px; top: 590px">Faro DEPO</div>
+        <div id="b-wrap" style="position: absolute; left: 70px; top: 820px; width: 940px; height: 626px">
+          <img class="faro" src="assets/alexmar/faro-bt50.png" style="left: 0; top: 0; width: 940px; height: 626px" alt="" />
+          <div class="brillo-faro" id="b-brillo" style="-webkit-mask-image: url(assets/alexmar/faro-bt50.png); mask-image: url(assets/alexmar/faro-bt50.png)"></div>
+        </div>
+        <div class="chip blanco" id="b-pie" style="left: 80px; top: 1560px; font-size: 50px">Alexmar · Tovar</div>
+      </div>
+
+      <!-- 3 · Fiesta Max 08/10 -->
+      <div id="s3" class="clip full" data-start="7.5" data-duration="5.1" data-track-index="3">
+        <div class="titular" id="f-tit" style="top: 260px; font-size: 250px">Fiesta<br />Max</div>
+        <div class="chip" id="f-chip" style="left: 80px; top: 760px">08/10 · Faro DEPO</div>
+        <div id="f-wrap" style="position: absolute; left: 60px; top: 930px; width: 960px; height: 600px">
+          <img class="faro" src="assets/alexmar/faro-fiesta.png" style="left: 0; top: 0; width: 960px; height: 600px" alt="" />
+          <div class="brillo-faro" id="f-brillo" style="-webkit-mask-image: url(assets/alexmar/faro-fiesta.png); mask-image: url(assets/alexmar/faro-fiesta.png)"></div>
+        </div>
+        <div class="chip blanco" id="f-pie" style="left: 80px; top: 1600px; font-size: 50px">Alexmar · Tovar</div>
+      </div>
+
+      <!-- 4 · ¿Otro repuesto? -->
+      <div id="s4" class="clip full" data-start="12.5" data-duration="2.6" data-track-index="4">
+        <div class="titular" id="o-tit" style="top: 300px; font-size: 150px; line-height: 1">¿Buscas otro<br />repuesto?</div>
+        <div class="chip" id="o-chip" style="left: 80px; top: 650px; font-size: 96px; padding: 18px 40px">Pregúntanos</div>
+        <img class="faro" id="o-f1" src="assets/alexmar/faro-bt50.png" style="left: 40px; top: 1050px; width: 520px" alt="" />
+        <img class="faro" id="o-f2" src="assets/alexmar/faro-fiesta.png" style="left: 470px; top: 1110px; width: 580px" alt="" />
+      </div>
+
+      <!-- 5 · Cierre -->
+      <div id="s5" class="clip full" data-start="15" data-duration="3" data-track-index="5">
+        <img class="logo" id="c-logo" src="assets/alexmar/logo.png" alt="" />
+        <div class="linea" id="c-1" style="top: 860px; font: 400 76px/1.1 'Anton'; letter-spacing: .04em">AUTOPERIQUITOS Y ROTULADOS</div>
+        <div class="linea" id="c-2" style="top: 975px; font: 700 52px/1.1 'Montserrat'; color: var(--naranja2)">Tovar · Mérida</div>
+        <div class="linea" id="c-3" style="top: 1090px">
+          <span style="display: inline-block; padding: 16px 44px; background: var(--naranja); color: var(--negro); font: 400 128px/1.05 'Anton'">0416-676 83 93</span>
+        </div>
+        <div class="linea" id="c-4" style="top: 1330px; font: 800 46px/1.2 'Montserrat'; letter-spacing: .12em">DESCUENTOS A TODA VELOCIDAD</div>
+      </div>
+
+      <!-- Barrido naranja entre escenas -->
+      <div id="barrido" class="clip full" data-start="0" data-duration="18" data-track-index="6" style="pointer-events: none">
+        <div class="barra" id="barra"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      let seed = 21;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      // Rayas diagonales que derivan lento
+      const rayas = document.getElementById("rayas");
+      [[-120, 0.9], [130, 0.55], [880, 0.75], [1010, 0.4]].forEach(([x, o], i) => {
+        const r = document.createElement("div");
+        r.className = "raya";
+        r.style.left = x + "px";
+        r.style.opacity = o;
+        r.style.width = (i % 2 ? 46 : 90) + "px";
+        rayas.appendChild(r);
+      });
+      tl.fromTo(".raya", { rotation: 24, x: 0 }, { rotation: 24, x: 120, duration: 18, ease: "none" }, 0);
+      // Estelas de velocidad (deterministas)
+      const estelas = document.getElementById("estelas");
+      for (let i = 0; i < 14; i++) {
+        const e = document.createElement("div");
+        e.className = "estela";
+        const w = 160 + rnd() * 340;
+        Object.assign(e.style, { width: w + "px", top: 120 + rnd() * 1680 + "px", left: "-600px", opacity: (0.3 + rnd() * 0.5).toFixed(2) });
+        estelas.appendChild(e);
+        const t0 = rnd() * 1.6, dur = 0.55 + rnd() * 0.5;
+        tl.fromTo(e, { x: 0 }, { x: 2000, duration: dur, ease: "none", repeat: Math.floor((18 - t0) / dur) - 1 }, t0);
+      }
+      tl.fromTo("#halo", { scale: 0.9 }, { scale: 1.08, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 11 }, 0);
+
+      // 1 · Gancho (0 - 2,5): el faro se enciende y el texto golpea
+      tl.fromTo("#h-faro", { filter: "brightness(.18) drop-shadow(0 30px 40px rgba(0,0,0,.6))", scale: 1.05, transformOrigin: "50% 50%" }, { filter: "brightness(.18) drop-shadow(0 30px 40px rgba(0,0,0,.6))", scale: 1.05, duration: 0.01 }, 0);
+      tl.to("#h-faro", { filter: "brightness(1.35) drop-shadow(0 30px 40px rgba(0,0,0,.6))", duration: 0.08, ease: "none" }, 0.35);
+      tl.to("#h-faro", { filter: "brightness(1) drop-shadow(0 30px 40px rgba(0,0,0,.6))", duration: 0.5, ease: "power2.out" }, 0.45);
+      tl.fromTo("#h-flash", { opacity: 0 }, { opacity: 1, duration: 0.08, ease: "none" }, 0.35);
+      tl.to("#h-flash", { opacity: 0.35, duration: 0.7, ease: "power2.out" }, 0.45);
+      tl.fromTo("#h-faro", { scale: 1.05 }, { scale: 1, duration: 2, ease: "power1.out", immediateRender: false }, 0.4);
+      spring(tl, "#h-tit", { opacity: 0, scale: 1.6, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1 }, 0.05, SECO);
+      spring(tl, "#h-chip", { opacity: 0, x: -120 }, { opacity: 1, x: 0 }, 0.85, SECO);
+
+      // Barrido naranja diagonal: tapa el cambio de escena
+      const barrer = (t) => {
+        tl.fromTo("#barra", { x: -900, rotation: 24 }, { x: 1500, rotation: 24, duration: 0.42, ease: "power2.inOut", immediateRender: false }, t - 0.21);
+      };
+      tl.fromTo("#barra", { x: -900, rotation: 24 }, { x: -900, rotation: 24, duration: 0.01 }, 0);
+      [2.5, 7.5, 12.5, 15].forEach(barrer);
+
+      // 2 · BT-50 (2,5 - 7,5)
+      spring(tl, "#b-tit", { opacity: 0, x: -200 }, { opacity: 1, x: 0 }, 2.55, ESTANDAR);
+      spring(tl, "#b-chip", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 2.85, SECO);
+      spring(tl, "#b-wrap", { opacity: 0, x: 700, rotation: 8 }, { opacity: 1, x: 0, rotation: 0 }, 2.7, ESTANDAR);
+      tl.fromTo("#b-brillo", { backgroundPosition: "130% 0" }, { backgroundPosition: "-30% 0", duration: 0.9, ease: "power2.inOut" }, 3.6);
+      tl.fromTo("#b-brillo", { backgroundPosition: "130% 0" }, { backgroundPosition: "-30% 0", duration: 0.9, ease: "power2.inOut", immediateRender: false }, 5.6);
+      tl.fromTo("#b-wrap", { scale: 1 }, { scale: 1.06, duration: 4, ease: "none", transformOrigin: "50% 50%", immediateRender: false }, 3.3);
+      spring(tl, "#b-pie", { opacity: 0, x: -100 }, { opacity: 1, x: 0 }, 3.4, SECO);
+
+      // 3 · Fiesta Max (7,5 - 12,5)
+      spring(tl, "#f-tit", { opacity: 0, x: 200 }, { opacity: 1, x: 0 }, 7.55, ESTANDAR);
+      spring(tl, "#f-chip", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 7.85, SECO);
+      spring(tl, "#f-wrap", { opacity: 0, x: -700, rotation: -8 }, { opacity: 1, x: 0, rotation: 0 }, 7.7, ESTANDAR);
+      tl.fromTo("#f-brillo", { backgroundPosition: "130% 0" }, { backgroundPosition: "-30% 0", duration: 0.9, ease: "power2.inOut" }, 8.6);
+      tl.fromTo("#f-brillo", { backgroundPosition: "130% 0" }, { backgroundPosition: "-30% 0", duration: 0.9, ease: "power2.inOut", immediateRender: false }, 10.6);
+      tl.fromTo("#f-wrap", { scale: 1 }, { scale: 1.06, duration: 4, ease: "none", transformOrigin: "50% 50%", immediateRender: false }, 8.3);
+      spring(tl, "#f-pie", { opacity: 0, x: -100 }, { opacity: 1, x: 0 }, 8.4, SECO);
+
+      // 4 · ¿Otro repuesto? (12,5 - 15)
+      spring(tl, "#o-tit", { opacity: 0, y: 80 }, { opacity: 1, y: 0 }, 12.55, ESTANDAR);
+      spring(tl, "#o-chip", { opacity: 0, scale: 0.6, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1 }, 12.9, SECO);
+      spring(tl, "#o-f1", { opacity: 0, x: -500, rotation: -10 }, { opacity: 1, x: 0, rotation: -4 }, 12.6, ESTANDAR);
+      spring(tl, "#o-f2", { opacity: 0, x: 500, rotation: 10 }, { opacity: 1, x: 0, rotation: 4 }, 12.7, ESTANDAR);
+
+      // 5 · Cierre (15 - 18)
+      spring(tl, "#c-logo", { opacity: 0, scale: 0.4, rotation: -20, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, rotation: 0 }, 15.05, PESADO);
+      spring(tl, "#c-1", { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, 15.4, ESTANDAR);
+      spring(tl, "#c-2", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 15.55, ESTANDAR);
+      spring(tl, "#c-3", { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 15.75, SECO);
+      spring(tl, "#c-4", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 16.0, ESTANDAR);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
