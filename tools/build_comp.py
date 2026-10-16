@@ -8,6 +8,7 @@ Marcadores que reemplaza en la fuente:
   <!--svg:logo-->          logo real de Habibis (assets/habibis/logo.svg)
   <!--js:helpers-->        resortes y vapor (tools/hf-helpers.js)
   <!--css:platos-->         estilo estatico del vapor y los brillos
+  <!--css:hikman--> <!--js:hikman-->  papel, cabecera y cinta EN VIVO de Hikman Capital
   <!--logo-ts-->            logo vectorial de Tierra Santa (assets/tierra-santa/logo.svg, color = currentColor)
 
 Escenas (opcional): cada bloque
@@ -113,6 +114,8 @@ def build(src_path, comp):
     if logo_ts.exists():
         out = out.replace("<!--logo-ts-->", logo_ts.read_text().replace("<svg ", '<svg class="logo-ts" ', 1))
     out = split_scenes(out, comp)
+    out = out.replace("<!--css:hikman-->", "<style>\n" + (ROOT / "tools/hikman-kit.css").read_text() + "\n</style>")
+    out = out.replace("<!--js:hikman-->", "<script>\nwindow.EDICION = " + (ROOT / "datos/hikman/edicion.json").read_text() + ";\n" + (ROOT / "tools/hikman-kit.js").read_text() + "\n</script>")
     out = out.replace("<!--js:helpers-->", "<script>\n" + (ROOT / "tools/hf-helpers.js").read_text() + "\n</script>")
     (comp / "index.html").write_text(out)
     a = comp / "assets"
@@ -121,7 +124,7 @@ def build(src_path, comp):
         shutil.copy(f, a / f.name)
     for f in (ROOT / "assets/audio").glob("*"):
         shutil.copy(f, a / f.name)
-    for carpeta, patron in (("platos", "*.png"), ("empaques", "*.png"), ("frutas", "*.svg"), ("alexmar", "*.png")):
+    for carpeta, patron in (("platos", "*.png"), ("empaques", "*.png"), ("frutas", "*.svg"), ("alexmar", "*.png"), ("hikman", "*.png")):
         if not (ROOT / "assets" / carpeta).exists():
             continue
         (a / carpeta).mkdir(exist_ok=True)

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!--css:hikman-->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #e1d6bf; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; }
+      .full { position: absolute; inset: 0; }
+      .sello { position: absolute; padding: 10px 22px; border: 5px solid var(--rojo); color: var(--rojo); font: 700 34px/1.05 "Oswald"; letter-spacing: .06em; text-transform: uppercase; text-align: center; }
+      .etq { position: absolute; font: 600 26px/1 "Oswald"; letter-spacing: .12em; text-transform: uppercase; }
+      .regla { position: absolute; left: 64px; right: 64px; height: 2px; background: var(--tinta); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="39.5" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="39.5" data-track-index="0"><div class="hk-papel"></div></div>
+
+      <!-- 1 · Gancho (0 - 4,95): el termometro marca 3,7 sobre 3,6 esperado -->
+      <div id="s1" class="clip full" data-start="0" data-duration="5.4" data-track-index="1">
+        <div id="g-hoja" class="full">
+          <div class="hk-seccion" id="g-sec" style="top: 150px">— IPC de septiembre —</div>
+          <div class="hk-lamina" id="g-lam" style="top: 262px">
+            <svg id="g-termo" width="240" height="600" viewBox="0 0 240 600" style="position: absolute; left: 70px; top: 40px">
+              <rect x="88" y="20" width="64" height="440" rx="32" fill="#f6efdd" stroke="#1c1c1c" stroke-width="5" />
+              <rect id="g-mercurio" x="104" y="60" width="32" height="420" rx="14" fill="#b3261e" />
+              <circle cx="120" cy="500" r="62" fill="#b3261e" stroke="#1c1c1c" stroke-width="5" />
+              <g stroke="#1c1c1c" stroke-width="4"><line x1="152" y1="96" x2="178" y2="96" /><line x1="152" y1="186" x2="170" y2="186" /><line x1="152" y1="276" x2="170" y2="276" /><line x1="152" y1="366" x2="170" y2="366" /></g>
+              <line x1="40" y1="104" x2="200" y2="104" stroke="#10213f" stroke-width="4" stroke-dasharray="10 8" />
+            </svg>
+            <div class="etq" style="left: 300px; top: 128px; color: var(--navy)" id="g-esp">Esperado 3,6%</div>
+            <div id="g-num" style="position: absolute; left: 300px; top: 190px; font: 900 190px/1 'Playfair'; color: var(--rojo)">3,7%</div>
+            <div class="etq" style="left: 306px; top: 400px; color: var(--gris)" id="g-sub">IPC general · interanual</div>
+            <div class="sello" id="g-sello" style="left: 330px; top: 470px">+0,1 sobre<br />lo esperado</div>
+            <!-- surtidor: "y no fue solo la gasolina" -->
+            <svg id="g-surt" width="170" height="230" viewBox="0 0 170 230" style="position: absolute; left: 676px; top: 420px">
+              <rect x="10" y="30" width="100" height="190" rx="8" fill="#10213f" />
+              <rect x="26" y="50" width="68" height="46" rx="4" fill="#ede3cb" />
+              <rect x="0" y="212" width="124" height="16" fill="#1c1c1c" />
+              <path d="M110 70 h26 q14 0 14 14 v86 q0 14 -14 14 h-6" fill="none" stroke="#1c1c1c" stroke-width="8" />
+              <rect x="122" y="160" width="20" height="40" rx="4" fill="#1c1c1c" />
+            </svg>
+            <div class="etq" id="g-mas" style="left: 334px; top: 608px; color: var(--rojo); font-size: 30px">+ Subyacente ▲</div>
+          </div>
+          <div class="hk-frase" id="g-f1" style="top: 1110px">La inflación volvió<br />a sorprender</div>
+          <div class="hk-frase malo" id="g-f2" style="top: 1110px">Y no fue solo<br />la gasolina</div>
+        </div>
+      </div>
+
+      <!-- 2 · Portada (4,95 - 7,9) -->
+      <div id="s2" class="clip full" data-start="4.9" data-duration="3.25" data-track-index="2">
+        <div id="p-hoja" class="full">
+          <div id="p-sup" style="position: absolute; left: 0; right: 0; top: 470px; text-align: center; font: 500 30px/1 'Oswald'; letter-spacing: .32em; color: var(--gris)">HIKMAN CAPITAL · INFORME DE MERCADOS</div>
+          <div class="regla" id="p-r1" style="top: 522px"></div>
+          <img id="p-logo" src="assets/hikman/logo-navy.png" style="position: absolute; left: 290px; top: 560px; width: 500px" alt="" />
+          <div class="regla" id="p-r2" style="top: 912px"></div>
+          <div id="p-fecha" style="position: absolute; left: 0; right: 0; top: 944px; text-align: center; font: italic 400 36px/1 'Playfair'; color: var(--gris)">Viernes, 16 de octubre de 2026 — Edición de mercados</div>
+          <div id="p-saludo" style="position: absolute; left: 0; right: 0; top: 1030px; text-align: center; font: italic 500 46px/1 'Playfair'; color: var(--tinta)">“Buenos días, inversor.”</div>
+          <div class="regla" id="p-r3" style="top: 1128px; left: 150px; right: 150px; height: 2px"></div>
+          <div id="p-hoy" style="position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font: 600 28px/1 'Oswald'; letter-spacing: .2em; color: var(--rojo)">EN LA EDICIÓN DE HOY</div>
+          <div id="p-i1" style="position: absolute; left: 150px; right: 150px; top: 1208px; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(28,28,28,.3); padding-bottom: 14px">
+            <span style="font: 900 42px/1 'Playfair'; color: var(--tinta)"><b style="color: var(--rojo); font: 600 32px/1 'Oswald'; margin-right: 22px">1</b>El IPC de septiembre</span><span style="font: italic 400 28px/1 'Playfair'; color: var(--gris)">la subyacente sorprendió</span>
+          </div>
+          <div id="p-i2" style="position: absolute; left: 150px; right: 150px; top: 1280px; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(28,28,28,.3); padding-bottom: 14px">
+            <span style="font: 900 42px/1 'Playfair'; color: var(--tinta)"><b style="color: var(--rojo); font: 600 32px/1 'Oswald'; margin-right: 22px">2</b>La Fed</span><span style="font: italic 400 28px/1 'Playfair'; color: var(--gris)">¿octubre o diciembre?</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · Cierre (35,5 - 39,5) -->
+      <div id="s3" class="clip full" data-start="35.5" data-duration="4" data-track-index="3">
+        <div id="c-cab"></div>
+        <div id="c-tit" style="position: absolute; left: 0; right: 0; top: 400px; text-align: center; font: 900 66px/1 'Playfair'; text-transform: uppercase; color: var(--navy)">Ese es el resumen de hoy</div>
+        <div class="regla" id="c-r1" style="top: 500px; left: 150px; right: 150px"></div>
+        <div id="c-sub" style="position: absolute; left: 0; right: 0; top: 534px; text-align: center; font: italic 400 34px/1.3 'Playfair'; color: var(--gris)">Informe de mercados · Viernes, 16 de octubre de 2026</div>
+        <img id="c-logo" src="assets/hikman/logo-navy.png" style="position: absolute; left: 220px; top: 700px; width: 640px" alt="" />
+        <div id="c-cinta"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <!--js:hikman-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      HK.cabecera(document.getElementById("c-cab"), "A3");
+      HK.cinta(document.getElementById("c-cinta"));
+
+      // 1 · Gancho
+      spring(tl, "#g-sec", { opacity: 0, y: -30 }, { opacity: 1, y: 0 }, 0.0, SECO);
+      spring(tl, "#g-lam", { opacity: 0, y: 80, rotation: -2 }, { opacity: 1, y: 0, rotation: 0 }, 0.0, ESTANDAR);
+      tl.fromTo("#g-mercurio", { scaleY: 0.08, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 1.3, ease: "power2.out" }, 0.25);
+      spring(tl, "#g-esp", { opacity: 0, x: -40 }, { opacity: 1, x: 0 }, 0.35, SECO);
+      spring(tl, "#g-num", { opacity: 0, scale: 0.6, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1 }, 0.9, SECO);
+      spring(tl, "#g-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 1.1, SECO);
+      spring(tl, "#g-sello", { opacity: 0, scale: 2.2, rotation: -14 }, { opacity: 1, scale: 1, rotation: -6 }, 1.6, SECO);
+      spring(tl, "#g-f1", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 0.1, ESTANDAR);
+      tl.to("#g-f1", { opacity: 0, y: -30, duration: 0.18, ease: "power2.in" }, 3.0);
+      spring(tl, "#g-f2", { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 3.15, ESTANDAR);
+      spring(tl, "#g-surt", { opacity: 0, x: 220 }, { opacity: 1, x: 0 }, 3.25, ESTANDAR);
+      spring(tl, "#g-mas", { opacity: 0, scale: 0.5, transformOrigin: "100% 50%" }, { opacity: 1, scale: 1 }, 3.9, SECO);
+      // la hoja se pasa hacia la portada
+      tl.to("#g-hoja", { x: -1250, rotation: -9, transformOrigin: "0% 100%", duration: 0.5, ease: "power2.in" }, 4.75);
+
+      // 2 · Portada
+      tl.fromTo("#p-hoja", { x: 1250, rotation: 7, transformOrigin: "100% 100%" }, { x: 0, rotation: 0, duration: 0.5, ease: "power2.out" }, 4.9);
+      spring(tl, "#p-logo", { opacity: 0, scale: 1.25, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 5.05, PESADO);
+      tl.fromTo(["#p-r1", "#p-r2"], { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 5.0);
+      spring(tl, "#p-sup", { opacity: 0, y: -20 }, { opacity: 1, y: 0 }, 5.05, SECO);
+      spring(tl, "#p-fecha", { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 5.25, SECO);
+      spring(tl, "#p-saludo", { opacity: 0, y: 24 }, { opacity: 1, y: 0 }, 5.1, ESTANDAR);
+      tl.fromTo("#p-r3", { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.4, ease: "power2.out" }, 6.2);
+      spring(tl, "#p-hoy", { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 6.25, SECO);
+      spring(tl, "#p-i1", { opacity: 0, x: -60 }, { opacity: 1, x: 0 }, 6.4, ESTANDAR);
+      spring(tl, "#p-i2", { opacity: 0, x: -60 }, { opacity: 1, x: 0 }, 6.6, ESTANDAR);
+      tl.to("#p-hoja", { y: -1300, duration: 0.45, ease: "power2.in" }, 7.5);
+
+      // 3 · Cierre (cinta y cabecera con el tiempo global)
+      HK.moverCinta(tl, "#c-cinta .hk-items", 0, 39.5);
+      spring(tl, "#c-tit", { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, 35.55, ESTANDAR);
+      tl.fromTo("#c-r1", { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 35.8);
+      spring(tl, "#c-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 35.9, SECO);
+      spring(tl, "#c-logo", { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 36.85, PESADO);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

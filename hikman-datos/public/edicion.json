@@ -1,0 +1,140 @@
+{
+  "marca": "Hikman Capital",
+  "publicacion": "Informe de mercados",
+  "fecha": "Viernes, 16 de octubre de 2026",
+  "fechaCorta": "VIE · 16 DE OCTUBRE DE 2026",
+  "saludo": "Buenos días, inversor.",
+  "duracion": 39.5,
+  "vozInicio": 0.3,
+  "ticker": [
+    {
+      "texto": "IPC GENERAL A/A 3,7%",
+      "tono": "sube"
+    },
+    {
+      "texto": "ESPERADO 3,6%",
+      "tono": "neutro"
+    },
+    {
+      "texto": "SUBYACENTE A/A 2,6%",
+      "tono": "sube"
+    },
+    {
+      "texto": "GASOLINA SEPT. ▲ 9,1%",
+      "tono": "sube"
+    },
+    {
+      "texto": "IPC MENSUAL 0,6% · EN LÍNEA",
+      "tono": "neutro"
+    },
+    {
+      "texto": "PROB. SUBIDA FED OCTUBRE ~50%",
+      "tono": "sube"
+    },
+    {
+      "texto": "SUBYACENTE MENSUAL 0,3% · ESP. 0,2%",
+      "tono": "sube"
+    }
+  ],
+  "cifras": {
+    "inicio": 7.9,
+    "fin": 19.8,
+    "pagina": "A1",
+    "seccion": "El dato",
+    "titulo": "IPC de EE.UU. · septiembre",
+    "pie": "IPC general interanual anterior: 3,4%. Mensual en línea; interanual y subyacente, por encima de lo esperado.",
+    "grupos": [
+      {
+        "nombre": "Mensual",
+        "escala": 0.8
+      },
+      {
+        "nombre": "Interanual",
+        "escala": 4.0
+      }
+    ],
+    "filas": [
+      {
+        "etiqueta": "General",
+        "grupo": "Mensual",
+        "real": 0.6,
+        "esperado": 0.6,
+        "t": 9.4
+      },
+      {
+        "etiqueta": "General",
+        "grupo": "Interanual",
+        "real": 3.7,
+        "esperado": 3.6,
+        "t": 13.1
+      },
+      {
+        "etiqueta": "Subyacente",
+        "grupo": "Mensual",
+        "real": 0.3,
+        "esperado": 0.2,
+        "t": 17.4
+      },
+      {
+        "etiqueta": "Subyacente",
+        "grupo": "Interanual",
+        "real": 2.6,
+        "esperado": 2.5,
+        "t": 18.7
+      }
+    ],
+    "sello": {
+      "texto": "Supera lo esperado",
+      "t": 16.9
+    },
+    "frases": [
+      {
+        "t": 8.1,
+        "texto": "0,6% en el mes: en línea",
+        "tono": "neutro"
+      },
+      {
+        "t": 12.0,
+        "texto": "En el año, 3,7%: por encima de lo esperado",
+        "tono": "malo"
+      },
+      {
+        "t": 15.5,
+        "texto": "La subyacente también superó",
+        "tono": "malo"
+      }
+    ]
+  },
+  "probabilidad": {
+    "inicio": 24.6,
+    "fin": 31.9,
+    "pagina": "A2",
+    "seccion": "La reacción del mercado",
+    "titulo": "Probabilidad de subida de la Fed en octubre",
+    "antes": 21,
+    "antesTexto": "20-22%",
+    "antesEtiqueta": "Antes del IPC",
+    "tAntes": 26.6,
+    "despues": 50,
+    "despuesTexto": "~50%",
+    "despuesEtiqueta": "Después del IPC",
+    "tDespues": 30.9,
+    "pie": "Probabilidad de una subida de tipos en octubre, antes y justo después del IPC.",
+    "frases": [
+      {
+        "t": 24.9,
+        "texto": "El mercado lo notó",
+        "tono": "neutro"
+      },
+      {
+        "t": 29.5,
+        "texto": "Octubre: de ~20% a casi 50%",
+        "tono": "malo"
+      }
+    ],
+    "chip": {
+      "texto": "Reunión de octubre",
+      "t": 28.4
+    }
+  }
+}

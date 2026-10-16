@@ -16,3 +16,6 @@ out/tierra-santa/*.png
 out/alexmar/**/*.mp4
 out/alexmar/*.mp4
 out/alexmar/
+hikman-datos/node_modules
+out/hikman/
+work/
