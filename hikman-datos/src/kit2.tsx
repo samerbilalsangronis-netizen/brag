@@ -1,6 +1,6 @@
 import { loadFont } from "@remotion/fonts";
 import React from "react";
-import { AbsoluteFill, Img, random, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 
 // Hikman Capital · "Toro vs. Oso" en Remotion. Mismas medidas que tools/hikman2-kit.css (Hyperframes).
 loadFont({ family: "Barlow", url: staticFile("fonts/BarlowCondensed-800.woff2"), weight: "800" });
@@ -43,12 +43,16 @@ export const useLocal = (inicio: number) => {
   return { frame, fps, at, tGlobal: inicio + frame / fps };
 };
 
-// cifra "de terminal": unos cuadros de digitos al azar (con semilla) y luego el valor real
-export const Rodar: React.FC<{ valor: string; f: number; semilla: string }> = ({ valor, f, semilla }) => {
+// cifra "de terminal": se escribe caracter a caracter con un cursor (nunca muestra cifras falsas)
+export const Rodar: React.FC<{ valor: string; f: number; semilla: string }> = ({ valor, f }) => {
   if (f < 0) return null;
-  if (f >= 8) return <>{valor}</>;
-  const txt = valor.split("").map((c, i) => (/[0-9]/.test(c) ? String(Math.floor(random(`${semilla}-${f}-${i}`) * 10)) : c)).join("");
-  return <>{txt}</>;
+  const n = Math.min(valor.length, Math.floor(f / 1.5) + 1);
+  return (
+    <>
+      {valor.slice(0, n)}
+      {n < valor.length && <span style={{ opacity: 0.85 }}>▌</span>}
+    </>
+  );
 };
 
 export const Pagina2: React.FC<{ s: Semana; inicio: number; frases: Frase[]; velaInicio?: string; children: React.ReactNode }> = ({ s, inicio, frases, velaInicio, children }) => {
