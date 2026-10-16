@@ -1,0 +1,64 @@
+{
+  "marca": "Hikman Capital",
+  "publicacion": "Informe semanal",
+  "fecha": "16.10.2026",
+  "duracion": 68.0,
+  "vozInicio": 0.3,
+  "nota": "Tiempos en segundos del video final. Fuentes en docs/hikman/investigacion-semana-2026-10-16.md",
+  "temas": [
+    { "n": 1, "nombre": "El IPC", "inicio": 8.65 },
+    { "n": 2, "nombre": "La Fed", "inicio": 21.2 },
+    { "n": 3, "nombre": "El dinero", "inicio": 31.65 }
+  ],
+  "velas": [
+    { "t": 8.65, "color": "oso" },
+    { "t": 21.2, "color": "oso" },
+    { "t": 31.65, "color": "toro" },
+    { "t": 62.0, "color": "oso" }
+  ],
+  "balanza": [
+    [0, 0], [0.9, 0.35], [11.5, 0.45], [14.9, 0.55], [20.4, 0.65], [24.9, 0.75],
+    [27.2, 0.6], [29.8, 0.45], [35.0, 0.55], [45.3, 0.45], [49.1, 0.5], [57.3, 0.6], [63.4, 0.4]
+  ],
+  "tablero": {
+    "inicio": 8.65, "fin": 15.55,
+    "titulo": "IPC EE.UU. · septiembre",
+    "filas": [
+      { "dato": "IPC general m/m", "real": "0,6%", "esp": "0,6%", "delta": "=", "tono": "neutro", "t": 9.45 },
+      { "dato": "IPC general a/a", "real": "3,7%", "esp": "3,6%", "delta": "+0,1", "tono": "oso", "t": 11.4 },
+      { "dato": "Subyacente m/m", "real": "0,3%", "esp": "0,2%", "delta": "+0,1", "tono": "oso", "t": 14.1 },
+      { "dato": "Subyacente a/a", "real": "2,6%", "esp": "2,5%", "delta": "+0,1", "tono": "oso", "t": 14.8 }
+    ],
+    "nota": "Anterior a/a: 3,4% · Fuente: BLS",
+    "frases": [
+      { "t": 8.8, "html": "IPC: 0,6% en el mes, <em>en línea</em>", "tono": "neutro" },
+      { "t": 11.35, "html": "En el año, <em>3,7%</em>", "tono": "oso" },
+      { "t": 13.1, "html": "La subyacente también <em>superó</em>", "tono": "oso" }
+    ]
+  },
+  "probabilidad": {
+    "inicio": 21.2, "fin": 25.45,
+    "titulo": "Probabilidad de subida de la Fed · octubre",
+    "antes": 21, "antesTexto": "~20%", "tAntes": 22.3,
+    "despues": 50, "despuesTexto": "~50%", "tDespues": 24.85,
+    "nota": "Antes y justo después del IPC · Fuente: Reuters",
+    "frases": [
+      { "t": 21.35, "html": "El mercado <em>reaccionó</em>", "tono": "neutro" },
+      { "t": 23.5, "html": "Octubre: de ~20% a <em>~50%</em>", "tono": "oso" }
+    ]
+  },
+  "bonos": {
+    "inicio": 42.4, "fin": 51.2,
+    "filas": [
+      { "sim": "UST 10A", "nombre": "Bono del Tesoro a 10 años", "valor": "5,085%", "num": 5.085, "dec": 3, "suf": "%", "flecha": "▼", "tono": "toro", "detalle": "Mínimo en unas 3 semanas", "t": 43.75, "tValor": 45.2, "tDetalle": 46.15 },
+      { "sim": "UST 30A", "nombre": "Bono del Tesoro a 30 años", "valor": "5,428%", "num": 5.428, "dec": 3, "suf": "%", "flecha": "▼", "tono": "toro", "detalle": "También en mínimos de 3 semanas", "t": 45.9, "tValor": 46.3, "tDetalle": 46.6 },
+      { "sim": "DXY", "nombre": "Índice dólar", "valor": "102,03", "num": 102.03, "dec": 2, "suf": "", "flecha": "▼", "tono": "oso", "detalle": "Desde su máximo de 18 meses", "t": 47.55, "tValor": 49.0, "tDetalle": 50.2 }
+    ],
+    "nota": "Cierre del jueves 15 de octubre · Fuente: Reuters",
+    "frases": [
+      { "t": 42.55, "html": "Demanda <em>defensiva</em>", "tono": "toro" },
+      { "t": 45.1, "html": "Bono a 10 años: <em>5,08%</em>", "tono": "toro" },
+      { "t": 47.6, "html": "El dólar, <em>sin soporte</em>", "tono": "oso" }
+    ]
+  }
+}

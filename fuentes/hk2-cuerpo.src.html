@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!--css:hikman2-->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0d0f; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; color: var(--hueso); }
+      .full { position: absolute; inset: 0; }
+      .etq { position: absolute; font: 600 24px/1.25 "Mono"; letter-spacing: .14em; color: var(--gris); text-transform: uppercase; }
+      .vela-c { position: absolute; bottom: 860px; width: 150px; }
+      .vela-c .cuerpo { position: absolute; left: 0; right: 0; bottom: 0; background: var(--oso); }
+      .vela-c .mecha { position: absolute; left: 71px; width: 8px; bottom: 0; background: var(--oso); }
+      .vela-c .nom { position: absolute; left: -40px; right: -40px; top: 100%; margin-top: 18px; text-align: center; font: 700 24px/1.1 "Mono"; letter-spacing: .1em; color: var(--hueso); }
+      .pill { display: inline-block; padding: 12px 22px; border: 3px solid var(--gris); font: 800 30px/1 "Mono"; letter-spacing: .08em; color: var(--gris); }
+      .renglon { position: absolute; left: 70px; right: 70px; border-bottom: 2px solid var(--linea); }
+      .renglon .quien { font: 600 24px/1.2 "Mono"; letter-spacing: .12em; color: var(--gris); text-transform: uppercase; }
+      .renglon .que { font: 800 70px/1 "Barlow"; text-transform: uppercase; color: var(--hueso); margin: 14px 0 26px; }
+      .chip { position: absolute; width: 380px; height: 230px; border: 4px solid var(--gris); text-align: center; }
+      .chip .mes { font: 800 92px/1 "Barlow"; margin-top: 30px; }
+      .chip .det { font: 700 26px/1 "Mono"; letter-spacing: .14em; margin-top: 18px; }
+    </style>
+  </head>
+  <body>
+    <!-- Tramo global 15,55 - 62,0. Escenas: gasolina 15,55-21,2 · Fed 25,45-31,65 · BlackRock 31,65-42,4 · deuda IA 51,2-62,0.
+         Los huecos 21,2-25,45 y 42,4-51,2 los cubre Remotion. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="46.45" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="46.45" data-track-index="0">
+        <div class="k-fondo"></div><div class="k-reticula"></div>
+        <div id="barra"></div>
+        <div id="balanza"></div>
+      </div>
+
+      <!-- Gasolina y contagio (15,55 - 21,2) -->
+      <div id="sg" class="clip full" data-start="0" data-duration="5.65" data-track-index="1">
+        <div class="k-tema">Tema <b>1/3</b> · El IPC</div>
+        <div class="etq" id="d-etq" style="left: 70px; top: 290px">IPC · componentes · septiembre</div>
+        <div class="vela-c" id="d-v1" style="left: 130px; height: 520px"><div class="mecha" style="height: 590px"></div><div class="cuerpo" id="d-v1c" style="height: 520px"></div><div class="nom">GASOLINA</div></div>
+        <div id="d-num" style="position: absolute; left: 70px; top: 380px; width: 330px; text-align: center; font: 800 84px/1 'Mono'; color: var(--oso)">+9,1%</div>
+        <div class="etq" id="d-alza" style="left: 440px; top: 400px; color: var(--hueso)">Alza del IPC en el mes · +0,6%</div>
+        <div id="d-barra" style="position: absolute; left: 440px; top: 446px; width: 570px; height: 54px; border: 3px solid var(--gris)">
+          <div id="d-gas" style="position: absolute; left: 0; top: 0; bottom: 0; width: 56%; background: var(--oso); font: 700 22px/48px 'Mono'; letter-spacing: .08em; padding-left: 12px; color: #0c0d0f">GASOLINA</div>
+        </div>
+        <div class="etq" id="d-mitad" style="left: 440px; top: 516px; color: var(--oso)">Más de la mitad del alza</div>
+        <div class="vela-c" id="d-v2" style="left: 470px; height: 230px"><div class="mecha" style="height: 280px"></div><div class="cuerpo" style="height: 230px"></div><div class="nom">VIVIENDA ▲</div></div>
+        <div class="vela-c" id="d-v3" style="left: 720px; height: 190px"><div class="mecha" style="height: 236px"></div><div class="cuerpo" style="height: 190px"></div><div class="nom">TRANSPORTE ▲</div></div>
+        <svg id="d-flecha" width="1080" height="1920" viewBox="0 0 1080 1920" style="position: absolute; left: 0; top: 0">
+          <path id="d-path" d="M330 640 C 470 600, 600 700, 640 780 S 790 790, 830 810" fill="none" stroke="#e5484d" stroke-width="6" stroke-dasharray="14 12" />
+        </svg>
+        <div class="k-frase oso" id="d-f1">Gasolina: <em>+9,1%</em></div>
+        <div class="k-frase oso" id="d-f2">Más de la <em>mitad</em> del alza</div>
+        <div class="k-frase oso" id="d-f3">Vivienda y transporte, <em>también</em></div>
+        <div class="k-frase oso" id="d-f4">La energía <em>contagia</em></div>
+        <div id="vela2"></div>
+      </div>
+
+      <!-- Fed (25,45 - 31,65) -->
+      <div id="sf" class="clip full" data-start="9.9" data-duration="6.2" data-track-index="2">
+        <div class="k-tema">Tema <b>2/3</b> · La Fed</div>
+        <div class="renglon" id="f-b" style="top: 300px"><div class="quien">Michelle Bowman · Vicepresidenta de Supervisión, Fed</div><div class="que">Sin necesidad urgente <br />de actuar</div></div>
+        <div class="renglon" id="f-d" style="top: 560px"><div class="quien">Mary Daly · Presidenta, Fed de San Francisco</div><div class="que">Más subidas, <br />sin urgencia en octubre</div></div>
+        <div class="chip" id="f-oct" style="left: 70px; top: 860px"><div class="mes" style="color: var(--gris)">OCT 27-28</div><div class="det" style="color: var(--gris)">❚❚ SIN URGENCIA</div></div>
+        <div id="f-flecha" style="position: absolute; left: 484px; top: 920px; font: 800 90px/1 'Mono'; color: var(--hueso)">→</div>
+        <div class="chip" id="f-dic" style="left: 630px; top: 860px; border-color: var(--oso)"><div class="mes" style="color: var(--oso)">DIC</div><div class="det" style="color: var(--oso)">EN LA MESA</div></div>
+        <div class="k-frase toro" id="f-f1">Bowman: <em>sin urgencia</em></div>
+        <div class="k-frase toro" id="f-f2">Daly: más subidas, <em>sin prisa</em></div>
+        <div class="k-frase oso" id="f-f3">Diciembre, <em>en la mesa</em></div>
+      </div>
+
+      <!-- Vela verde entre la Fed y BlackRock (31,65) -->
+      <div id="sv3" class="clip full" data-start="15.5" data-duration="1.2" data-track-index="5"><div id="vela3"></div></div>
+
+      <!-- BlackRock (31,65 - 42,4) -->
+      <div id="sb" class="clip full" data-start="16.1" data-duration="10.75" data-track-index="3">
+        <div class="k-tema">Tema <b>3/3</b> · El dinero</div>
+        <div class="etq" id="b-etq" style="left: 70px; top: 290px">BlackRock Investment Institute · 13.10</div>
+        <div class="renglon" id="b-r1" style="top: 350px; height: 210px">
+          <div style="font: 800 74px/1 'Barlow'; margin-top: 22px">ACCIONES EE.UU.</div>
+          <div style="margin-top: 22px"><span class="pill" id="b-p1">SOBREPONDERAR</span> <span id="b-a1" style="font: 800 40px/1 'Mono'; margin: 0 16px">→</span> <span class="pill" id="b-p2" style="border-color: var(--oso); color: var(--oso)">NEUTRAL</span></div>
+        </div>
+        <div class="renglon" id="b-r2" style="top: 580px; height: 210px">
+          <div style="font: 800 74px/1 'Barlow'; margin-top: 22px">BONOS DEL TESORO · CORTO PLAZO</div>
+          <div style="margin-top: 22px"><span class="pill" id="b-p3" style="border-color: var(--toro); color: var(--toro)">SOBREPONDERAR</span> <span class="pill" id="b-p4" style="border: none; background: var(--toro); color: #0c0d0f; margin-left: 14px">1.ª VEZ EN 6 AÑOS</span></div>
+        </div>
+        <div id="b-160" style="position: absolute; left: 70px; top: 850px; font: 800 150px/1 'Mono'; color: var(--hueso)">160 pb</div>
+        <div class="etq" id="b-160e" style="left: 76px; top: 1030px">Subidas de la Fed descontadas a 12 meses</div>
+        <div id="b-sello" style="position: absolute; left: 700px; top: 860px; padding: 12px 22px; border: 6px solid var(--oso); color: var(--oso); font: 800 52px/1 'Barlow'; letter-spacing: .04em; text-align: center">EXAGERADO<div style="font: 700 20px/1.4 'Mono'; letter-spacing: .14em">SEGÚN BLACKROCK</div></div>
+        <div class="k-frase" id="b-f1">BlackRock <em>mueve ficha</em></div>
+        <div class="k-frase oso" id="b-f2">Acciones EE.UU.: <em>neutral</em></div>
+        <div class="k-frase toro" id="b-f3">Bonos cortos: <em>sobreponderar</em></div>
+        <div class="k-frase toro" id="b-f4">Primera vez en <em>6 años</em></div>
+        <div class="k-frase" id="b-f5">160 pb de subidas: <em>exagerado</em></div>
+      </div>
+
+      <!-- Deuda de la IA (51,2 - 62,0) -->
+      <div id="si" class="clip full" data-start="35.65" data-duration="10.8" data-track-index="4">
+        <div class="k-tema">Tema <b>3/3</b> · El dinero</div>
+        <div id="i-alerta" style="position: absolute; left: 70px; top: 290px; padding: 10px 18px; background: var(--oso); color: #0c0d0f; font: 800 26px/1 'Mono'; letter-spacing: .14em">⚠ RIESGO DE FONDO</div>
+        <div id="i-tit" style="position: absolute; left: 70px; top: 360px; font: 800 96px/1 'Barlow'; text-transform: uppercase">Deuda de la IA</div>
+        <div class="etq" id="i-boe" style="left: 70px; top: 470px; color: var(--hueso)">Banco de Inglaterra · actas del FPC</div>
+        <div id="i-num" style="position: absolute; left: 70px; top: 520px; font: 800 150px/1 'Mono'; color: var(--oso)">$<span id="i-cifra">450</span>.000 M</div>
+        <div class="etq" id="i-fuente" style="left: 72px; top: 680px; font-size: 20px">Ene-sep 2026 · estimación de Morgan Stanley citada por el BoE</div>
+        <div class="etq" id="i-l26" style="left: 70px; top: 740px; color: var(--hueso)">2026 (ene-sep)</div>
+        <div id="i-b26" style="position: absolute; left: 70px; top: 776px; width: 940px; height: 40px; background: var(--oso)"></div>
+        <div class="etq" id="i-l25" style="left: 70px; top: 836px">2025 completo · menos de la mitad</div>
+        <div id="i-b25" style="position: absolute; left: 70px; top: 872px; width: 420px; height: 40px; background: var(--gris)"></div>
+        <div id="i-cita" style="position: absolute; left: 70px; right: 70px; top: 960px; border-left: 8px solid var(--hueso); padding-left: 28px">
+          <div class="etq" style="position: static">FMI · Bangkok · 16.10</div>
+          <div style="font: 800 64px/1.02 'Barlow'; text-transform: uppercase; margin-top: 12px">“Hay una pelea global por el dinero”</div>
+          <div class="etq" style="position: static; margin-top: 12px">Martins Kazaks · BCE</div>
+        </div>
+        <div class="k-frase" id="i-f1">Una preocupación <em>de fondo</em></div>
+        <div class="k-frase oso" id="i-f2">La deuda de la <em>IA</em></div>
+        <div class="k-frase oso" id="i-f3"><em>$450.000 M</em> este año</div>
+        <div class="k-frase oso" id="i-f4">Más del <em>doble</em> que en 2025</div>
+        <div class="k-frase" id="i-f5">Pelea global por el <em>dinero</em></div>
+        <div id="vela4"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <!--js:hikman2-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 15.55; // inicio global de este tramo
+      const G = (t) => t - T0;
+      K.barra(document.getElementById("barra"));
+      K.balanza(document.getElementById("balanza"));
+      K.moverBalanza(tl, "#balanza .k-marca", T0, 46.45);
+      document.getElementById("vela2").outerHTML = K.velaHTML("v2", "oso");
+      document.getElementById("vela3").outerHTML = K.velaHTML("v3", "toro");
+      document.getElementById("vela4").outerHTML = K.velaHTML("v4", "oso");
+
+      const frase = (id, tIn, tOut) => {
+        spring(tl, id, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, G(tIn), ESTANDAR);
+        if (tOut != null) tl.to(id, { opacity: 0, y: -40, duration: 0.16, ease: "power2.in" }, G(tOut));
+      };
+      const entra = (id, t, desde, preset) => spring(tl, id, Object.assign({ opacity: 0 }, desde), { opacity: 1, x: 0, y: 0 }, G(t), preset || SECO);
+      const vela = (id, t) => {
+        tl.fromTo(id + " .cuerpo", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.6, ease: "power3.out" }, G(t));
+        tl.fromTo(id + " .mecha", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.75, ease: "power3.out" }, G(t));
+        tl.fromTo(id + " .nom", { opacity: 0 }, { opacity: 1, duration: 0.2 }, G(t + 0.2));
+      };
+
+      // Gasolina (15,55 - 21,2)
+      entra("#d-etq", 15.6, { y: -20 });
+      vela("#d-v1", 15.75);
+      spring(tl, "#d-num", { opacity: 0, scale: 0.6, transformOrigin: "50% 100%" }, { opacity: 1, scale: 1 }, G(16.35), SECO);
+      entra("#d-alza", 16.9, { x: 40 });
+      tl.fromTo("#d-barra", { opacity: 0 }, { opacity: 1, duration: 0.12 }, G(16.9));
+      tl.fromTo("#d-gas", { width: "0%" }, { width: "56%", duration: 0.6, ease: "power2.out" }, G(17.0));
+      entra("#d-mitad", 17.3, { x: -30 });
+      vela("#d-v2", 18.2);
+      vela("#d-v3", 18.5);
+      tl.fromTo("#d-path", { strokeDashoffset: 900, strokeDasharray: "900 900" }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, G(19.6));
+      frase("#d-f1", 15.7, 16.95); frase("#d-f2", 17.05, 18.05); frase("#d-f3", 18.15, 19.45); frase("#d-f4", 19.55, null);
+      K.vela(tl, "v2", G(21.2), null);
+
+      // Fed (25,45 - 31,65)
+      entra("#f-b", 25.6, { x: -80 }, ESTANDAR);
+      entra("#f-d", 27.7, { x: -80 }, ESTANDAR);
+      entra("#f-oct", 29.5, { y: 60 });
+      entra("#f-flecha", 30.35, { x: -40 });
+      entra("#f-dic", 30.5, { y: 60 });
+      tl.fromTo("#f-dic", { boxShadow: "0 0 0 0 rgba(229,72,77,0)" }, { boxShadow: "0 0 0 14px rgba(229,72,77,.25)", duration: 0.4, yoyo: true, repeat: 1, immediateRender: false }, G(30.9));
+      frase("#f-f1", 25.7, 27.55); frase("#f-f2", 27.65, 30.3); frase("#f-f3", 30.42, null);
+
+      // BlackRock (31,65 - 42,4)
+      K.vela(tl, "v3", G(31.65), G(31.65)); // la vela verde cubre y descubre
+      entra("#b-etq", 31.9, { y: -20 });
+      entra("#b-r1", 33.6, { x: -80 }, ESTANDAR);
+      tl.fromTo("#b-p1", { opacity: 1 }, { opacity: 0.45, duration: 0.2 }, G(34.95));
+      tl.set("#b-p1", { textDecoration: "line-through" }, G(34.95));
+      entra("#b-a1", 35.0, { x: -20 });
+      spring(tl, "#b-p2", { opacity: 0, scale: 1.6, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, G(35.15), SECO);
+      entra("#b-r2", 35.9, { x: -80 }, ESTANDAR);
+      spring(tl, "#b-p4", { opacity: 0, scale: 1.6, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1 }, G(38.3), SECO);
+      entra("#b-160", 40.6, { y: 50 });
+      entra("#b-160e", 40.8, { y: 20 });
+      spring(tl, "#b-sello", { opacity: 0, scale: 2.2, rotation: -16 }, { opacity: 1, scale: 1, rotation: -6 }, G(39.85), SECO);
+      frase("#b-f1", 32.25, 34.8); frase("#b-f2", 34.9, 36.45); frase("#b-f3", 36.55, 38.15); frase("#b-f4", 38.25, 39.7); frase("#b-f5", 39.8, null);
+
+      // Deuda de la IA (51,2 - 62,0)
+      spring(tl, "#i-alerta", { opacity: 0, scale: 0.6, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1 }, G(51.3), SECO);
+      entra("#i-tit", 52.15, { x: -60 }, ESTANDAR);
+      entra("#i-boe", 53.4, { y: 20 });
+      const cifra = { v: 0 };
+      tl.fromTo(cifra, { v: 0 }, { v: 450, duration: 1.0, ease: "power2.out", onUpdate: () => { const n = document.getElementById("i-cifra"); if (n) n.textContent = Math.round(cifra.v); } }, G(55.55));
+      tl.fromTo("#i-num", { opacity: 0 }, { opacity: 1, duration: 0.12 }, G(55.55));
+      entra("#i-fuente", 55.9, { y: 16 });
+      entra("#i-l26", 57.25, { y: 16 });
+      tl.fromTo("#i-b26", { width: 0 }, { width: 940, duration: 0.6, ease: "power3.out" }, G(57.3));
+      entra("#i-l25", 57.7, { y: 16 });
+      tl.fromTo("#i-b25", { width: 0 }, { width: 420, duration: 0.5, ease: "power3.out" }, G(57.75));
+      entra("#i-cita", 59.55, { x: -60 }, ESTANDAR);
+      frase("#i-f1", 51.3, 52.05); frase("#i-f2", 52.15, 55.45); frase("#i-f3", 55.55, 57.2); frase("#i-f4", 57.3, 59.45); frase("#i-f5", 59.55, null);
+      K.vela(tl, "v4", G(62.0), null);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

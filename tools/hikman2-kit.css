@@ -1,0 +1,29 @@
+/* Hikman Capital · estilo "Toro vs. Oso". Mismas medidas que hikman-datos/src/kit2.tsx. */
+@font-face { font-family: "Barlow"; src: url(assets/BarlowCondensed-800.woff2) format("woff2"); font-weight: 800; }
+@font-face { font-family: "Barlow"; src: url(assets/BarlowCondensed-600.woff2) format("woff2"); font-weight: 600; }
+@font-face { font-family: "Mono"; src: url(assets/JetBrainsMono.woff2) format("woff2"); font-weight: 400 800; }
+:root { --carbon: #0c0d0f; --hueso: #f2efe9; --gris: #8b9098; --toro: #2fbf71; --oso: #e5484d; --linea: rgba(242,239,233,.14); }
+.k-fondo { position: absolute; inset: 0; background: radial-gradient(ellipse 110% 70% at 50% 40%, #16181c 0%, #0c0d0f 70%);
+  }
+.k-reticula { position: absolute; inset: 0; background-image: linear-gradient(rgba(242,239,233,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(242,239,233,.045) 1px, transparent 1px); background-size: 72px 72px; }
+.k-barra { position: absolute; left: 56px; right: 56px; top: 78px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+.k-barra img { height: 70px; }
+.k-barra .k-pub { text-align: right; font: 600 22px/1.3 "Mono"; letter-spacing: .14em; color: var(--gris); text-transform: uppercase; }
+.k-barra .k-pub b { color: var(--hueso); font-weight: 700; }
+.k-linea { position: absolute; left: 56px; right: 56px; top: 168px; height: 2px; background: var(--linea); }
+.k-tema { position: absolute; left: 0; right: 0; top: 196px; text-align: center; font: 600 26px/1 "Mono"; letter-spacing: .16em; color: var(--gris); text-transform: uppercase; }
+.k-tema b { color: var(--hueso); }
+.k-frase { position: absolute; left: 60px; right: 60px; top: 1290px; text-align: center; font: 800 86px/0.98 "Barlow"; text-transform: uppercase; color: var(--hueso); letter-spacing: .005em; }
+.k-frase em { font-style: normal; color: var(--hueso); }
+.k-frase.oso em { color: var(--oso); } .k-frase.toro em { color: var(--toro); }
+.k-balanza { position: absolute; left: 0; right: 0; top: 1540px; height: 170px; }
+.k-balanza .k-tit { position: absolute; left: 0; right: 0; top: 0; text-align: center; font: 600 20px/1 "Mono"; letter-spacing: .3em; color: var(--gris); }
+.k-balanza .k-pista { position: absolute; left: 200px; width: 680px; top: 78px; height: 14px; border-radius: 7px; background: linear-gradient(90deg, var(--toro) 0%, #3a3d43 50%, var(--oso) 100%); }
+.k-balanza .k-ico { position: absolute; top: 34px; height: 104px; }
+.k-balanza .k-marca { position: absolute; left: 534px; top: 48px; width: 12px; height: 74px; border-radius: 6px; background: var(--hueso); box-shadow: 0 0 0 4px #0c0d0f; }
+.k-balanza .k-lado { position: absolute; top: 112px; font: 600 20px/1 "Mono"; letter-spacing: .2em; }
+.k-vela { position: absolute; inset: 0; pointer-events: none; }
+.k-vela .k-cuerpo { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.k-vela .k-mecha { position: absolute; left: 536px; width: 8px; top: -200px; bottom: -200px; }
+.k-mono { font-family: "Mono"; }
+.k-cond { font-family: "Barlow"; }

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!--css:hikman2-->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0d0f; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; color: var(--hueso); }
+      .full { position: absolute; inset: 0; }
+      .fila { position: absolute; left: 70px; right: 70px; height: 190px; border-bottom: 2px solid var(--linea); }
+      .fila .sim { position: absolute; left: 0; top: 30px; font: 600 34px/1 "Mono"; letter-spacing: .12em; color: var(--gris); }
+      .fila .val { position: absolute; left: 0; top: 78px; font: 800 96px/1 "Mono"; letter-spacing: -0.02em; }
+      .fila .sub { position: absolute; right: 0; top: 34px; font: 600 28px/1 "Mono"; color: var(--gris); letter-spacing: .06em; }
+      .fila .ico { position: absolute; right: 0; top: 86px; font: 800 84px/1 "Mono"; }
+      .cursor { display: inline-block; width: 0.55em; height: 0.9em; background: var(--hueso); vertical-align: -0.08em; margin-left: 0.1em; }
+      .agenda { position: absolute; left: 150px; right: 150px; height: 92px; border-bottom: 2px solid var(--linea); display: flex; align-items: center; gap: 34px; }
+      .agenda b { font: 800 40px/1 "Mono"; color: var(--gris); width: 70px; }
+      .agenda span { font: 800 72px/1 "Barlow"; text-transform: uppercase; color: var(--hueso); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="68" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="68" data-track-index="0">
+        <div class="k-fondo"></div><div class="k-reticula"></div>
+        <div id="barra"></div>
+        <div id="balanza"></div>
+      </div>
+
+      <!-- 1 · Gancho (0 - 4,75): tres lineas de terminal -->
+      <div id="s1" class="clip full" data-start="0" data-duration="5.2" data-track-index="1">
+        <div id="g-filas" class="full">
+          <div class="fila" id="g-r1" style="top: 330px"><div class="sim">IPC EE.UU. A/A</div><div class="val" style="color: var(--oso)">3,7%</div><div class="sub">esp. 3,6%</div><div class="ico" style="color: var(--oso)">▲</div></div>
+          <div class="fila" id="g-r2" style="top: 560px"><div class="sim">LA FED</div><div class="val">SIN PRISA</div><div class="ico" style="font-size: 70px; top: 96px">❚❚</div></div>
+          <div class="fila" id="g-r3" style="top: 790px"><div class="sim">EL DINERO GRANDE</div><div class="val" style="color: var(--toro)">→ REFUGIO</div><div class="sub">bonos del Tesoro</div></div>
+        </div>
+        <div class="k-frase oso" id="g-f1">La inflación volvió a <em>sorprender</em></div>
+        <div class="k-frase" id="g-f2">La Fed no tiene <em>prisa</em></div>
+        <div class="k-frase toro" id="g-f3">El dinero grande busca <em>refugio</em></div>
+      </div>
+
+      <!-- 2 · Apertura (4,75 - 8,65): el toro y el oso se enfrentan -->
+      <div id="s2" class="clip full" data-start="4.6" data-duration="4.05" data-track-index="2">
+        <div id="a-ring" class="full">
+          <img id="a-toro" src="assets/hikman/toro.png" style="position: absolute; left: 70px; top: 330px; height: 560px" alt="" />
+          <img id="a-oso" src="assets/hikman/oso.png" style="position: absolute; left: 560px; top: 380px; height: 470px" alt="" />
+        </div>
+        <div class="agenda" id="a-i1" style="top: 900px"><b>01</b><span>El IPC</span></div>
+        <div class="agenda" id="a-i2" style="top: 1000px"><b>02</b><span>La Fed</span></div>
+        <div class="agenda" id="a-i3" style="top: 1100px"><b>03</b><span>El dinero</span></div>
+        <div class="k-frase" id="a-f1">Buenos días, <em>inversor</em></div>
+        <div class="k-frase" id="a-f2" style="top: 1250px; font-size: 60px; color: var(--gris)">Esta semana, tres temas</div>
+        <div id="vela-1-c"></div>
+      </div>
+
+      <!-- 3 · Veredicto y cierre (62 - 68) -->
+      <div id="s3" class="clip full" data-start="62" data-duration="6" data-track-index="3">
+        <div class="k-tema" style="color: var(--hueso)">VEREDICTO HIKMAN</div>
+        <div id="v-bloque" class="full">
+          <img id="v-oso" src="assets/hikman/oso.png" style="position: absolute; left: 375px; top: 330px; height: 400px" alt="" />
+          <div id="v-tit" style="position: absolute; left: 0; right: 0; top: 790px; text-align: center; font: 800 170px/0.9 'Barlow'; text-transform: uppercase; color: var(--oso)">Semana de oso</div>
+          <div id="v-sub" style="position: absolute; left: 0; right: 0; top: 960px; text-align: center; font: 800 56px/1 'Mono'; letter-spacing: .3em; color: var(--hueso)">PERO MODERADO</div>
+        </div>
+        <div id="c-tit" style="position: absolute; left: 60px; right: 60px; top: 420px; text-align: center; font: 800 96px/0.95 'Barlow'; text-transform: uppercase; color: var(--hueso)">Ese es el resumen<br />de la semana</div>
+        <img id="c-logo" src="assets/hikman/logo-blanco.png" style="position: absolute; left: 230px; top: 720px; width: 620px" alt="" />
+        <div id="vela-4-d"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <!--js:hikman2-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      K.barra(document.getElementById("barra"));
+      K.balanza(document.getElementById("balanza"));
+      K.moverBalanza(tl, "#balanza .k-marca", 0, 68);
+      document.getElementById("vela-1-c").outerHTML = K.velaHTML("vela1", "oso");
+      document.getElementById("vela-4-d").outerHTML = K.velaHTML("vela4", "oso");
+
+      // Frases: entran con resorte, salen rapido hacia arriba
+      const frase = (id, tIn, tOut) => {
+        spring(tl, id, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, tIn, ESTANDAR);
+        if (tOut != null) tl.to(id, { opacity: 0, y: -40, duration: 0.16, ease: "power2.in" }, tOut);
+      };
+      // Linea de terminal: se escribe de izquierda a derecha
+      const escribir = (id, t) => {
+        tl.fromTo(id, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "steps(14)" }, t);
+      };
+
+      // 1 · Gancho
+      escribir("#g-r1", 0.3); frase("#g-f1", 0.35, 1.85);
+      escribir("#g-r2", 1.95); frase("#g-f2", 1.95, 3.05);
+      escribir("#g-r3", 3.15); frase("#g-f3", 3.15, 4.55);
+      tl.to("#g-filas", { y: -120, opacity: 0, duration: 0.3, ease: "power2.in" }, 4.5);
+
+      // 2 · Apertura: choque del toro y el oso
+      spring(tl, "#a-toro", { x: -700, rotation: -8 }, { x: 0, rotation: 0 }, 4.62, SECO);
+      spring(tl, "#a-oso", { x: 700, rotation: 8 }, { x: 0, rotation: 0 }, 4.62, SECO);
+      tl.fromTo("#a-ring", { x: 0 }, { keyframes: [{ x: -14, duration: 0.04 }, { x: 11, duration: 0.04 }, { x: -7, duration: 0.04 }, { x: 0, duration: 0.05 }] }, 4.86);
+      frase("#a-f1", 4.8, 6.15);
+      tl.to("#a-ring", { y: -60, scale: 0.86, transformOrigin: "50% 0%", duration: 0.5, ease: "power2.inOut" }, 6.1);
+      frase("#a-f2", 6.25, null);
+      spring(tl, "#a-i1", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 6.75, SECO);
+      spring(tl, "#a-i2", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 7.3, SECO);
+      spring(tl, "#a-i3", { opacity: 0, x: -80 }, { opacity: 1, x: 0 }, 7.68, SECO);
+      K.vela(tl, "vela1", 8.65, null);
+
+      // 3 · Veredicto (62 - 64,4) y cierre (64,4 - 68)
+      K.vela(tl, "vela4", null, 62.0);
+      spring(tl, "#v-oso", { opacity: 0, scale: 1.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 62.9, SECO);
+      spring(tl, "#v-tit", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, 63.05, ESTANDAR);
+      spring(tl, "#v-sub", { opacity: 0, letterSpacing: "0.6em" }, { opacity: 1, letterSpacing: "0.3em" }, 63.75, ESTANDAR);
+      tl.to("#v-bloque", { opacity: 0, y: -80, duration: 0.25, ease: "power2.in" }, 64.25);
+      spring(tl, "#c-tit", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, 64.45, ESTANDAR);
+      spring(tl, "#c-logo", { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 65.85, PESADO);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
