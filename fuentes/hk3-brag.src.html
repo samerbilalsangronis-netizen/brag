@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!--css:hikman2-->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0d0f; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; color: var(--hueso); }
+      .full { position: absolute; inset: 0; }
+      .ruido { position: absolute; font: 800 74px/1 "Barlow"; text-transform: uppercase; opacity: 0; white-space: nowrap; }
+      .letra { display: inline-block; font: 800 230px/1 "Barlow"; color: var(--hueso); width: 150px; text-align: center; }
+      .punto { display: inline-block; width: 20px; height: 20px; border-radius: 10px; background: var(--gris); margin: 0 4px; vertical-align: 40px; }
+      .fila-hk { position: absolute; left: 0; right: 0; top: 196px; text-align: center; font: 800 40px/1 "Mono"; letter-spacing: .5em; color: rgba(139,144,152,.35); }
+    </style>
+  </head>
+  <body>
+    <!-- Bienvenida H.I.K.M.A.N.: gancho 0-7,3 y cierre 32,7-37,5. Las letras (7,3-32,7) son Remotion. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="37.5" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="37.5" data-track-index="0">
+        <div class="k-fondo"></div><div class="k-reticula" id="ret"></div>
+        <div id="barra"></div>
+        <div id="balanza"></div>
+      </div>
+
+      <!-- Gancho: el ruido del mercado (0 - 3,65) -->
+      <div id="s1" class="clip full" data-start="0" data-duration="3.7" data-track-index="1">
+        <div id="caos" class="full"></div>
+        <div class="k-frase" id="h-f1" style="top: 1250px; font-size: 110px">El mercado grita</div>
+        <div class="k-frase oso" id="h-f2" style="top: 1250px; font-size: 96px"><em>Pánico</em> · Euforia · <em>Rumores</em></div>
+      </div>
+
+      <!-- Silencio: "Nosotros no." y las seis letras (3,65 - 7,3) -->
+      <div id="s2" class="clip full" data-start="3.65" data-duration="3.65" data-track-index="2">
+        <div id="n-no" style="position: absolute; left: 0; right: 0; top: 640px; text-align: center; font: 800 170px/1 'Barlow'; text-transform: uppercase">Nosotros no.</div>
+        <div id="n-esto" style="position: absolute; left: 0; right: 0; top: 560px; text-align: center; font: 600 34px/1 'Mono'; letter-spacing: .3em; color: var(--gris)">ESTO ES</div>
+        <div id="n-letras" style="position: absolute; left: 0; right: 0; top: 640px; text-align: center; white-space: nowrap">
+          <span class="letra" id="l0">H</span><span class="letra" id="l1">I</span><span class="letra" id="l2">K</span><span class="letra" id="l3">M</span><span class="letra" id="l4">A</span><span class="letra" id="l5">N</span>
+        </div>
+        <div class="fila-hk" id="n-fila">HIKMAN</div>
+      </div>
+
+      <!-- Cierre (32,7 - 37,5) -->
+      <div id="s3" class="clip full" data-start="32.7" data-duration="4.8" data-track-index="3">
+        <div class="fila-hk" style="color: var(--hueso)">HIKMAN</div>
+        <div id="c-ring" class="full">
+          <img id="c-toro" src="assets/hikman/toro.png" style="position: absolute; left: 70px; top: 360px; height: 560px" alt="" />
+          <img id="c-oso" src="assets/hikman/oso.png" style="position: absolute; left: 560px; top: 410px; height: 470px" alt="" />
+        </div>
+        <img id="c-logo" src="assets/hikman/logo-blanco.png" style="position: absolute; left: 190px; top: 360px; width: 700px" alt="" />
+        <div class="k-frase" id="c-f1" style="top: 1130px; font-size: 104px">Bienvenido, <em style="color: var(--toro)">inversor</em></div>
+        <div id="c-nota" style="position: absolute; left: 0; right: 0; top: 1420px; text-align: center; font: 600 22px/1 'Mono'; letter-spacing: .14em; color: var(--gris)">CONTENIDO EDUCATIVO · NO ES ASESORÍA FINANCIERA</div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <!--js:hikman2-->
+    <script>
+      // La Balanza de este video usa sus propias marcas (datos/hikman/bienvenida.json)
+      window.SEMANA = { balanza: [[0, 0], [0.2, 0.9], [0.55, -0.85], [0.9, 0.8], [1.25, -0.9], [1.6, 0.85], [1.95, -0.8], [2.3, 0.9], [2.65, -0.85], [3.0, 0.8], [3.3, -0.7], [3.7, 0], [20.0, 0.45], [20.5, -0.35], [21.0, 0.18], [21.5, 0]], publicacion: "Hikman Capital", fecha: "", temas: [] };
+      const tl = gsap.timeline({ paused: true });
+      K.barra(document.getElementById("barra"));
+      document.querySelector("#barra .k-pub").innerHTML = "<b>HIKMAN CAPITAL</b><br />QUIÉNES SOMOS";
+      K.balanza(document.getElementById("balanza"));
+      K.moverBalanza(tl, "#balanza .k-marca", 0, 37.5);
+
+      // Ruido: palabras con posicion y tiempo de semilla (siempre igual en cada render)
+      let semilla = 7;
+      const rnd = () => ((semilla = (semilla * 16807) % 2147483647) / 2147483647);
+      const palabras = ["PÁNICO", "EUFORIA", "RUMOR", "▲", "▼", "¡VENDE!", "¡COMPRA!", "CRASH", "RALLY", "¡YA!", "FOMO", "MIEDO"];
+      const caos = document.getElementById("caos");
+      for (let i = 0; i < 34; i++) {
+        const w = document.createElement("div");
+        w.className = "ruido";
+        w.id = "rz" + i;
+        w.textContent = palabras[i % palabras.length];
+        const tam = 50 + rnd() * 110;
+        Object.assign(w.style, { left: Math.round(rnd() * 820) - 40 + "px", top: Math.round(300 + rnd() * 860) + "px", fontSize: Math.round(tam) + "px", color: rnd() > 0.5 ? "var(--oso)" : "var(--toro)" });
+        caos.appendChild(w);
+        const t = 0.05 + rnd() * 3.4, d = 0.18 + rnd() * 0.35;
+        tl.fromTo(w, { opacity: 0, scale: 1.4 }, { opacity: 0.9, scale: 1, duration: 0.06, ease: "none" }, t);
+        tl.to(w, { opacity: 0, duration: 0.08, ease: "none" }, t + d);
+      }
+      tl.fromTo("#caos", { x: 0 }, { keyframes: Array.from({ length: 20 }, (_, k) => ({ x: (k % 2 ? 1 : -1) * (6 + (k % 5) * 3), y: (k % 3 - 1) * 5, duration: 0.17 })) }, 0.1);
+      spring(tl, "#h-f1", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1 }, 0.25, SECO);
+      tl.to("#h-f1", { opacity: 0, duration: 0.1 }, 1.65);
+      spring(tl, "#h-f2", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1 }, 1.75, SECO);
+      // corte seco a silencio
+      tl.fromTo(["#barra", "#ret"], { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      tl.to(["#barra", "#ret"], { opacity: 1, duration: 0.5, ease: "power1.out" }, 4.6);
+
+      // "Nosotros no." y las letras
+      spring(tl, "#n-no", { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 3.95, ESTANDAR);
+      tl.to("#n-no", { opacity: 0, y: -60, duration: 0.25, ease: "power2.in" }, 5.25);
+      spring(tl, "#n-esto", { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 5.5, SECO);
+      for (let i = 0; i < 6; i++) spring(tl, "#l" + i, { opacity: 0, y: -260 }, { opacity: 1, y: 0 }, 5.7 + i * 0.16, SECO);
+      // las letras suben a la fila de arriba (empalma con Remotion)
+      tl.to("#n-esto", { opacity: 0, duration: 0.2 }, 6.85);
+      tl.to("#n-letras", { y: -444, scale: 0.18, transformOrigin: "50% 0%", opacity: 0, duration: 0.45, ease: "power3.in" }, 6.85);
+      tl.fromTo("#n-fila", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 7.05);
+
+      // Cierre: choque del toro y el oso, logo y bienvenida
+      spring(tl, "#c-toro", { x: -700, rotation: -8 }, { x: 0, rotation: 0 }, 32.72, SECO);
+      spring(tl, "#c-oso", { x: 700, rotation: 8 }, { x: 0, rotation: 0 }, 32.72, SECO);
+      tl.fromTo("#c-ring", { x: 0 }, { keyframes: [{ x: -16, duration: 0.04 }, { x: 12, duration: 0.04 }, { x: -7, duration: 0.04 }, { x: 0, duration: 0.05 }] }, 32.96);
+      tl.to("#c-ring", { opacity: 0, scale: 1.15, transformOrigin: "50% 50%", duration: 0.3, ease: "power2.in" }, 33.3);
+      spring(tl, "#c-logo", { opacity: 0, scale: 0.75, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, 33.35, PESADO);
+      spring(tl, "#c-f1", { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, 34.55, ESTANDAR);
+      spring(tl, "#c-nota", { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 35.3, SECO);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

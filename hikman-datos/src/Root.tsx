@@ -1,8 +1,10 @@
-import { CalculateMetadataFunction, Composition, staticFile } from "remotion";
+import { CalculateMetadataFunction, Composition, staticFile, Still } from "remotion";
 import { Cifras } from "./Cifras";
 import { Edicion } from "./kit";
 import { Probabilidad } from "./Probabilidad";
 import { Bonos } from "./Bonos";
+import { Portada } from "./Portada";
+import { Bienvenida, metaBienvenida } from "./Bienvenida";
 import { Semana } from "./kit2";
 import { Probabilidad2 } from "./Probabilidad2";
 import { Tablero } from "./Tablero";
@@ -36,5 +38,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Tablero" component={TableroComp} durationInFrames={200} fps={30} width={1080} height={1920} defaultProps={{ s: null }} calculateMetadata={meta2("tablero")} />
     <Composition id="Probabilidad2" component={Prob2Comp} durationInFrames={120} fps={30} width={1080} height={1920} defaultProps={{ s: null }} calculateMetadata={meta2("probabilidad")} />
     <Composition id="Bonos" component={BonosComp} durationInFrames={260} fps={30} width={1080} height={1920} defaultProps={{ s: null }} calculateMetadata={meta2("bonos")} />
+    <Composition id="Bienvenida" component={Bienvenida} durationInFrames={750} fps={30} width={1080} height={1920} defaultProps={{ b: null }} calculateMetadata={metaBienvenida} />
+    <Still id="Portada" component={Portada} width={1080} height={1920} />
   </>
 );
