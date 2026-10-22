@@ -3,7 +3,7 @@ import { AbsoluteFill, CalculateMetadataFunction, Img, interpolate, random, spri
 import { balanzaP, ESTANDAR, K, SECO, Semana, useLocal } from "./kit2";
 
 // Video de bienvenida: las seis letras de H.I.K.M.A.N. (datos en public/bienvenida.json)
-type Letra = { l: string; palabra: string; frase: string; visual: string; inicio: number; fin: number };
+type Letra = { l: string; palabra: string; frase: string; visual: string; inicio: number; fin: number; habla?: number };
 export type Bienv = { duracion: number; voz: [string, number][]; letras: Letra[]; balanza: [number, number][] };
 type Props = { b: Bienv | null };
 
@@ -121,7 +121,7 @@ export const Bienvenida: React.FC<Props> = ({ b }) => {
   if (!b) return null;
   const actual = b.letras.filter((x) => tGlobal >= x.inicio).pop() ?? b.letras[0];
   const idx = b.letras.indexOf(actual);
-  const vozT = b.voz[4 + idx][1];
+  const vozT = actual.habla ?? b.voz[4 + idx][1]; // cuando empieza a hablar en esta letra
   const fl = frame - Math.round((actual.inicio - inicio) * fps); // frames desde el inicio de la letra
   const fv = (dt: number) => frame - Math.round((vozT + dt - inicio) * fps);
   const sL = spring({ frame: fl, fps, config: { damping: 14, stiffness: 180, mass: 0.9 } });

@@ -1,6 +1,6 @@
 """Sonido del video de bienvenida H.I.K.M.A.N.: voz (frases colocadas segun
 datos/hikman/bienvenida.json) + efectos sintetizados aqui, suaves y graves:
-ruido del mercado que se corta en seco, golpes graves en las letras y un dron de fondo.
+choque grave del toro y el oso, golpes graves en las letras y un dron de fondo.
 Uso: python3 tools/mezcla_bienvenida.py <carpeta_frases> <salida.wav>"""
 import json, subprocess, sys
 from pathlib import Path
@@ -30,12 +30,6 @@ for nombre, t0 in B["voz"]:
     i = int(t0 * SR); voz[i:i + len(y)] += y[: N - i]
 
 sfx = np.zeros(N)
-# ruido del mercado 0 - 3,65 s: grave, sube y se corta en seco (10 ms)
-fin = int(3.65 * SR)
-ruido = lowpass(rng.standard_normal(fin), 1800) * np.linspace(0.15, 1.0, fin) * (0.75 + 0.25 * np.sin(2 * np.pi * 7 * t[:fin]))
-ruido[-480:] *= np.linspace(1, 0, 480)
-sfx[:fin] += ruido * 0.9
-
 def golpe(t0, f0=58, dur=0.45, amp=1.0):
     n = int(dur * SR); tt = np.arange(n) / SR
     f = f0 * (1 + 0.5 * np.exp(-tt * 18))
@@ -43,12 +37,14 @@ def golpe(t0, f0=58, dur=0.45, amp=1.0):
     s[:96] *= np.linspace(0, 1, 96)
     i = int(t0 * SR); sfx[i:i + n] += s[: N - i]
 
-for k in range(6): golpe(5.7 + k * 0.16 + 0.12, f0=70, dur=0.3, amp=0.55)   # caen las letras
+golpe(0.16, f0=44, dur=0.9, amp=1.5)                                           # choque inicial toro-oso
+golpe(1.15, f0=52, dur=0.5, amp=0.8)                                           # segundo empujon
+for k in range(6): golpe(7.1 + k * 0.16 + 0.12, f0=70, dur=0.3, amp=0.55)      # caen las letras
 for l in B["letras"]: golpe(l["inicio"] + 0.05, amp=0.8)                       # cada letra
-golpe(32.96, f0=48, dur=0.8, amp=1.3)                                          # choque toro-oso
+golpe(39.21, f0=48, dur=0.8, amp=1.3)                                          # choque del cierre
 
 # dron grave de fondo desde el silencio hasta el final
-d0 = int(3.75 * SR)
+d0 = int(2.2 * SR)  # el dron entra cuando el toro y el oso se separan
 tt = t[d0:]
 dron = (np.sin(2 * np.pi * 55 * tt) + 0.6 * np.sin(2 * np.pi * 82.5 * tt) + 0.3 * np.sin(2 * np.pi * 110 * tt)) * (0.8 + 0.2 * np.sin(2 * np.pi * 0.15 * tt))
 env = np.minimum(1, (tt - tt[0]) / 1.5) * np.minimum(1, (B["duracion"] - tt) / 1.5)
