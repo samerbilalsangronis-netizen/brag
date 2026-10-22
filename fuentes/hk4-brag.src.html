@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!--css:hikman2-->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0d0f; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; color: var(--hueso); }
+      .full { position: absolute; inset: 0; }
+      .ficha { position: absolute; width: 220px; height: 150px; border: 4px solid var(--gris); text-align: center; font: 800 84px/142px "Barlow"; color: var(--hueso); background: rgba(12,13,15,.6); }
+      .agenda { position: absolute; top: 960px; font: 800 52px/1 "Barlow"; color: var(--gris); }
+    </style>
+  </head>
+  <body>
+    <!-- Informe semanal 22.10 · Brag: gancho (0-10,8) y apertura (10,8-15,2). El cierre es hk4-cierre. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15.2" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="15.2" data-track-index="0">
+        <div class="k-fondo"></div><div class="k-reticula"></div>
+        <div id="barra"></div>
+        <div id="balanza"></div>
+      </div>
+
+      <div id="s1" class="clip full" data-start="0" data-duration="15.2" data-track-index="1">
+        <div id="fichas" class="full">
+          <div class="ficha" id="f-usd" style="left: 70px; top: 470px">USD</div>
+          <div class="ficha" id="f-eur" style="left: 315px; top: 470px">EUR</div>
+          <div class="ficha" id="f-gbp" style="left: 560px; top: 470px">GBP</div>
+          <div class="ficha" id="f-aud" style="left: 805px; top: 470px">AUD</div>
+          <div class="ficha" id="f-nzd" style="left: 192px; top: 670px">NZD</div>
+          <div class="ficha" id="f-jpy" style="left: 437px; top: 670px">JPY</div>
+          <div class="ficha" id="f-wti" style="left: 682px; top: 670px">WTI</div>
+          <div id="f-bonos" style="position: absolute; left: 70px; top: 900px; padding: 18px 28px; border: 4px solid var(--toro); color: var(--toro); font: 800 56px/1 'Barlow'">→ BONOS DEL TESORO</div>
+          <div id="f-grieta" style="position: absolute; left: 60px; top: 640px; width: 240px; height: 6px; background: var(--oso)"></div>
+        </div>
+        <div class="k-frase oso" id="g-f1">El dólar <em>pierde piso</em></div>
+        <div class="k-frase toro" id="g-f2">El dinero corre a los <em>bonos</em></div>
+        <div class="k-frase oso" id="g-f3">Francia <em>asusta</em> a Europa</div>
+        <div class="k-frase" id="g-f4">Petróleo: <em style="color: var(--toro)">inventarios</em> vs. <em style="color: var(--oso)">paz</em></div>
+        <div class="k-frase" id="a-f1" style="font-size: 104px">Buenos días, <em style="color: var(--toro)">inversor</em></div>
+        <div id="a-tit" style="position: absolute; left: 0; right: 0; top: 860px; text-align: center; font: 600 30px/1 'Mono'; letter-spacing: .24em; color: var(--gris)">ESTA SEMANA · DIVISA POR DIVISA</div>
+        <div class="agenda" id="a1" style="left: 92px">USD</div><div class="agenda" id="a2" style="left: 232px">EUR</div><div class="agenda" id="a3" style="left: 372px">GBP</div>
+        <div class="agenda" id="a4" style="left: 512px">AUD·NZD</div><div class="agenda" id="a5" style="left: 744px">JPY</div><div class="agenda" id="a6" style="left: 880px">WTI</div>
+        <div id="vela-c"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <!--js:hikman2-->
+    <script>
+      window.SEMANA = { publicacion: "Informe semanal", fecha: "22.10.2026", temas: [],
+        balanza: [[0,0],[1.5,0.45],[5.4,0.6],[8.4,0.2],[18.5,0.35]] };
+      const tl = gsap.timeline({ paused: true });
+      K.barra(document.getElementById("barra"));
+      K.balanza(document.getElementById("balanza"));
+      K.moverBalanza(tl, "#balanza .k-marca", 0, 15.2);
+      document.getElementById("vela-c").outerHTML = K.velaHTML("vc", "oso");
+      const frase = (id, tIn, tOut) => {
+        spring(tl, id, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, tIn, ESTANDAR);
+        if (tOut != null) tl.to(id, { opacity: 0, y: -40, duration: 0.16, ease: "power2.in" }, tOut);
+      };
+
+      // las siete fichas caen al tablero
+      ["#f-usd", "#f-eur", "#f-gbp", "#f-aud", "#f-nzd", "#f-jpy", "#f-wti"].forEach((id, i) =>
+        spring(tl, id, { opacity: 0, y: -220, rotation: i % 2 ? 6 : -6 }, { opacity: 1, y: 0, rotation: 0 }, 0.0 + i * 0.07, SECO));
+      // "El dolar pierde piso": la ficha USD se hunde en rojo
+      tl.fromTo("#f-grieta", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, 1.45);
+      tl.to("#f-usd", { y: 150, rotation: -8, borderColor: "#e5484d", color: "#e5484d", duration: 0.5, ease: "power3.in" }, 1.5);
+      frase("#g-f1", 0.3, 2.3);
+      // "el dinero corre a los bonos"
+      spring(tl, "#f-bonos", { opacity: 0, x: -200 }, { opacity: 1, x: 0 }, 3.9, SECO);
+      frase("#g-f2", 2.4, 5.35);
+      // "Francia vuelve a asustar a Europa": EUR tiembla y se pone roja
+      tl.to("#f-eur", { borderColor: "#e5484d", color: "#e5484d", duration: 0.15 }, 6.5);
+      tl.fromTo("#f-eur", { x: 0 }, { keyframes: [{ x: -14, duration: 0.05 }, { x: 12, duration: 0.05 }, { x: -9, duration: 0.05 }, { x: 7, duration: 0.05 }, { x: 0, duration: 0.06 }] }, 6.55);
+      frase("#g-f3", 5.45, 7.95);
+      // "el petroleo, entre inventarios y paz": WTI se balancea
+      tl.to("#f-wti", { borderColor: "#f2efe9", duration: 0.1 }, 8.1);
+      tl.fromTo("#f-wti", { rotation: 0 }, { keyframes: [{ rotation: -10, duration: 0.3 }, { rotation: 9, duration: 0.45 }, { rotation: -6, duration: 0.4 }, { rotation: 0, duration: 0.35 }], transformOrigin: "50% 100%" }, 8.6);
+      frase("#g-f4", 8.05, 10.6);
+      tl.to("#fichas", { opacity: 0, y: -60, duration: 0.3, ease: "power2.in" }, 10.55);
+
+      // Apertura
+      frase("#a-f1", 10.85, null);
+      spring(tl, "#a-tit", { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 12.6, SECO);
+      for (let i = 1; i <= 6; i++) spring(tl, "#a" + i, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 12.9 + i * 0.16, SECO);
+      K.vela(tl, "vc", 15.2, null);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

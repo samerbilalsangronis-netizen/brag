@@ -4,6 +4,7 @@ import { Edicion } from "./kit";
 import { Probabilidad } from "./Probabilidad";
 import { Bonos } from "./Bonos";
 import { Portada } from "./Portada";
+import { Divisa, metaDivisa } from "./Divisa";
 import { Bienvenida, metaBienvenida } from "./Bienvenida";
 import { Semana } from "./kit2";
 import { Probabilidad2 } from "./Probabilidad2";
@@ -39,6 +40,10 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Probabilidad2" component={Prob2Comp} durationInFrames={120} fps={30} width={1080} height={1920} defaultProps={{ s: null }} calculateMetadata={meta2("probabilidad")} />
     <Composition id="Bonos" component={BonosComp} durationInFrames={260} fps={30} width={1080} height={1920} defaultProps={{ s: null }} calculateMetadata={meta2("bonos")} />
     <Composition id="Bienvenida" component={Bienvenida} durationInFrames={750} fps={30} width={1080} height={1920} defaultProps={{ b: null }} calculateMetadata={metaBienvenida} />
+    <Composition id="Divisa-usd" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "usd" }} calculateMetadata={metaDivisa("usd")} />
+    <Composition id="Divisa-eur" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "eur" }} calculateMetadata={metaDivisa("eur")} />
+    <Composition id="Divisa-gbp" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "gbp" }} calculateMetadata={metaDivisa("gbp")} />
+    <Composition id="Divisa-oce" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "oce" }} calculateMetadata={metaDivisa("oce")} />
     <Still id="Portada" component={Portada} width={1080} height={1920} />
   </>
 );

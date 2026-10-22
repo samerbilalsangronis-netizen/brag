@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!--css:hikman2-->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0d0f; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; color: var(--hueso); }
+      .full { position: absolute; inset: 0; }
+      .fila-v { position: absolute; left: 70px; right: 70px; height: 116px; border-bottom: 2px solid var(--linea); }
+      .fila-v b { position: absolute; left: 0; top: 24px; font: 800 72px/1 "Barlow"; }
+      .fila-v span { position: absolute; right: 0; top: 28px; padding: 12px 22px; font: 800 34px/1 "Mono"; letter-spacing: .06em; text-transform: uppercase; }
+      .toro { background: var(--toro); color: #0c0d0f; } .oso { background: var(--oso); color: #0c0d0f; } .neutro { border: 3px solid var(--gris); color: var(--hueso); }
+    </style>
+  </head>
+  <body>
+    <!-- Informe semanal 22.10 · Brag: veredicto por activo y cierre. Tramo global 150,2 - 166,5. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="16.3" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="16.3" data-track-index="0">
+        <div class="k-fondo"></div><div class="k-reticula"></div>
+        <div id="barra"></div>
+        <div id="balanza"></div>
+      </div>
+      <div id="s1" class="clip full" data-start="0" data-duration="16.3" data-track-index="1">
+        <div class="k-tema" style="color: var(--hueso)">VEREDICTO HIKMAN</div>
+        <div id="v-tablero" class="full">
+          <div id="v-tit" style="position: absolute; left: 70px; top: 270px; font: 600 26px/1 'Mono'; letter-spacing: .16em; color: var(--gris)">ACTIVO POR ACTIVO · SEMANA AL 22.10</div>
+          <div id="v-filas"></div>
+        </div>
+        <div id="c-tit" style="position: absolute; left: 60px; right: 60px; top: 420px; text-align: center; font: 800 96px/0.95 'Barlow'; text-transform: uppercase">Ese es el resumen<br />de la semana</div>
+        <img id="c-logo" src="assets/hikman/logo-blanco.png" style="position: absolute; left: 230px; top: 720px; width: 620px" alt="" />
+        <div id="c-nota" style="position: absolute; left: 0; right: 0; top: 1360px; text-align: center; font: 600 22px/1 'Mono'; letter-spacing: .14em; color: var(--gris)">CONTENIDO EDUCATIVO · NO ES ASESORÍA FINANCIERA</div>
+        <div id="vela-d"></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <!--js:hikman2-->
+    <script>
+      window.SEMANA = { publicacion: "Informe semanal", fecha: "22.10.2026", temas: [],
+        balanza: [[0,0],[141.0,0.1],[152.0,0.2]] };
+      const VEREDICTOS = [["USD", "Oso moderado", "oso", 154.4], ["EUR", "Oso", "oso", 155.3], ["GBP", "Toro", "toro", 156.2], ["AUD", "Mixto", "neutro", 157.1], ["NZD", "Mixto", "neutro", 158.0], ["JPY", "Toro moderado", "toro", 158.9], ["WTI", "Mixto", "neutro", 159.8]];
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 150.2, G = (t) => t - T0;
+      K.barra(document.getElementById("barra"));
+      K.balanza(document.getElementById("balanza"));
+      K.moverBalanza(tl, "#balanza .k-marca", T0, 16.3);
+      document.getElementById("vela-d").outerHTML = K.velaHTML("vd", "oso");
+      K.vela(tl, "vd", null, 0);
+
+      const filas = document.getElementById("v-filas");
+      VEREDICTOS.forEach(([a, v, tono, t], i) => {
+        const f = document.createElement("div");
+        f.className = "fila-v"; f.id = "vf" + i; f.style.top = 320 + i * 132 + "px";
+        f.innerHTML = "<b>" + a + "</b><span class='" + tono + "' id='vp" + i + "'>" + v + "</span>";
+        filas.appendChild(f);
+        spring(tl, "#vf" + i, { opacity: 0, x: -60 }, { opacity: 1, x: 0 }, G(t - 0.25), SECO);
+        spring(tl, "#vp" + i, { opacity: 0, scale: 1.7, transformOrigin: "100% 50%" }, { opacity: 1, scale: 1 }, G(t), SECO);
+      });
+      spring(tl, "#v-tit", { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, G(150.6), SECO);
+      tl.to("#v-tablero", { opacity: 0, y: -60, duration: 0.3, ease: "power2.in" }, G(161.15));
+      spring(tl, "#c-tit", { opacity: 0, y: 60 }, { opacity: 1, y: 0 }, G(161.5), ESTANDAR);
+      spring(tl, "#c-logo", { opacity: 0, scale: 0.75, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1 }, G(163.4), PESADO);
+      spring(tl, "#c-nota", { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, G(163.9), SECO);
+      // ocultos hasta su momento
+      tl.fromTo(["#c-tit", "#c-logo", "#c-nota"], { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
