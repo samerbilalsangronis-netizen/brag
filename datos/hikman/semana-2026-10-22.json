@@ -1,666 +1,618 @@
 {
- "publicacion": "Informe semanal",
- "fecha": "22.10.2026",
- "duracion": 187.5,
- "nota": "Tiempos en segundos del video final. Fuentes en docs/hikman/investigacion-semana-2026-10-22.md",
- "voz": [
-  [
-   "00",
-   0.3
+  "publicacion": "Informe semanal",
+  "fecha": "22.10.2026",
+  "duracion": 176.6,
+  "nota": "Tiempos en segundos del video final. Fuentes en docs/hikman/investigacion-semana-2026-10-22.md",
+  "voz": [
+    [
+      "00",
+      0.3
+    ],
+    [
+      "01",
+      10.8
+    ],
+    [
+      "02",
+      15.5
+    ],
+    [
+      "03",
+      31.4
+    ],
+    [
+      "04",
+      49.4
+    ],
+    [
+      "05",
+      56.7
+    ],
+    [
+      "06",
+      68.0
+    ],
+    [
+      "07",
+      76.3
+    ],
+    [
+      "08",
+      91.3
+    ],
+    [
+      "09",
+      109.5
+    ],
+    [
+      "10",
+      122.3
+    ],
+    [
+      "15",
+      130.9
+    ],
+    [
+      "11",
+      146.2
+    ],
+    [
+      "12",
+      154.1
+    ],
+    [
+      "14",
+      165.5
+    ],
+    [
+      "16",
+      169.3
+    ]
   ],
-  [
-   "01",
-   10.8
+  "temas": [
+    {
+      "n": 1,
+      "nombre": "USD",
+      "inicio": 15.2
+    },
+    {
+      "n": 2,
+      "nombre": "EUR",
+      "inicio": 56.4
+    },
+    {
+      "n": 3,
+      "nombre": "GBP",
+      "inicio": 76.0
+    },
+    {
+      "n": 4,
+      "nombre": "AUD · NZD",
+      "inicio": 91.0
+    },
+    {
+      "n": 5,
+      "nombre": "JPY",
+      "inicio": 122.0
+    },
+    {
+      "n": 6,
+      "nombre": "WTI",
+      "inicio": 145.9
+    }
   ],
-  [
-   "02",
-   15.5
+  "totalTemas": 6,
+  "velas": [
+    {
+      "t": 15.2,
+      "color": "oso"
+    },
+    {
+      "t": 56.4,
+      "color": "oso"
+    },
+    {
+      "t": 76.0,
+      "color": "toro"
+    },
+    {
+      "t": 91.0,
+      "color": "toro"
+    },
+    {
+      "t": 122.0,
+      "color": "toro"
+    },
+    {
+      "t": 145.9,
+      "color": "toro"
+    },
+    {
+      "t": 165.1,
+      "color": "oso"
+    }
   ],
-  [
-   "03",
-   31.4
+  "balanza": [
+    [
+      0,
+      0
+    ],
+    [
+      1.5,
+      0.45
+    ],
+    [
+      5.4,
+      0.6
+    ],
+    [
+      8.4,
+      0.2
+    ],
+    [
+      18.5,
+      0.35
+    ],
+    [
+      44.1,
+      0.45
+    ],
+    [
+      51.8,
+      0.3
+    ],
+    [
+      60.0,
+      0.6
+    ],
+    [
+      69.2,
+      0.7
+    ],
+    [
+      78.4,
+      -0.4
+    ],
+    [
+      84.1,
+      -0.5
+    ],
+    [
+      94.9,
+      -0.2
+    ],
+    [
+      105.2,
+      0.05
+    ],
+    [
+      111.0,
+      0.2
+    ],
+    [
+      117.9,
+      -0.1
+    ],
+    [
+      124.5,
+      -0.3
+    ],
+    [
+      136.1,
+      -0.45
+    ],
+    [
+      141.5,
+      -0.5
+    ],
+    [
+      147.4,
+      -0.25
+    ],
+    [
+      155.9,
+      0.1
+    ],
+    [
+      166.9,
+      0.2
+    ]
   ],
-  [
-   "04",
-   49.4
-  ],
-  [
-   "05",
-   56.7
-  ],
-  [
-   "06",
-   68.0
-  ],
-  [
-   "07",
-   76.3
-  ],
-  [
-   "08",
-   91.3
-  ],
-  [
-   "09",
-   109.5
-  ],
-  [
-   "10",
-   122.3
-  ],
-  [
-   "15",
-   130.9
-  ],
-  [
-   "11",
-   146.2
-  ],
-  [
-   "12",
-   154.1
-  ],
-  [
-   "13",
-   165.4
-  ],
-  [
-   "14",
-   176.4
-  ],
-  [
-   "16",
-   180.2
-  ]
- ],
- "temas": [
-  {
-   "n": 1,
-   "nombre": "USD",
-   "inicio": 15.2
+  "divisas": {
+    "usd": {
+      "inicio": 15.2,
+      "fin": 56.4,
+      "codigo": "USD",
+      "nombre": "Dólar estadounidense",
+      "velaFin": "oso",
+      "secciones": [
+        {
+          "titulo": "Vivienda e hipotecas",
+          "t0": 15.2,
+          "t1": 31.25,
+          "filas": [
+            {
+              "sim": "HIPOTECA 30A",
+              "nombre": "Tasa fija a 30 años",
+              "valor": "7,40%",
+              "flecha": "▲",
+              "tono": "oso",
+              "detalle": "20 de octubre · por encima de 7%",
+              "t": 18.4,
+              "tValor": 18.4,
+              "tDetalle": 19.0
+            },
+            {
+              "sim": "VENTAS",
+              "nombre": "Viviendas usadas · septiembre",
+              "valor": "3,99 M",
+              "flecha": "▼",
+              "tono": "oso",
+              "detalle": "−2,2% interanual",
+              "t": 22.9,
+              "tValor": 22.9,
+              "tDetalle": 23.5
+            },
+            {
+              "sim": "INICIOS",
+              "nombre": "Inicios de construcción · sep.",
+              "valor": "1,22 M",
+              "flecha": "▼",
+              "tono": "oso",
+              "detalle": "desde 1,29 M en agosto",
+              "t": 28.5,
+              "tValor": 28.5,
+              "tDetalle": 29.1
+            }
+          ]
+        },
+        {
+          "titulo": "Bonos del Tesoro y crédito",
+          "t0": 31.25,
+          "t1": 49.25,
+          "filas": [
+            {
+              "sim": "UST 10A",
+              "nombre": "Bono del Tesoro a 10 años",
+              "valor": "~5,08%",
+              "flecha": "▼",
+              "tono": "toro",
+              "detalle": "desde 5,35%, máximo desde 2002",
+              "t": 34.6,
+              "tValor": 34.6,
+              "tDetalle": 35.2
+            },
+            {
+              "sim": "CCC",
+              "nombre": "Bonos basura CCC · diferencial",
+              "valor": "12,97 pp",
+              "flecha": "▲",
+              "tono": "oso",
+              "detalle": "máximo en 4 años · el BBB sigue en 1,06",
+              "t": 44.1,
+              "tValor": 44.1,
+              "tDetalle": 44.7
+            }
+          ]
+        },
+        {
+          "titulo": "Empleo",
+          "t0": 49.25,
+          "t1": 56.4,
+          "filas": [
+            {
+              "sim": "SOLICITUDES",
+              "nombre": "Solicitudes iniciales por desempleo",
+              "valor": "<200 mil",
+              "flecha": "✓",
+              "tono": "toro",
+              "detalle": "5 semanas seguidas · 199 mil al 10-oct",
+              "t": 51.8,
+              "tValor": 51.8,
+              "tDetalle": 52.4
+            }
+          ]
+        }
+      ],
+      "frases": [
+        {
+          "t": 15.5,
+          "html": "Empezamos por el <em>dólar</em>",
+          "tono": "neutro"
+        },
+        {
+          "t": 17.6,
+          "html": "Hipotecas en <em>7,4%</em>",
+          "tono": "oso"
+        },
+        {
+          "t": 22.8,
+          "html": "La vivienda <em>frena</em>",
+          "tono": "oso"
+        },
+        {
+          "t": 31.4,
+          "html": "Refugio en el <em>Tesoro</em>",
+          "tono": "toro"
+        },
+        {
+          "t": 40.8,
+          "html": "El temor: la <em>deuda basura</em>",
+          "tono": "oso"
+        },
+        {
+          "t": 49.4,
+          "html": "El empleo <em>resiste</em>",
+          "tono": "toro"
+        }
+      ]
+    },
+    "eur": {
+      "inicio": 56.4,
+      "fin": 76.0,
+      "codigo": "EUR",
+      "nombre": "Euro",
+      "velaInicio": "oso",
+      "velaFin": "toro",
+      "secciones": [
+        {
+          "titulo": "Francia · riesgo fiscal",
+          "t0": 56.4,
+          "t1": 67.85,
+          "filas": [
+            {
+              "sim": "OAT-BUND",
+              "nombre": "Prima Francia vs. Alemania · 10A",
+              "valor": "157 pb",
+              "flecha": "▲",
+              "tono": "oso",
+              "detalle": "21 de octubre · máximo desde 2011",
+              "t": 60.0,
+              "tValor": 60.0,
+              "tDetalle": 60.6
+            },
+            {
+              "sim": "OAT 10A",
+              "nombre": "Bono francés a 10 años",
+              "valor": "~5%",
+              "flecha": "▲",
+              "tono": "oso",
+              "detalle": "roza el 5% en plena pelea por el presupuesto",
+              "t": 65.4,
+              "tValor": 65.4,
+              "tDetalle": 66.0
+            }
+          ]
+        },
+        {
+          "titulo": "Alemania · precios al productor",
+          "t0": 67.85,
+          "t1": 76.0,
+          "filas": [
+            {
+              "sim": "IPP A/A",
+              "nombre": "IPP alemán · septiembre",
+              "valor": "6,7%",
+              "flecha": "▲",
+              "tono": "toro",
+              "detalle": "esperado 6,2% · máximo desde marzo de 2023",
+              "t": 69.2,
+              "tValor": 69.2,
+              "tDetalle": 69.8
+            },
+            {
+              "sim": "ENERGÍA",
+              "nombre": "Precios de la energía",
+              "valor": "+14,9%",
+              "flecha": "▲",
+              "tono": "toro",
+              "detalle": "interanual",
+              "t": 73.2,
+              "tValor": 73.2,
+              "tDetalle": 73.8
+            }
+          ]
+        }
+      ],
+      "frases": [
+        {
+          "t": 56.7,
+          "html": "Riesgo fiscal <em>francés</em>",
+          "tono": "oso"
+        },
+        {
+          "t": 62.8,
+          "html": "<em>157 pb</em>: máximo desde 2011",
+          "tono": "oso"
+        },
+        {
+          "t": 68.0,
+          "html": "Alemania: IPP <em>6,7%</em>",
+          "tono": "toro"
+        }
+      ]
+    },
+    "gbp": {
+      "inicio": 76.0,
+      "fin": 91.0,
+      "codigo": "GBP",
+      "nombre": "Libra esterlina",
+      "velaInicio": "toro",
+      "velaFin": "toro",
+      "secciones": [
+        {
+          "titulo": "Reino Unido · inflación, empleo y salarios",
+          "t0": 76.0,
+          "t1": 91.0,
+          "filas": [
+            {
+              "sim": "IPC A/A",
+              "nombre": "Inflación · septiembre",
+              "valor": "3,5%",
+              "flecha": "▲",
+              "tono": "toro",
+              "detalle": "esperado 3,4% · anterior 3,1%",
+              "t": 78.4,
+              "tValor": 78.4,
+              "tDetalle": 79.0
+            },
+            {
+              "sim": "PARO",
+              "nombre": "Desempleo · jun-ago",
+              "valor": "4,7%",
+              "flecha": "▼",
+              "tono": "toro",
+              "detalle": "baja una décima",
+              "t": 81.5,
+              "tValor": 81.5,
+              "tDetalle": 82.1
+            },
+            {
+              "sim": "SALARIOS",
+              "nombre": "Salario regular",
+              "valor": "+3,7%",
+              "flecha": "▲",
+              "tono": "toro",
+              "detalle": "interanual",
+              "t": 84.1,
+              "tValor": 84.1,
+              "tDetalle": 84.7
+            }
+          ]
+        }
+      ],
+      "frases": [
+        {
+          "t": 76.3,
+          "html": "La libra recibe <em>apoyo</em>",
+          "tono": "toro"
+        },
+        {
+          "t": 87.1,
+          "html": "BoE: subida en <em>noviembre</em>",
+          "tono": "toro"
+        }
+      ]
+    },
+    "oce": {
+      "inicio": 91.0,
+      "fin": 122.0,
+      "codigo": "AUD · NZD",
+      "nombre": "Dólar australiano y neozelandés",
+      "velaInicio": "toro",
+      "velaFin": "toro",
+      "secciones": [
+        {
+          "titulo": "Australia · RBA",
+          "t0": 91.0,
+          "t1": 109.35,
+          "filas": [
+            {
+              "sim": "RBA",
+              "nombre": "Hauser: perspectiva de inflación",
+              "valor": "PEOR",
+              "flecha": "▲",
+              "tono": "toro",
+              "detalle": "“materialmente peor” · 21 de octubre",
+              "t": 94.9,
+              "tValor": 94.9,
+              "tDetalle": 95.5
+            },
+            {
+              "sim": "PROB. NOV",
+              "nombre": "Probabilidad de subida en noviembre",
+              "valor": "22%",
+              "flecha": "→",
+              "tono": "toro",
+              "detalle": "antes y después de Hauser",
+              "t": 100.7,
+              "tValor": 100.7,
+              "tDetalle": 101.3,
+              "valor2": "51%",
+              "t2": 101.5
+            },
+            {
+              "sim": "AUD",
+              "nombre": "Ánimo de riesgo y dudas sobre la IA",
+              "valor": "PRESIÓN",
+              "flecha": "▼",
+              "tono": "oso",
+              "detalle": "el australiano no despega",
+              "t": 103.3,
+              "tValor": 103.3,
+              "tDetalle": 103.9
+            }
+          ]
+        },
+        {
+          "titulo": "Nueva Zelanda · RBNZ",
+          "t0": 109.35,
+          "t1": 122.0,
+          "filas": [
+            {
+              "sim": "IPC 3T",
+              "nombre": "Inflación anual · 3T",
+              "valor": "3,7%",
+              "flecha": "▼",
+              "tono": "oso",
+              "detalle": "esperado 3,8% · anterior 4,1%",
+              "t": 110.8,
+              "tValor": 110.8,
+              "tDetalle": 111.4
+            },
+            {
+              "sim": "RBNZ 28-OCT",
+              "nombre": "Probabilidad de subida tras el IPC",
+              "valor": "~98%",
+              "flecha": "✓",
+              "tono": "toro",
+              "detalle": "el mercado no la descarta",
+              "t": 115.9,
+              "tValor": 115.9,
+              "tDetalle": 116.5
+            }
+          ]
+        }
+      ],
+      "frases": [
+        {
+          "t": 91.3,
+          "html": "Australia: inflación <em>peor</em>",
+          "tono": "toro"
+        },
+        {
+          "t": 98.0,
+          "html": "Subida en noviembre: <em>51%</em>",
+          "tono": "toro"
+        },
+        {
+          "t": 103.3,
+          "html": "Pero el AUD <em>no despega</em>",
+          "tono": "oso"
+        },
+        {
+          "t": 109.5,
+          "html": "Nueva Zelanda: IPC <em>3,7%</em>",
+          "tono": "oso"
+        },
+        {
+          "t": 115.4,
+          "html": "Igual, subida <em>casi segura</em>",
+          "tono": "toro"
+        }
+      ]
+    }
   },
-  {
-   "n": 2,
-   "nombre": "EUR",
-   "inicio": 56.4
+  "jpy": {
+    "inicio": 122.0,
+    "fin": 145.9
   },
-  {
-   "n": 3,
-   "nombre": "GBP",
-   "inicio": 76.0
+  "wti": {
+    "inicio": 145.9,
+    "fin": 165.1
   },
-  {
-   "n": 4,
-   "nombre": "AUD · NZD",
-   "inicio": 91.0
-  },
-  {
-   "n": 5,
-   "nombre": "JPY",
-   "inicio": 122.0
-  },
-  {
-   "n": 6,
-   "nombre": "WTI",
-   "inicio": 145.9
+  "anuncio": {
+    "t": 169.3,
+    "texto": "Próxima publicación: el resumen de los PMI"
   }
- ],
- "totalTemas": 6,
- "velas": [
-  {
-   "t": 15.2,
-   "color": "oso"
-  },
-  {
-   "t": 56.4,
-   "color": "oso"
-  },
-  {
-   "t": 76.0,
-   "color": "toro"
-  },
-  {
-   "t": 91.0,
-   "color": "toro"
-  },
-  {
-   "t": 122.0,
-   "color": "toro"
-  },
-  {
-   "t": 145.9,
-   "color": "toro"
-  },
-  {
-   "t": 165.1,
-   "color": "oso"
-  }
- ],
- "balanza": [
-  [
-   0,
-   0
-  ],
-  [
-   1.5,
-   0.45
-  ],
-  [
-   5.4,
-   0.6
-  ],
-  [
-   8.4,
-   0.2
-  ],
-  [
-   18.5,
-   0.35
-  ],
-  [
-   44.1,
-   0.45
-  ],
-  [
-   51.8,
-   0.3
-  ],
-  [
-   60.0,
-   0.6
-  ],
-  [
-   69.2,
-   0.7
-  ],
-  [
-   78.4,
-   -0.4
-  ],
-  [
-   84.1,
-   -0.5
-  ],
-  [
-   94.9,
-   -0.2
-  ],
-  [
-   105.2,
-   0.05
-  ],
-  [
-   111.0,
-   0.2
-  ],
-  [
-   117.9,
-   -0.1
-  ],
-  [
-   124.5,
-   -0.3
-  ],
-  [
-   136.1,
-   -0.45
-  ],
-  [
-   141.5,
-   -0.5
-  ],
-  [
-   147.4,
-   -0.25
-  ],
-  [
-   155.9,
-   0.1
-  ],
-  [
-   166.9,
-   0.2
-  ]
- ],
- "divisas": {
-  "usd": {
-   "inicio": 15.2,
-   "fin": 56.4,
-   "codigo": "USD",
-   "nombre": "Dólar estadounidense",
-   "velaFin": "oso",
-   "secciones": [
-    {
-     "titulo": "Vivienda e hipotecas",
-     "t0": 15.2,
-     "t1": 31.25,
-     "filas": [
-      {
-       "sim": "HIPOTECA 30A",
-       "nombre": "Tasa fija a 30 años",
-       "valor": "7,40%",
-       "flecha": "▲",
-       "tono": "oso",
-       "detalle": "20 de octubre · por encima de 7%",
-       "t": 18.4,
-       "tValor": 18.4,
-       "tDetalle": 19.0
-      },
-      {
-       "sim": "VENTAS",
-       "nombre": "Viviendas usadas · septiembre",
-       "valor": "3,99 M",
-       "flecha": "▼",
-       "tono": "oso",
-       "detalle": "−2,2% interanual",
-       "t": 22.9,
-       "tValor": 22.9,
-       "tDetalle": 23.5
-      },
-      {
-       "sim": "INICIOS",
-       "nombre": "Inicios de construcción · sep.",
-       "valor": "1,22 M",
-       "flecha": "▼",
-       "tono": "oso",
-       "detalle": "desde 1,29 M en agosto",
-       "t": 28.5,
-       "tValor": 28.5,
-       "tDetalle": 29.1
-      }
-     ]
-    },
-    {
-     "titulo": "Bonos del Tesoro y crédito",
-     "t0": 31.25,
-     "t1": 49.25,
-     "filas": [
-      {
-       "sim": "UST 10A",
-       "nombre": "Bono del Tesoro a 10 años",
-       "valor": "~5,08%",
-       "flecha": "▼",
-       "tono": "toro",
-       "detalle": "desde 5,35%, máximo desde 2002",
-       "t": 34.6,
-       "tValor": 34.6,
-       "tDetalle": 35.2
-      },
-      {
-       "sim": "CCC",
-       "nombre": "Bonos basura CCC · diferencial",
-       "valor": "12,97 pp",
-       "flecha": "▲",
-       "tono": "oso",
-       "detalle": "máximo en 4 años · el BBB sigue en 1,06",
-       "t": 44.1,
-       "tValor": 44.1,
-       "tDetalle": 44.7
-      }
-     ]
-    },
-    {
-     "titulo": "Empleo",
-     "t0": 49.25,
-     "t1": 56.4,
-     "filas": [
-      {
-       "sim": "SOLICITUDES",
-       "nombre": "Solicitudes iniciales por desempleo",
-       "valor": "<200 mil",
-       "flecha": "✓",
-       "tono": "toro",
-       "detalle": "5 semanas seguidas · 199 mil al 10-oct",
-       "t": 51.8,
-       "tValor": 51.8,
-       "tDetalle": 52.4
-      }
-     ]
-    }
-   ],
-   "frases": [
-    {
-     "t": 15.5,
-     "html": "Empezamos por el <em>dólar</em>",
-     "tono": "neutro"
-    },
-    {
-     "t": 17.6,
-     "html": "Hipotecas en <em>7,4%</em>",
-     "tono": "oso"
-    },
-    {
-     "t": 22.8,
-     "html": "La vivienda <em>frena</em>",
-     "tono": "oso"
-    },
-    {
-     "t": 31.4,
-     "html": "Refugio en el <em>Tesoro</em>",
-     "tono": "toro"
-    },
-    {
-     "t": 40.8,
-     "html": "El temor: la <em>deuda basura</em>",
-     "tono": "oso"
-    },
-    {
-     "t": 49.4,
-     "html": "El empleo <em>resiste</em>",
-     "tono": "toro"
-    }
-   ]
-  },
-  "eur": {
-   "inicio": 56.4,
-   "fin": 76.0,
-   "codigo": "EUR",
-   "nombre": "Euro",
-   "velaInicio": "oso",
-   "velaFin": "toro",
-   "secciones": [
-    {
-     "titulo": "Francia · riesgo fiscal",
-     "t0": 56.4,
-     "t1": 67.85,
-     "filas": [
-      {
-       "sim": "OAT-BUND",
-       "nombre": "Prima Francia vs. Alemania · 10A",
-       "valor": "157 pb",
-       "flecha": "▲",
-       "tono": "oso",
-       "detalle": "21 de octubre · máximo desde 2011",
-       "t": 60.0,
-       "tValor": 60.0,
-       "tDetalle": 60.6
-      },
-      {
-       "sim": "OAT 10A",
-       "nombre": "Bono francés a 10 años",
-       "valor": "~5%",
-       "flecha": "▲",
-       "tono": "oso",
-       "detalle": "roza el 5% en plena pelea por el presupuesto",
-       "t": 65.4,
-       "tValor": 65.4,
-       "tDetalle": 66.0
-      }
-     ]
-    },
-    {
-     "titulo": "Alemania · precios al productor",
-     "t0": 67.85,
-     "t1": 76.0,
-     "filas": [
-      {
-       "sim": "IPP A/A",
-       "nombre": "IPP alemán · septiembre",
-       "valor": "6,7%",
-       "flecha": "▲",
-       "tono": "oso",
-       "detalle": "esperado 6,2% · máximo desde marzo de 2023",
-       "t": 69.2,
-       "tValor": 69.2,
-       "tDetalle": 69.8
-      },
-      {
-       "sim": "ENERGÍA",
-       "nombre": "Precios de la energía",
-       "valor": "+14,9%",
-       "flecha": "▲",
-       "tono": "oso",
-       "detalle": "interanual",
-       "t": 73.2,
-       "tValor": 73.2,
-       "tDetalle": 73.8
-      }
-     ]
-    }
-   ],
-   "frases": [
-    {
-     "t": 56.7,
-     "html": "Riesgo fiscal <em>francés</em>",
-     "tono": "oso"
-    },
-    {
-     "t": 62.8,
-     "html": "<em>157 pb</em>: máximo desde 2011",
-     "tono": "oso"
-    },
-    {
-     "t": 68.0,
-     "html": "Alemania: IPP <em>6,7%</em>",
-     "tono": "oso"
-    }
-   ]
-  },
-  "gbp": {
-   "inicio": 76.0,
-   "fin": 91.0,
-   "codigo": "GBP",
-   "nombre": "Libra esterlina",
-   "velaInicio": "toro",
-   "velaFin": "toro",
-   "secciones": [
-    {
-     "titulo": "Reino Unido · inflación, empleo y salarios",
-     "t0": 76.0,
-     "t1": 91.0,
-     "filas": [
-      {
-       "sim": "IPC A/A",
-       "nombre": "Inflación · septiembre",
-       "valor": "3,5%",
-       "flecha": "▲",
-       "tono": "toro",
-       "detalle": "esperado 3,4% · anterior 3,1%",
-       "t": 78.4,
-       "tValor": 78.4,
-       "tDetalle": 79.0
-      },
-      {
-       "sim": "PARO",
-       "nombre": "Desempleo · jun-ago",
-       "valor": "4,7%",
-       "flecha": "▼",
-       "tono": "toro",
-       "detalle": "baja una décima",
-       "t": 81.5,
-       "tValor": 81.5,
-       "tDetalle": 82.1
-      },
-      {
-       "sim": "SALARIOS",
-       "nombre": "Salario regular",
-       "valor": "+3,7%",
-       "flecha": "▲",
-       "tono": "toro",
-       "detalle": "interanual",
-       "t": 84.1,
-       "tValor": 84.1,
-       "tDetalle": 84.7
-      }
-     ]
-    }
-   ],
-   "frases": [
-    {
-     "t": 76.3,
-     "html": "La libra recibe <em>apoyo</em>",
-     "tono": "toro"
-    },
-    {
-     "t": 87.1,
-     "html": "BoE: subida en <em>noviembre</em>",
-     "tono": "toro"
-    }
-   ]
-  },
-  "oce": {
-   "inicio": 91.0,
-   "fin": 122.0,
-   "codigo": "AUD · NZD",
-   "nombre": "Dólar australiano y neozelandés",
-   "velaInicio": "toro",
-   "velaFin": "toro",
-   "secciones": [
-    {
-     "titulo": "Australia · RBA",
-     "t0": 91.0,
-     "t1": 109.35,
-     "filas": [
-      {
-       "sim": "RBA",
-       "nombre": "Hauser: perspectiva de inflación",
-       "valor": "PEOR",
-       "flecha": "▲",
-       "tono": "toro",
-       "detalle": "“materialmente peor” · 21 de octubre",
-       "t": 94.9,
-       "tValor": 94.9,
-       "tDetalle": 95.5
-      },
-      {
-       "sim": "PROB. NOV",
-       "nombre": "Probabilidad de subida en noviembre",
-       "valor": "22%",
-       "flecha": "→",
-       "tono": "toro",
-       "detalle": "antes y después de Hauser",
-       "t": 100.7,
-       "tValor": 100.7,
-       "tDetalle": 101.3,
-       "valor2": "51%",
-       "t2": 101.5
-      },
-      {
-       "sim": "AUD",
-       "nombre": "Ánimo de riesgo y dudas sobre la IA",
-       "valor": "PRESIÓN",
-       "flecha": "▼",
-       "tono": "oso",
-       "detalle": "el australiano no despega",
-       "t": 103.3,
-       "tValor": 103.3,
-       "tDetalle": 103.9
-      }
-     ]
-    },
-    {
-     "titulo": "Nueva Zelanda · RBNZ",
-     "t0": 109.35,
-     "t1": 122.0,
-     "filas": [
-      {
-       "sim": "IPC 3T",
-       "nombre": "Inflación anual · 3T",
-       "valor": "3,7%",
-       "flecha": "▼",
-       "tono": "oso",
-       "detalle": "esperado 3,8% · anterior 4,1%",
-       "t": 110.8,
-       "tValor": 110.8,
-       "tDetalle": 111.4
-      },
-      {
-       "sim": "RBNZ 28-OCT",
-       "nombre": "Probabilidad de subida tras el IPC",
-       "valor": "~98%",
-       "flecha": "✓",
-       "tono": "toro",
-       "detalle": "el mercado no la descarta",
-       "t": 115.9,
-       "tValor": 115.9,
-       "tDetalle": 116.5
-      }
-     ]
-    }
-   ],
-   "frases": [
-    {
-     "t": 91.3,
-     "html": "Australia: inflación <em>peor</em>",
-     "tono": "toro"
-    },
-    {
-     "t": 98.0,
-     "html": "Subida en noviembre: <em>51%</em>",
-     "tono": "toro"
-    },
-    {
-     "t": 103.3,
-     "html": "Pero el AUD <em>no despega</em>",
-     "tono": "oso"
-    },
-    {
-     "t": 109.5,
-     "html": "Nueva Zelanda: IPC <em>3,7%</em>",
-     "tono": "oso"
-    },
-    {
-     "t": 115.4,
-     "html": "Igual, subida <em>casi segura</em>",
-     "tono": "toro"
-    }
-   ]
-  }
- },
- "jpy": {
-  "inicio": 122.0,
-  "fin": 145.9
- },
- "wti": {
-  "inicio": 145.9,
-  "fin": 165.1
- },
- "veredictos": [
-  {
-   "activo": "USD",
-   "v": "Oso moderado",
-   "tono": "oso",
-   "t": 169.3
-  },
-  {
-   "activo": "EUR",
-   "v": "Oso",
-   "tono": "oso",
-   "t": 170.2
-  },
-  {
-   "activo": "GBP",
-   "v": "Toro",
-   "tono": "toro",
-   "t": 171.1
-  },
-  {
-   "activo": "AUD",
-   "v": "Mixto",
-   "tono": "neutro",
-   "t": 172.0
-  },
-  {
-   "activo": "NZD",
-   "v": "Neutro",
-   "tono": "neutro",
-   "t": 172.9
-  },
-  {
-   "activo": "JPY",
-   "v": "Toro moderado",
-   "tono": "toro",
-   "t": 173.8
-  },
-  {
-   "activo": "WTI",
-   "v": "Mixto",
-   "tono": "neutro",
-   "t": 174.7
-  }
- ],
- "anuncio": {
-  "t": 180.2,
-  "texto": "Próxima publicación: el resumen de los PMI"
- }
 }
