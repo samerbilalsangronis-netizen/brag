@@ -33,11 +33,18 @@ Solo entra al guion lo que está aquí. ⚠ = difiere de la nota del brief.
 ## NZD
 - **IPC del 3T:** +0,7% trimestral (esperado 0,8%); 3,7% interanual (esperado 3,8%; anterior 4,1%). Enfría la apuesta de una subida del RBNZ el 28 de octubre.
   Fuentes: [FXStreet](https://www.fxstreet.com/news/new-zealands-cpi-inflation-eases-to-37-yoy-in-q3-vs-38-expected-202610212152), [Babypips](https://www.babypips.com/news/headline-new-zealand-inflation-eases-rbnz-hike-odds-steady-2026-10-22)
+- **Veredicto:** neutro. La inflación bajó, pero el mercado aún descuenta una subida del RBNZ.
 
 ## JPY
 - **Bonos extranjeros:** los inversores japoneses vendieron en neto bonos extranjeros por quinta semana seguida, ~3,43 billones de yenes en 5 semanas.
 - **Destino del dinero:** los rendimientos más altos atraen compradores a los JGB. Deutsche Bank matiza que el dinero aún no "vuelve a casa" del todo.
   Fuentes: [BusinessWorld/Reuters](https://bworldonline.com/banking-finance/2026/10/22/788718/japanese-investors-sell-foreign-bonds-for-fifth-straight-week-to-extend-streak-eye-home-market/), [Yahoo/Reuters](https://finance.yahoo.com/markets/currencies/articles/japanese-investors-sell-foreign-bonds-063733827.html)
+
+- **IPC de septiembre (publicado el 23.10):** subyacente (sin alimentos frescos) 2,1%, desde 1,7% y en línea con lo previsto (2,1%). General 2,1%, desde 1,9%. Core-core (sin frescos ni energía) 2,4%. Todo sobre la meta del 2% del BoJ: una inflación persistente.
+  Fuentes: [CNBC](https://www.cnbc.com/2026/10/23/japan-inflation-september-highest-in-2026.html), [FXStreet](https://www.fxstreet.com/news/21-japans-national-cpi-climbs-in-september-202610222331)
+
+## PMI
+- La próxima publicación será el resumen de los PMI. No se verificó la fecha, así que el video no la menciona.
 
 ## Petróleo
 - **Inventarios EIA (semana al 16 de octubre):** -3,1 millones de barriles hasta 412,5 millones, 3% bajo el promedio de 5 años. La semana previa cayeron -8,6 millones y el WTI cerró en 97,97 $ el 15 de octubre.

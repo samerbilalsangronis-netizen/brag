@@ -1,7 +1,7 @@
 {
  "publicacion": "Informe semanal",
  "fecha": "22.10.2026",
- "duracion": 166.5,
+ "duracion": 187.5,
  "nota": "Tiempos en segundos del video final. Fuentes en docs/hikman/investigacion-semana-2026-10-22.md",
  "voz": [
   [
@@ -49,20 +49,28 @@
    122.3
   ],
   [
+   "15",
+   130.9
+  ],
+  [
    "11",
-   131.3
+   146.2
   ],
   [
    "12",
-   139.2
+   154.1
   ],
   [
    "13",
-   150.5
+   165.4
   ],
   [
    "14",
-   161.5
+   176.4
+  ],
+  [
+   "16",
+   180.2
   ]
  ],
  "temas": [
@@ -94,7 +102,7 @@
   {
    "n": 6,
    "nombre": "WTI",
-   "inicio": 131.0
+   "inicio": 145.9
   }
  ],
  "totalTemas": 6,
@@ -120,11 +128,11 @@
    "color": "toro"
   },
   {
-   "t": 131.0,
+   "t": 145.9,
    "color": "toro"
   },
   {
-   "t": 150.2,
+   "t": 165.1,
    "color": "oso"
   }
  ],
@@ -194,15 +202,23 @@
    -0.3
   ],
   [
-   132.5,
+   136.1,
+   -0.45
+  ],
+  [
+   141.5,
+   -0.5
+  ],
+  [
+   147.4,
    -0.25
   ],
   [
-   141.0,
+   155.9,
    0.1
   ],
   [
-   152.0,
+   166.9,
    0.2
   ]
  ],
@@ -593,54 +609,58 @@
  },
  "jpy": {
   "inicio": 122.0,
-  "fin": 131.0
+  "fin": 145.9
  },
  "wti": {
-  "inicio": 131.0,
-  "fin": 150.2
+  "inicio": 145.9,
+  "fin": 165.1
  },
  "veredictos": [
   {
    "activo": "USD",
    "v": "Oso moderado",
    "tono": "oso",
-   "t": 154.4
+   "t": 169.3
   },
   {
    "activo": "EUR",
    "v": "Oso",
    "tono": "oso",
-   "t": 155.3
+   "t": 170.2
   },
   {
    "activo": "GBP",
    "v": "Toro",
    "tono": "toro",
-   "t": 156.2
+   "t": 171.1
   },
   {
    "activo": "AUD",
    "v": "Mixto",
    "tono": "neutro",
-   "t": 157.1
+   "t": 172.0
   },
   {
    "activo": "NZD",
-   "v": "Mixto",
+   "v": "Neutro",
    "tono": "neutro",
-   "t": 158.0
+   "t": 172.9
   },
   {
    "activo": "JPY",
    "v": "Toro moderado",
    "tono": "toro",
-   "t": 158.9
+   "t": 173.8
   },
   {
    "activo": "WTI",
    "v": "Mixto",
    "tono": "neutro",
-   "t": 159.8
+   "t": 174.7
   }
- ]
+ ],
+ "anuncio": {
+  "t": 180.2,
+  "texto": "Próxima publicación: el resumen de los PMI"
+ }
 }

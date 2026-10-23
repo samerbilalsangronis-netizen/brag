@@ -19,6 +19,11 @@
       .caja b { display: block; font: 800 48px/1 "Barlow"; text-transform: uppercase; }
       .caja i { display: block; font: 600 22px/1.3 "Mono"; font-style: normal; letter-spacing: .1em; color: var(--gris); margin-top: 10px; text-transform: uppercase; }
       .semana { position: absolute; top: 960px; width: 150px; height: 70px; border: 3px solid var(--gris); font: 700 26px/64px "Mono"; text-align: center; color: var(--gris); }
+      .fila-j { position: absolute; left: 70px; right: 70px; height: 210px; border-bottom: 2px solid var(--linea); }
+      .fila-j .s { position: absolute; left: 0; top: 20px; font: 700 28px/1 "Mono"; letter-spacing: .1em; color: var(--gris); }
+      .fila-j .n { position: absolute; right: 0; top: 18px; font: 800 36px/1 "Barlow"; text-transform: uppercase; }
+      .fila-j .v { position: absolute; left: 0; top: 66px; font: 800 104px/1 "Mono"; }
+      .fila-j .d { position: absolute; left: 0; top: 178px; font: 600 22px/1 "Mono"; letter-spacing: .1em; }
       .nodo { position: absolute; width: 300px; text-align: center; }
       .nodo .pt { width: 34px; height: 34px; border-radius: 17px; margin: 0 auto 18px; background: var(--hueso); }
       .nodo b { display: block; font: 800 52px/1 "Barlow"; text-transform: uppercase; }
@@ -26,18 +31,19 @@
     </style>
   </head>
   <body>
-    <!-- Tramo global 122,0 - 150,2: JPY (122-131) y WTI (131-150,2). -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="28.2" data-width="1080" data-height="1920">
-      <div id="fondo" class="clip full" data-start="0" data-duration="28.2" data-track-index="0">
+    <!-- Tramo global 122,0 - 165,1: JPY (122-145,9) y WTI (145,9-165,1). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="43.1" data-width="1080" data-height="1920">
+      <div id="fondo" class="clip full" data-start="0" data-duration="43.1" data-track-index="0">
         <div class="k-fondo"></div><div class="k-reticula"></div>
         <div id="barra"></div>
         <div id="balanza"></div>
       </div>
 
-      <!-- JPY (122 - 131) -->
-      <div id="sj" class="clip full" data-start="0" data-duration="9.0" data-track-index="1">
+      <!-- JPY (122 - 145,9) -->
+      <div id="sj" class="clip full" data-start="0" data-duration="23.9" data-track-index="1">
         <div class="k-tema">Tema <b>5/6</b> · JPY</div>
         <div class="codigo" id="j-cod"><div class="c">JPY</div><div class="n">Yen japonés</div></div>
+        <div id="j-a" class="full">
         <div class="sec" id="j-sec"><span>▸ </span>Capital que vuelve a casa</div>
         <div class="caja" id="j-fuera" style="left: 70px; top: 540px; width: 400px; height: 190px"><b>Bonos extranjeros</b><i>ventas netas</i></div>
         <div class="caja" id="j-casa" style="left: 610px; top: 540px; width: 400px; height: 190px; border-color: var(--toro)"><b style="color: var(--toro)">Japón · JGB</b><i>rendimientos más altos ▲</i></div>
@@ -49,17 +55,28 @@
         <div class="semana" id="j-s1" style="left: 70px">S1</div><div class="semana" id="j-s2" style="left: 260px">S2</div><div class="semana" id="j-s3" style="left: 450px">S3</div><div class="semana" id="j-s4" style="left: 640px">S4</div><div class="semana" id="j-s5" style="left: 830px">S5</div>
         <div id="j-num" style="position: absolute; left: 70px; top: 1070px; font: 800 96px/1 'Mono'; color: var(--toro)">¥3,43 billones</div>
         <div id="j-det" style="position: absolute; left: 72px; top: 1180px; font: 600 22px/1 'Mono'; letter-spacing: .1em; color: var(--gris)">VENDIDOS EN 5 SEMANAS · MOF, AL 17-OCT</div>
+        </div>
+        <div id="j-b" class="full">
+          <div class="sec"><span>▸ </span>Inflación · septiembre</div>
+          <div class="fila-j" id="j-r1" style="top: 520px"><div class="s">IPC SUBYACENTE</div><div class="n">Sin alimentos frescos · BoJ</div><div class="v" style="color: var(--toro)"><span id="j-v1">2,1%</span> <span style="font-size: 72px">▲</span></div><div class="d" id="j-d1" style="color: var(--toro)">DESDE 1,7% · EN LÍNEA CON LO PREVISTO</div></div>
+          <div class="fila-j" id="j-r2" style="top: 745px"><div class="s">IPC GENERAL</div><div class="n">Inflación total</div><div class="v" style="color: var(--toro)">2,1% <span style="font-size: 72px">▲</span></div><div class="d" style="color: var(--toro)">DESDE 1,9%</div></div>
+          <div class="fila-j" id="j-r3" style="top: 970px"><div class="s">CORE-CORE</div><div class="n">Sin frescos ni energía</div><div class="v" style="color: var(--toro)">2,4%</div><div class="d" style="color: var(--gris)">LA MEDIDA PREFERIDA DEL BOJ</div></div>
+          <div id="j-sello" style="position: absolute; left: 670px; top: 580px; padding: 12px 22px; border: 6px solid var(--toro); color: var(--toro); font: 800 48px/1 'Barlow'; text-align: center">SOBRE LA META<div style="font: 700 20px/1.4 'Mono'; letter-spacing: .14em">DEL 2% DEL BOJ</div></div>
+        </div>
         <div class="k-frase toro" id="j-f1">Japón: el dinero <em>mira a casa</em></div>
         <div class="k-frase toro" id="j-f2"><em>5 semanas</em> vendiendo bonos fuera</div>
         <div class="k-frase toro" id="j-f3">Atraído por <em>rendimientos</em> más altos</div>
+        <div class="k-frase toro" id="j-f4">Inflación japonesa: <em>2,1%</em></div>
+        <div class="k-frase toro" id="j-f5">Sobre la meta del <em>BoJ</em></div>
+        <div class="k-frase toro" id="j-f6">Una inflación que <em>persiste</em></div>
         <div id="vela-j"></div>
       </div>
 
-      <!-- vela verde JPY -> WTI (131) -->
-      <div id="sv" class="clip full" data-start="8.4" data-duration="1.2" data-track-index="3"><div id="vela-m"></div></div>
+      <!-- vela verde JPY -> WTI (145,9) -->
+      <div id="sv" class="clip full" data-start="23.3" data-duration="1.2" data-track-index="3"><div id="vela-m"></div></div>
 
-      <!-- WTI (131 - 150,2) -->
-      <div id="sw" class="clip full" data-start="9.0" data-duration="19.2" data-track-index="2">
+      <!-- WTI (145,9 - 165,1) -->
+      <div id="sw" class="clip full" data-start="23.9" data-duration="19.2" data-track-index="2">
         <div class="k-tema">Tema <b>6/6</b> · WTI</div>
         <div class="codigo" id="w-cod"><div class="c">WTI</div><div class="n">Petróleo de Texas</div></div>
         <div id="w-a" class="full">
@@ -94,13 +111,13 @@
     <script>
       // Balanza y cabecera de este informe (datos/hikman/semana-2026-10-22.json)
       window.SEMANA = { publicacion: "Informe semanal", fecha: "22.10.2026", temas: [],
-        balanza: [[0,0],[1.5,0.45],[5.4,0.6],[8.4,0.2],[18.5,0.35],[44.1,0.45],[51.8,0.3],[60.0,0.6],[69.2,0.7],[78.4,-0.4],[84.1,-0.5],[94.9,-0.2],[105.2,0.05],[111.0,0.2],[117.9,-0.1],[124.5,-0.3],[132.5,-0.25],[141.0,0.1],[152.0,0.2]] };
+        balanza: [[0,0],[1.5,0.45],[5.4,0.6],[8.4,0.2],[18.5,0.35],[44.1,0.45],[51.8,0.3],[60.0,0.6],[69.2,0.7],[78.4,-0.4],[84.1,-0.5],[94.9,-0.2],[105.2,0.05],[111.0,0.2],[117.9,-0.1],[124.5,-0.3],[136.1,-0.45],[141.5,-0.5],[147.4,-0.25],[155.9,0.1],[166.9,0.2]] };
       const tl = gsap.timeline({ paused: true });
       const T0 = 122.0;
       const G = (t) => t - T0;
       K.barra(document.getElementById("barra"));
       K.balanza(document.getElementById("balanza"));
-      K.moverBalanza(tl, "#balanza .k-marca", T0, 28.2);
+      K.moverBalanza(tl, "#balanza .k-marca", T0, 43.1);
       document.getElementById("vela-j").outerHTML = K.velaHTML("vj", "toro");
       document.getElementById("vela-m").outerHTML = K.velaHTML("vm", "toro");
       document.getElementById("vela-w").outerHTML = K.velaHTML("vw", "oso");
@@ -126,27 +143,35 @@
       }
       entra("#j-num", 126.2, { y: 40 });
       entra("#j-det", 126.6, { y: 16 });
-      frase("#j-f1", 122.3, 124.75); frase("#j-f2", 124.85, 127.65); frase("#j-f3", 127.75, null);
-      K.vela(tl, "vm", G(131.0), G(131.0));
+      frase("#j-f1", 122.3, 124.75); frase("#j-f2", 124.85, 127.65); frase("#j-f3", 127.75, 130.75);
+      tl.to("#j-a", { opacity: 0, y: -40, duration: 0.3 }, G(130.6));
+      tl.fromTo("#j-b", { opacity: 0 }, { opacity: 1, duration: 0.3 }, G(130.95));
+      entra("#j-r1", 134.3, { x: -60 });
+      entra("#j-d1", 137.5, { y: 12 });
+      entra("#j-r2", 139.0, { x: -60 });
+      entra("#j-r3", 140.0, { x: -60 });
+      spring(tl, "#j-sello", { opacity: 0, scale: 2.2, rotation: -14 }, { opacity: 1, scale: 1, rotation: -5 }, G(141.45), SECO);
+      frase("#j-f4", 130.95, 141.3); frase("#j-f5", 141.4, 144.4); frase("#j-f6", 144.5, null);
+      K.vela(tl, "vm", G(145.9), G(145.9));
 
       // WTI · inventarios
-      entra("#w-cod", 131.25, { x: -60 }, ESTANDAR);
-      tl.fromTo("#w-a", { opacity: 0 }, { opacity: 1, duration: 0.3 }, G(131.5));
-      tl.fromTo("#w-nivel", { height: "72%" }, { height: "64%", duration: 0.9, ease: "power2.inOut" }, G(136.6));
-      entra("#w-num", 136.7, { y: 40 });
-      entra("#w-num2", 137.0, { y: 20 });
-      entra("#w-det", 137.4, { y: 16 });
-      tl.to("#w-a", { opacity: 0, y: -40, duration: 0.3 }, G(138.85));
+      entra("#w-cod", 146.15, { x: -60 }, ESTANDAR);
+      tl.fromTo("#w-a", { opacity: 0 }, { opacity: 1, duration: 0.3 }, G(146.4));
+      tl.fromTo("#w-nivel", { height: "72%" }, { height: "64%", duration: 0.9, ease: "power2.inOut" }, G(151.5));
+      entra("#w-num", 151.6, { y: 40 });
+      entra("#w-num2", 151.9, { y: 20 });
+      entra("#w-det", 152.3, { y: 16 });
+      tl.to("#w-a", { opacity: 0, y: -40, duration: 0.3 }, G(153.75));
       // WTI · propuesta de paz
-      tl.fromTo("#w-b", { opacity: 0 }, { opacity: 1, duration: 0.3 }, G(139.2));
-      tl.fromTo("#w-ruta", { strokeDashoffset: 700 }, { strokeDashoffset: 0, duration: 3.4, ease: "none" }, G(142.4));
-      entra("#w-n1", 142.3, { y: 40 });
-      entra("#w-n2", 144.2, { y: 40 });
-      entra("#w-n3", 145.8, { y: 40 });
-      spring(tl, "#w-sello", { opacity: 0, scale: 2.2, rotation: -14 }, { opacity: 1, scale: 1, rotation: -5 }, G(148.15), SECO);
-      entra("#w-fte", 148.6, { y: 16 });
-      frase("#w-f1", 131.4, 135.45); frase("#w-f2", 135.55, 139.1); frase("#w-f3", 139.25, 148.05); frase("#w-f4", 148.15, null);
-      K.vela(tl, "vw", G(150.2), null);
+      tl.fromTo("#w-b", { opacity: 0 }, { opacity: 1, duration: 0.3 }, G(154.1));
+      tl.fromTo("#w-ruta", { strokeDashoffset: 700 }, { strokeDashoffset: 0, duration: 3.4, ease: "none" }, G(157.3));
+      entra("#w-n1", 157.2, { y: 40 });
+      entra("#w-n2", 159.1, { y: 40 });
+      entra("#w-n3", 160.7, { y: 40 });
+      spring(tl, "#w-sello", { opacity: 0, scale: 2.2, rotation: -14 }, { opacity: 1, scale: 1, rotation: -5 }, G(163.05), SECO);
+      entra("#w-fte", 163.5, { y: 16 });
+      frase("#w-f1", 146.3, 150.35); frase("#w-f2", 150.45, 154.0); frase("#w-f3", 154.15, 162.95); frase("#w-f4", 163.05, null);
+      K.vela(tl, "vw", G(165.1), null);
 
       window.__timelines["main"] = tl;
       tl.seek(0);
