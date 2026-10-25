@@ -9,6 +9,7 @@ import { Bienvenida, metaBienvenida } from "./Bienvenida";
 import { Semana } from "./kit2";
 import { Probabilidad2 } from "./Probabilidad2";
 import { Tablero } from "./Tablero";
+import { metaPmi, Pmi } from "./Pmi";
 
 type Props = { edicion: Edicion | null };
 
@@ -44,6 +45,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Divisa-eur" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "eur" }} calculateMetadata={metaDivisa("eur")} />
     <Composition id="Divisa-gbp" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "gbp" }} calculateMetadata={metaDivisa("gbp")} />
     <Composition id="Divisa-oce" component={Divisa} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ s: null, clave: "oce" }} calculateMetadata={metaDivisa("oce")} />
+    <Composition id="Pmi" component={Pmi} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ d: null }} calculateMetadata={metaPmi} />
     <Still id="Portada" component={Portada} width={1080} height={1920} />
   </>
 );
