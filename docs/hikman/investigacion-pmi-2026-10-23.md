@@ -58,7 +58,7 @@ Fuentes: [Investing.com](https://www.investing.com/news/economic-indicators/uk-b
 - La producción manufacturera queda en mínimo de 7 meses. Los pedidos crecen al menor ritmo en 3 meses.
 - Empleo: mínimo de 14 meses. Las plantillas de servicios caen por primera vez desde agosto de 2025.
 - Costes: suben un poco. Precios de venta: fuertes, pero en mínimo de 4 meses.
-- Contexto: el IPC core-core de septiembre está en 2,4% (ver investigacion-semana-2026-10-22.md).
+- Contexto: el IPC subyacente de septiembre sube a 2,1% desde 1,7%, sobre la meta del 2% del BoJ (ver investigacion-semana-2026-10-22.md).
 Fuente: [Louis Velazquez](https://www.louisvelazquez.com/japan-flash-pmi-holds-at-52-3-as-services-gain-offsets-factory-slowdown-before-boj/)
 
 ## AUD · Australia (22.10)

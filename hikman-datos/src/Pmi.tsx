@@ -14,14 +14,14 @@ type Pais = {
   puntos?: { t0: number; t1: number; titulo: string; filas: Punto[] };
   margen?: { t0: number; t1: number; tCoste: number; tPrecio: number; tAprieta: number; sello: Sello };
   racha?: { t0: number; t1: number; titulo: string; inicio: string; fin: string; meses: number; t: number; tFin: number };
-  medidor?: { t0: number; t1: number; titulo: string; valor: number; meta: number; max: number; t: number };
+  medidor?: { t0: number; t1: number; titulo: string; valor: number; previo?: number; meta: number; max: number; t: number };
   lista?: { t0: number; t1: number; titulo: string; filas: { texto: string; tono: string; t: number }[]; chip: { texto: string; sub: string; t: number } };
 };
 export type PmiDatos = {
   publicacion: string; fecha: string; fuente: string; duracion: number; escala: [number, number];
   temas: { n: number; nombre: string; inicio: number }[]; velas: { t: number; color: string }[]; balanza: [number, number][];
-  frases: Frase[]; gancho: { valor: string; pais: string; v: number; t: number; fin: number }[];
-  gancho_puntos: { t0: number; t1: number; filas: Punto[] };
+  frases: Frase[];
+  marcador: { titulo: string; filas: { codigo: string; v: number; sep: number; t: number }[]; tContraccion: number; tLinea: number; tCrece: number; tContrae: number; fin: number };
   paises: Record<string, Pais>;
   cierre: { inicio: number; fin: number; t1: number; titulo: string; filas: { nombre: string; v: number; t: number }[]; tLogo: number };
 };
@@ -314,7 +314,7 @@ const MedidorC: React.FC<{ m: NonNullable<Pais["medidor"]> }> = ({ m }) => {
   const { t, at, sp, ventana } = useT();
   const vis = ventana(m.t0, m.t1);
   if (vis <= 0.001 && t > m.t0) return null;
-  const L = 70, W = 940, top = 640;
+  const L = 70, W = 940, top = 740;
   const e = sp(m.t, { damping: 16, stiffness: 90, mass: 1 });
   const x = (v: number) => L + (v / m.max) * W;
   return (
@@ -322,10 +322,17 @@ const MedidorC: React.FC<{ m: NonNullable<Pais["medidor"]> }> = ({ m }) => {
       <Titulo texto={m.titulo} />
       <div style={{ position: "absolute", left: L, width: W, top, height: 110, background: "#1d1f24" }} />
       <div style={{ position: "absolute", left: L, width: x(m.valor * e) - L, top, height: 110, background: K.toro }} />
+      {m.previo != null && (
+        <>
+          <div style={{ position: "absolute", left: L, width: x(m.previo) - L, top: top + 10, height: 90, border: "3px dashed rgba(242,239,233,.45)", opacity: sp(m.t - 0.3) }} />
+          <div style={{ position: "absolute", left: x(m.previo) - 200, width: 400, textAlign: "center", top: top - 64, font: `700 24px/1 ${MONO}`, letterSpacing: ".1em", color: K.gris, opacity: sp(m.t - 0.3) }}>AGOSTO {coma(m.previo)}%</div>
+        </>
+      )}
       <div style={{ position: "absolute", left: x(m.meta) - 3, top: top - 40, width: 6, height: 190, background: K.hueso }} />
       <div style={{ position: "absolute", left: x(m.meta) - 200, width: 400, textAlign: "center", top: top + 166, font: `700 24px/1 ${MONO}`, letterSpacing: ".1em" }}>META BOJ {coma(m.meta, 0)}%</div>
-      <div style={{ position: "absolute", left: L, top: top - 150, font: `800 120px/1 ${MONO}`, color: K.toro, letterSpacing: "-0.03em" }}>
+      <div style={{ position: "absolute", left: L, top: top - 200, font: `800 120px/1 ${MONO}`, color: K.toro, letterSpacing: "-0.03em" }}>
         <Rodar valor={coma(m.valor) + "%"} f={at(m.t + 0.3)} semilla="cc" />
+        {m.previo != null && <span style={{ font: `700 30px/1 ${MONO}`, color: K.gris, marginLeft: 24, letterSpacing: ".04em", opacity: sp(m.t + 0.6) }}>DESDE {coma(m.previo)}% ▲</span>}
       </div>
       {[0, 1, 2, 3].map((v) => (
         <div key={v} style={{ position: "absolute", left: x(v) - 30, width: 60, textAlign: "center", top: top + 120, font: `600 20px/1 ${MONO}`, color: K.gris }}>{v}%</div>
@@ -398,61 +405,61 @@ const RankingC: React.FC<{ c: PmiDatos["cierre"] }> = ({ c }) => {
   );
 };
 
-// ---------- Gancho ----------
-const Gancho: React.FC<{ d: PmiDatos }> = ({ d }) => {
-  const { t, at, sp } = useT();
+// ---------- Gancho: marcador de terminal ----------
+const Marcador: React.FC<{ m: PmiDatos["marcador"] }> = ({ m }) => {
+  const { t, at, sp, frame } = useT();
+  if (t > m.fin + 0.1) return null;
+  const vis = 1 - clamp((t - (m.fin - 0.3)) / 0.25);
+  const top0 = 470, alto = 140, hueco = 70;
+  const yFila = (i: number) => top0 + i * alto + (i >= 4 ? hueco : 0);
+  const linea = sp(m.tLinea, ESTANDAR);
+  const crece = sp(m.tCrece);
+  const contrae = sp(m.tContrae);
+  const parpadeo = t >= m.tContraccion && t < m.tContraccion + 0.75 ? Math.floor((t - m.tContraccion) / 0.125) % 2 === 0 : false;
+  const cursor = Math.floor(frame / 12) % 2 === 0;
   return (
-    <>
-      {d.gancho.map((g) => {
-        if (t < g.t - 0.05 || t > g.fin + 0.1) return null;
-        const e = spring({ frame: at(g.t), fps: 30, config: { damping: 14, stiffness: 320, mass: 0.6 } });
-        const fuera = clamp((t - g.fin) / 0.08);
-        const c = g.v >= 50 ? K.toro : K.oso;
+    <div style={{ opacity: vis }}>
+      {/* destello de arranque */}
+      {at(0.4) >= -1 && at(0.4) < 6 && <AbsoluteFill style={{ background: K.hueso, opacity: 0.14 * (1 - Math.max(0, at(0.4)) / 6) }} />}
+      <div style={{ position: "absolute", left: 70, top: 300, font: `700 26px/1 ${MONO}`, letterSpacing: ".16em", color: K.gris, textTransform: "uppercase", opacity: sp(0.3) }}>
+        <span style={{ color: K.toro }}>$ </span>{m.titulo}{t < 2.4 && cursor ? " ▌" : ""}
+      </div>
+      <div style={{ position: "absolute", left: 70, right: 70, top: 370, display: "flex", justifyContent: "space-between", font: `700 22px/1 ${MONO}`, letterSpacing: ".18em", color: K.gris, opacity: sp(0.45), borderBottom: `2px solid ${K.linea}`, paddingBottom: 18 }}>
+        <span>DIVISA</span><span style={{ marginLeft: 210 }}>OCT</span><span>VS SEP</span>
+      </div>
+      {/* zonas de la regla del 50 */}
+      <div style={{ position: "absolute", left: 56, right: 56, top: top0 - 14, height: (4 * alto + hueco / 2 + 4) * crece, background: "rgba(47,191,113,.10)", opacity: crece > 0.01 ? 1 : 0 }} />
+      <div style={{ position: "absolute", left: 56, right: 56, top: yFila(4) - hueco / 2 + 10, height: (alto + hueco / 2 - 10) * contrae, background: "rgba(229,72,77,.14)", opacity: contrae > 0.01 ? 1 : 0 }} />
+      {m.filas.map((f, i) => {
+        const e = sp(f.t);
+        const fv = at(f.t + 0.1);
+        const d = f.v - f.sep;
+        const flecha = Math.abs(d) < 0.05 ? "=" : d > 0 ? "▲" : "▼";
+        const bajo = f.v < 50;
+        const c = bajo ? (parpadeo ? K.hueso : K.oso) : K.toro;
+        const y = yFila(i);
         return (
-          <div key={g.valor} style={{ position: "absolute", left: 0, right: 0, top: 560, textAlign: "center", opacity: clamp(e * 2) * (1 - fuera), scale: String((1.35 - 0.35 * e) * (1 - 0.08 * fuera)) }}>
-            <div style={{ font: `800 300px/1 ${MONO}`, color: c, letterSpacing: "-0.05em" }}>{g.valor}</div>
-            <div style={{ font: `700 34px/1.2 ${MONO}`, letterSpacing: ".16em", color: K.gris, textTransform: "uppercase", marginTop: 20 }}>{g.pais}</div>
-            <div style={{ font: `800 46px/1 ${COND}`, color: c, textTransform: "uppercase", marginTop: 26 }}>{g.v >= 50 ? "▲ sobre 50: crece" : "▼ bajo 50: se contrae"}</div>
+          <div key={f.codigo} style={{ opacity: e, translate: `${-40 * (1 - e)}px 0` }}>
+            <div style={{ position: "absolute", left: 70, top: y, font: `800 110px/1 ${COND}`, color: K.hueso }}>{f.codigo}</div>
+            <div style={{ position: "absolute", left: 360, top: y + 4, font: `800 110px/1 ${MONO}`, letterSpacing: "-0.04em", color: fv >= 0 ? c : K.gris }}>
+              {fv >= 0 ? <Rodar valor={coma(f.v)} f={fv} semilla={f.codigo} /> : null}
+            </div>
+            <div style={{ position: "absolute", right: 70, top: y + 30, font: `800 50px/1 ${MONO}`, color: flecha === "=" ? K.gris : d > 0 ? K.toro : K.oso, opacity: sp(f.t + 0.45) }}>
+              {flecha} {flecha === "=" ? "0,0" : coma(Math.abs(d))}
+            </div>
+            <div style={{ position: "absolute", left: 70, right: 70, top: y + alto - 12, height: 2, background: K.linea }} />
           </div>
         );
       })}
-      {/* destello en cada golpe */}
-      {d.gancho.map((g) => {
-        const k = at(g.t);
-        return k >= -1 && k < 5 ? <AbsoluteFill key={"b" + g.t} style={{ background: K.hueso, opacity: 0.16 * (1 - Math.max(0, k) / 5) }} /> : null;
-      })}
-      <PuntosC p={d.gancho_puntos} top={560} desde50 />
-      {t >= 9.2 && t < 10.4 && (
-        <div style={{ position: "absolute", left: 0, right: 0, top: 1110, textAlign: "center", font: `800 70px/1 ${COND}`, textTransform: "uppercase", opacity: sp(9.3) * (1 - clamp((t - 10.15) / 0.2)) }}>
-          Una <span style={{ color: K.toro }}>hierve</span>. Otras se <span style={{ color: K.oso }}>contraen</span>.
-        </div>
+      {/* etiqueta de contraccion */}
+      {at(m.tContraccion + 0.5) >= 0 && (
+        <div style={{ position: "absolute", left: 660, top: yFila(4) + 126, font: `800 34px/1 ${COND}`, color: K.oso, textTransform: "uppercase", opacity: sp(m.tContraccion + 0.5), translate: `${30 * (1 - sp(m.tContraccion + 0.5))}px 0` }}>◂ Único bajo 50</div>
       )}
-    </>
-  );
-};
-
-// ---------- Apertura ----------
-const Apertura: React.FC = () => {
-  const { t, sp, ventana } = useT();
-  const vis = ventana(10.5, 19.8);
-  if (t < 10.3 || t > 19.9) return null;
-  const agenda = ["USD", "EUR", "GBP", "JPY", "AUD"];
-  const regla = sp(14.6, ESTANDAR);
-  const zonas = sp(16.9);
-  const abajo = sp(17.7);
-  return (
-    <div style={{ opacity: vis }}>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 300, textAlign: "center", font: `600 28px/1 ${MONO}`, letterSpacing: ".24em", color: K.gris, opacity: sp(12.6) }}>PMI FLASH · OCTUBRE 2026</div>
-      {agenda.map((a, i) => (
-        <div key={a} style={{ position: "absolute", top: 360, left: 120 + i * 176, width: 140, height: 90, border: `3px solid ${K.gris}`, textAlign: "center", font: `800 54px/84px ${COND}`, opacity: sp(12.9 + i * 0.14), translate: `0 ${30 * (1 - sp(12.9 + i * 0.14))}px` }}>{a}</div>
-      ))}
-      {/* la regla del 50 */}
-      <div style={{ position: "absolute", left: 140, right: 140, top: 560, height: 260 * zonas, background: "rgba(47,191,113,.16)", borderTop: `4px solid ${K.toro}` , opacity: zonas > 0.01 ? 1 : 0 }} />
-      <div style={{ position: "absolute", left: 140, right: 140, top: 820, height: 260 * abajo, background: "rgba(229,72,77,.16)", borderBottom: `4px solid ${K.oso}` , opacity: abajo > 0.01 ? 1 : 0 }} />
-      <div style={{ position: "absolute", left: 100, right: 100, top: 816, height: 8, background: K.hueso, scale: `${regla} 1` }} />
-      <div style={{ position: "absolute", left: 440, width: 200, top: 766, height: 108, background: K.carbon, border: `4px solid ${K.hueso}`, textAlign: "center", font: `800 90px/100px ${MONO}`, opacity: regla, scale: String(0.7 + 0.3 * regla) }}>50</div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 640, textAlign: "center", font: `800 76px/1 ${COND}`, color: K.toro, textTransform: "uppercase", opacity: zonas }}>▲ Crece</div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 920, textAlign: "center", font: `800 76px/1 ${COND}`, color: K.oso, textTransform: "uppercase", opacity: abajo }}>▼ Se contrae</div>
+      {/* la linea del 50 entra entre EUR y AUD */}
+      <div style={{ position: "absolute", left: 40, right: 40, top: yFila(4) - hueco / 2 - 4, height: 8, background: K.hueso, scale: `${linea} 1`, transformOrigin: "0% 50%" }} />
+      <div style={{ position: "absolute", left: 440, width: 200, top: yFila(4) - hueco / 2 - 48, height: 96, background: K.carbon, border: `4px solid ${K.hueso}`, textAlign: "center", font: `800 76px/88px ${MONO}`, opacity: linea, scale: String(0.7 + 0.3 * linea) }}>50</div>
+      <div style={{ position: "absolute", right: 70, top: yFila(4) - hueco / 2 - 40, font: `800 30px/1 ${COND}`, color: K.toro, textTransform: "uppercase", opacity: crece }}>▲ Crece</div>
+      <div style={{ position: "absolute", right: 70, top: yFila(4) - hueco / 2 + 16, font: `800 30px/1 ${COND}`, color: K.oso, textTransform: "uppercase", opacity: contrae }}>▼ Se contrae</div>
     </div>
   );
 };
@@ -497,8 +504,7 @@ export const Pmi: React.FC<Props> = ({ d }) => {
       )}
 
       <div style={{ opacity: 1 - finFrases }}>
-        {t < 10.5 && <Gancho d={d} />}
-        <Apertura />
+        <Marcador m={d.marcador} />
         {Object.values(d.paises).map((pa) => (
           <React.Fragment key={pa.codigo}>
             <Ficha p={pa} />
@@ -528,7 +534,7 @@ export const Pmi: React.FC<Props> = ({ d }) => {
       </div>
 
       {/* frase de la voz */}
-      {actual && t >= 10.5 && (() => {
+      {actual && t >= 2.6 && (() => {
         const si = sp(actual.t, ESTANDAR);
         const fuera = siguiente ? clamp((t - (siguiente.t - 0.16)) / 0.16) : 0;
         const enLogo = actual.t >= d.cierre.inicio + 4;
@@ -549,7 +555,7 @@ export const Pmi: React.FC<Props> = ({ d }) => {
       )}
 
       {/* fuente */}
-      {t >= 19.8 && at(d.cierre.tLogo) < 0 && (
+      {t >= d.temas[0].inicio && at(d.cierre.tLogo) < 0 && (
         <div style={{ position: "absolute", left: 0, right: 0, top: 1488, textAlign: "center", font: `600 18px/1 ${MONO}`, letterSpacing: ".12em", color: K.gris, textTransform: "uppercase", opacity: 0.8 }}>{d.fuente}</div>
       )}
 
