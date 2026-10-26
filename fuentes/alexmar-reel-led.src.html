@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Anton"; src: url(assets/Anton.woff2) format("woff2"); }
+      @font-face { font-family: "Montserrat"; src: url(assets/Montserrat.woff2) format("woff2"); font-weight: 100 900; }
+      :root { --naranja: #e8591e; --negro: #0b0b0b; --blanco: #ffffff; --gris: #8a8a8a; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--negro); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--negro); color: var(--blanco); font-family: "Montserrat", sans-serif; }
+      .full { position: absolute; inset: 0; }
+      .grande { position: absolute; left: 70px; right: 70px; font: 400 200px/0.9 "Anton"; text-transform: uppercase; letter-spacing: .005em; }
+      .chip { display: inline-block; padding: 12px 30px; background: var(--naranja); color: var(--negro); font: 800 56px/1 "Montserrat"; letter-spacing: .02em; text-transform: uppercase; }
+      .cuenta { position: absolute; right: 70px; top: 120px; font: 700 34px/1 "Montserrat"; letter-spacing: .2em; color: var(--gris); }
+      .cuenta b { color: var(--naranja); }
+      /* escena de faro: iris circular + bisel */
+      .escena { position: absolute; inset: 0; background: var(--negro); }
+      .iris { position: absolute; inset: 0; clip-path: circle(0px at 540px 1010px); background: var(--negro); }
+      .faro { position: absolute; left: 110px; top: 580px; width: 860px; height: 860px; border-radius: 50%; }
+      .faro img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; }
+      .bisel { position: absolute; inset: -6px; border-radius: 50%; border: 34px solid #111; box-shadow: inset 0 0 0 4px #2a2a2a; }
+      .barrido { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; mix-blend-mode: screen; }
+      .barrido i { position: absolute; top: -20%; left: 0; width: 40%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0)); transform: rotate(18deg); }
+      .arco { position: absolute; left: 70px; top: 540px; width: 940px; height: 940px; }
+      .titulo { position: absolute; left: 70px; right: 70px; top: 190px; }
+      .titulo .t { font: 400 150px/0.9 "Anton"; text-transform: uppercase; }
+      .pie { position: absolute; left: 0; right: 0; top: 1480px; text-align: center; font: 700 40px/1 "Montserrat"; letter-spacing: .14em; color: var(--blanco); text-transform: uppercase; }
+      .pie b { color: var(--naranja); }
+      .mini { position: absolute; width: 300px; height: 300px; top: 800px; border-radius: 50%; }
+      .mini img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+      .mini .bisel { border-width: 14px; inset: -3px; }
+      .mini-t { position: absolute; width: 320px; top: 1130px; text-align: center; font: 400 52px/1 "Anton"; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+    <!-- Reel Alexmar Tovar · Faros LED. Gancho + 3 faros con iris circular + trio + cierre. 13,5 s, sin voz (la musica la eligen ellos). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="13.5" data-width="1080" data-height="1920">
+
+      <!-- 1 · Gancho -->
+      <div id="s1" class="clip full" data-start="0" data-duration="1.9" data-track-index="0">
+        <div class="grande" id="h1" style="top: 560px">¿Tus faros</div>
+        <div class="grande" id="h2" style="top: 760px; color: var(--naranja); font-size: 170px">ya no<br />alumbran?</div>
+        <div id="h-linea" style="position: absolute; left: 70px; top: 1110px; width: 940px; height: 14px; background: var(--naranja); transform-origin: 0 50%"></div>
+      </div>
+
+      <!-- 2 · Faro 6014 alta potencia -->
+      <div id="s2" class="clip full" data-start="1.3" data-duration="3.5" data-track-index="1">
+        <div class="iris" id="i2">
+          <div class="faro" id="f2"><img id="f2img" src="assets/alexmar/led-6014-potencia-1.png" alt="" /><div class="barrido"><i id="b2"></i></div><div class="bisel"></div></div>
+          <svg class="arco" id="a2" viewBox="0 0 940 940"><circle cx="470" cy="470" r="462" fill="none" stroke="#e8591e" stroke-width="8" stroke-dasharray="160 70" /></svg>
+          <div class="full" id="flash2" style="background: radial-gradient(circle at 540px 1010px, rgba(255,250,235,.95) 0%, rgba(255,170,90,.35) 30%, rgba(255,120,40,0) 60%); opacity: 0"></div>
+          <div class="titulo"><div class="t" id="t2a">Faros LED</div><div class="t" id="t2b" style="color: var(--naranja)">alta potencia</div></div>
+          <div class="pie" id="p2"><span class="chip" style="font-size: 64px">6014</span></div>
+          <div class="cuenta" id="c2"><b>01</b> / 03</div>
+        </div>
+      </div>
+
+      <!-- 3 · Faro 6014 halo -->
+      <div id="s3" class="clip full" data-start="4.5" data-duration="3.3" data-track-index="2">
+        <div class="iris" id="i3">
+          <div class="faro" id="f3"><img src="assets/alexmar/led-6014-halo-1.png" alt="" /><div class="barrido"><i id="b3"></i></div><div class="bisel"></div></div>
+          <svg class="arco" id="a3" viewBox="0 0 940 940"><circle cx="470" cy="470" r="462" fill="none" stroke="#e8591e" stroke-width="8" stroke-dasharray="160 70" /></svg>
+          <div class="titulo"><div class="t" id="t3a">Faros LED</div><div class="t" id="t3b" style="color: var(--naranja)">6014</div></div>
+          <div class="cuenta"><b>02</b> / 03</div>
+        </div>
+      </div>
+
+      <!-- 4 · Faro LED anillo -->
+      <div id="s4" class="clip full" data-start="7.5" data-duration="3.3" data-track-index="3">
+        <div class="iris" id="i4">
+          <div class="faro" id="f4"><img src="assets/alexmar/led-led-anillo-1.png" alt="" /><div class="barrido"><i id="b4"></i></div><div class="bisel"></div></div>
+          <svg class="arco" id="a4" viewBox="0 0 940 940"><circle cx="470" cy="470" r="462" fill="none" stroke="#e8591e" stroke-width="8" stroke-dasharray="160 70" /></svg>
+          <div class="titulo"><div class="t" id="t4a">Faros</div><div class="t" id="t4b" style="color: var(--naranja)">LED</div></div>
+          <div class="cuenta"><b>03</b> / 03</div>
+        </div>
+      </div>
+
+      <!-- 5 · Los tres -->
+      <div id="s5" class="clip full" data-start="10.5" data-duration="1.6" data-track-index="4">
+        <div class="iris" id="i5">
+          <div class="grande" id="e-t" style="top: 330px; text-align: center; font-size: 170px">Elige <span style="color: var(--naranja)">el tuyo</span></div>
+          <div class="mini" id="m1" style="left: 30px"><img src="assets/alexmar/led-6014-potencia-1.png" alt="" /><div class="bisel"></div></div>
+          <div class="mini" id="m2" style="left: 390px"><img src="assets/alexmar/led-6014-halo-1.png" alt="" /><div class="bisel"></div></div>
+          <div class="mini" id="m3" style="left: 750px"><img src="assets/alexmar/led-led-anillo-1.png" alt="" /><div class="bisel"></div></div>
+          <div class="mini-t" id="mt1" style="left: 20px">6014<br /><span style="font: 700 26px/1.4 Montserrat; letter-spacing: .08em">ALTA POTENCIA</span></div>
+          <div class="mini-t" id="mt2" style="left: 380px">6014</div>
+          <div class="mini-t" id="mt3" style="left: 740px">LED</div>
+        </div>
+      </div>
+
+      <!-- 6 · Cierre -->
+      <div id="s6" class="clip full" data-start="11.8" data-duration="1.7" data-track-index="5">
+        <div class="full" id="cierre-fondo" style="background: var(--naranja); clip-path: circle(0px at 540px 1010px)">
+          <img id="c-logo" src="assets/alexmar/logo-hd.png" style="position: absolute; left: 340px; top: 330px; width: 400px" alt="" />
+          <div class="grande" id="c-nom" style="top: 800px; text-align: center; color: var(--negro); font-size: 150px">Alexmar Tovar</div>
+          <div id="c-tel" style="position: absolute; left: 70px; right: 70px; top: 1020px; text-align: center; padding: 30px 0; background: var(--negro); color: var(--blanco); font: 400 130px/1 'Anton'; letter-spacing: .02em">0416 676 83 93</div>
+          <div id="c-pie" style="position: absolute; left: 0; right: 0; top: 1260px; text-align: center; font: 800 46px/1 'Montserrat'; letter-spacing: .1em; color: var(--negro); text-transform: uppercase">Pregunta por el tuyo</div>
+        </div>
+      </div>
+      <!-- pie fijo con los datos, del faro 1 al trio -->
+      <div id="pie-datos" class="clip" data-start="1.3" data-duration="10.5" data-track-index="6" style="position: absolute; left: 0; right: 0; top: 1610px; text-align: center; font: 700 38px/1 'Montserrat'; letter-spacing: .08em; color: #fff">ALEXMAR TOVAR · <span style="color: #e8591e">0416 676 83 93</span></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const ESP = { ease: "power4.out", duration: 0.3 };
+
+      // 1 · gancho: golpes secos
+      tl.fromTo("#h1", { opacity: 0, scale: 1.4, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, ...ESP }, 0.12);
+      tl.fromTo("#h2", { opacity: 0, y: 80 }, { opacity: 1, y: 0, ...ESP }, 0.55);
+      tl.fromTo("#h-linea", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, 0.75);
+
+      // iris que se abre desde el centro
+      const iris = (sel, t0, dur = 0.5) => tl.fromTo(sel, { clipPath: "circle(0px at 540px 1010px)" }, { clipPath: "circle(1400px at 540px 1010px)", duration: dur, ease: "power3.in" }, t0);
+      // escena de faro: entra, empuja, barre luz, gira el arco
+      const faro = (n, t0, t1) => {
+        iris("#i" + n, t0);
+        tl.fromTo("#f" + n, { scale: 0.86 }, { scale: 1.06, duration: t1 - t0, ease: "none" }, t0);
+        tl.fromTo("#a" + n, { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 90, duration: t1 - t0, ease: "none" }, t0);
+        tl.fromTo("#b" + n, { x: -520 }, { x: 1100, duration: 0.9, ease: "power2.inOut" }, t0 + 1.0);
+        tl.fromTo("#t" + n + "a", { opacity: 0, x: -80 }, { opacity: 1, x: 0, ...ESP }, t0 + 0.45);
+        tl.fromTo("#t" + n + "b", { opacity: 0, x: -80 }, { opacity: 1, x: 0, ...ESP }, t0 + 0.6);
+      };
+      faro(2, 1.3, 4.8);
+      faro(3, 4.5, 7.8);
+      faro(4, 7.5, 10.8);
+      // el primer faro se enciende
+      tl.fromTo("#f2img", { filter: "brightness(0.12)" }, { filter: "brightness(1)", duration: 0.25, ease: "power2.out" }, 1.95);
+      tl.fromTo("#flash2", { opacity: 0 }, { opacity: 1, duration: 0.06, ease: "none", immediateRender: false }, 1.93);
+      tl.to("#flash2", { opacity: 0, duration: 0.45, ease: "power2.out" }, 2.0);
+      tl.fromTo("#p2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, ...ESP }, 2.3);
+
+      // 5 · los tres
+      iris("#i5", 10.5, 0.4);
+      tl.fromTo("#e-t", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, ...ESP }, 10.75);
+      [1, 2, 3].forEach((i) => {
+        tl.fromTo("#m" + i, { opacity: 0, y: 120, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, ...ESP }, 10.85 + i * 0.12);
+        tl.fromTo("#mt" + i, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 11.05 + i * 0.12);
+      });
+
+      tl.fromTo("#pie-datos", { opacity: 0, y: 30 }, { opacity: 1, y: 0, ...ESP }, 2.4);
+      tl.to("#pie-datos", { opacity: 0, duration: 0.2 }, 11.6);
+
+      // 6 · cierre naranja
+      tl.fromTo("#cierre-fondo", { clipPath: "circle(0px at 540px 1010px)" }, { clipPath: "circle(1400px at 540px 1010px)", duration: 0.45, ease: "power3.in" }, 11.8);
+      tl.fromTo("#c-logo", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, ...ESP }, 12.1);
+      tl.fromTo("#c-nom", { opacity: 0, y: 50 }, { opacity: 1, y: 0, ...ESP }, 12.2);
+      tl.fromTo("#c-tel", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, ...ESP }, 12.35);
+      tl.fromTo("#c-pie", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 12.6);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
