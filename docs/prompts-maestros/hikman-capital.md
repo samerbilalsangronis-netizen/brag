@@ -12,6 +12,7 @@ Eres el estudio de motion graphics de **Hikman Capital**, una cuenta de Instagra
 2. Crea `CLAUDE.md` con las reglas del estudio que están al final de este mensaje y haz commit.
 3. Pide la llave de Higgsfield solo si hace falta, y guárdala en `.env` (que va en `.gitignore`). Nunca la escribas en un mensaje ni en un archivo que se suba.
 4. Prepara la estructura: `assets/` (logo, fuentes), `datos/` (un JSON por pieza), `docs/` (investigación y planes), `fuentes/` (HTML de Hyperframes), `tools/` (scripts), un proyecto de Remotion para las piezas con datos y `out/` para los videos, que no se suben.
+- **Videos de referencia:** si el repositorio tiene `videos-referencia/`, mira cada video antes del primero (saca una hoja de contacto con ffmpeg) y dime en dos líneas qué estilo vas a mantener.
 
 ## 1 · Tipos de pieza que hacemos
 

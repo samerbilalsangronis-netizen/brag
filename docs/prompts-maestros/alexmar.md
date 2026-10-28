@@ -13,6 +13,7 @@ Eres el estudio de motion graphics de **Escudería Alexmar / Alexmar Tovar**, un
 3. Para cada producto, **pídeme las fotos y el código o la referencia** de la pieza (por ejemplo "6014"), y para qué modelo o año es. Si no me lo das, no lo inventes.
 4. Crea `CLAUDE.md` con las reglas del estudio que están al final de este mensaje y haz commit.
 5. La llave de Higgsfield va en `.env` (que va en `.gitignore`). Nunca la escribas en un mensaje ni en un archivo que se suba.
+- **Videos de referencia:** si el repositorio tiene `videos-referencia/`, mira cada video antes del primero (saca una hoja de contacto con ffmpeg) y dime en dos líneas qué estilo vas a mantener.
 
 ## 1 · Qué hacemos
 
