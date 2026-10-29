@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Archivo Black"; src: url(assets/ArchivoBlack.woff2) format("woff2"); }
+      @font-face { font-family: "Montserrat"; src: url(assets/Montserrat.woff2) format("woff2"); font-weight: 100 900; }
+      :root { --fondo: #0a2b28; --crema: #fff6e3; --oro: #ffc94a; --wa: #25d366; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--fondo); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: radial-gradient(ellipse 120% 80% at 50% 35%, #0f3a35 0%, #0a2b28 60%, #072120 100%); color: var(--crema); font-family: "Montserrat", sans-serif; }
+      .full { position: absolute; inset: 0; }
+      .fila { position: absolute; left: 0; right: 0; text-align: center; white-space: nowrap; }
+      .l { display: inline-block; }
+      #se, #busca { font: 400 250px/0.92 "Archivo Black"; letter-spacing: -.02em; }
+      #personal { font: 400 168px/0.92 "Archivo Black"; letter-spacing: -.02em; color: var(--oro); }
+      #raya { position: absolute; left: 110px; width: 860px; height: 16px; background: var(--oro); transform-origin: 0 50%; }
+      #pregunta { font: 400 88px/1.05 "Archivo Black"; color: var(--crema); white-space: normal; padding: 0 90px; }
+      #envia { font: 800 52px/1.2 "Montserrat"; color: var(--crema); white-space: normal; padding: 0 90px; }
+      #envia b { color: var(--oro); }
+      .wa { position: absolute; left: 470px; width: 140px; height: 140px; }
+      .pildora { position: absolute; left: 100px; right: 100px; height: 170px; border-radius: 85px; background: var(--crema); color: var(--fondo); text-align: center; font: 400 86px/170px "Archivo Black"; letter-spacing: 0; }
+      #logo { position: absolute; left: 290px; width: 500px; color: var(--oro); }
+      #logo svg { width: 100%; height: auto; display: block; }
+      #familia { font: 400 92px/1.04 "Archivo Black"; white-space: normal; padding: 0 80px; }
+      #familia em { font-style: normal; color: var(--oro); }
+    </style>
+  </head>
+  <body>
+    <!-- Tierra Santa · "Se busca personal" · tipografia en movimiento, 12,5 s, 9:16, sin musica. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="12.5" data-width="1080" data-height="1920">
+      <div id="titulo" class="clip full" data-start="0" data-duration="12.5" data-track-index="0">
+        <div class="fila" id="se" style="top: 560px"><span class="l">S</span><span class="l">E</span></div>
+        <div class="fila" id="busca" style="top: 800px"><span class="l">B</span><span class="l">U</span><span class="l">S</span><span class="l">C</span><span class="l">A</span></div>
+        <div class="fila" id="personal" style="top: 1060px">PERSONAL</div>
+        <div id="raya" style="top: 1260px"></div>
+        <div class="fila" id="pregunta" style="top: 1340px">¿Quieres trabajar con nosotros?</div>
+      </div>
+
+      <div id="contacto" class="clip full" data-start="5.8" data-duration="6.7" data-track-index="1">
+        <svg class="wa" id="wa" style="top: 860px" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25d366" /><path d="M16 6.5a9.4 9.4 0 0 0-8.1 14.2L6.6 25.4l4.8-1.3A9.4 9.4 0 1 0 16 6.5zm0 17.1a7.7 7.7 0 0 1-3.9-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.7 7.7 0 1 1 16 23.6zm4.2-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.3 6.3 0 0 1-3.1-2.7c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z" fill="#fff" /></svg>
+        <div class="fila" id="envia" style="top: 1030px">Envía tu currículum por <b>WhatsApp</b></div>
+        <div class="pildora" id="n1" style="top: 1200px">0424-728 44 75</div>
+        <div class="pildora" id="n2" style="top: 1410px">0424-701 72 23</div>
+      </div>
+
+      <div id="cierre" class="clip full" data-start="9.8" data-duration="2.7" data-track-index="2">
+        <div id="logo" style="top: 250px"><!--logo-ts--></div>
+        <div class="fila" id="familia" style="top: 610px">Únete a la familia <em>Tierra Santa</em></div>
+      </div>
+    </div>
+    <!--js:helpers-->
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const GOLPE = { ease: "power4.out", duration: 0.28 };
+      const MUELLE = { ease: "back.out(1.7)", duration: 0.5 };
+
+      // 1 · SE BUSCA: cada letra cae y golpea
+      gsap.utils.toArray("#se .l, #busca .l").forEach((el, i) => {
+        tl.fromTo(el, { y: -700, opacity: 0, rotation: i % 2 ? 8 : -8 }, { y: 0, opacity: 1, rotation: 0, ease: "bounce.out", duration: 0.55 }, 0.15 + i * 0.12);
+      });
+      // 2 · PERSONAL en dorado + raya que se dibuja
+      tl.fromTo("#personal", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, ...GOLPE }, 2.0);
+      tl.fromTo("#raya", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.inOut" }, 2.35);
+      // leve empuje del bloque para que nunca quede quieto
+      tl.fromTo(["#se", "#busca", "#personal"], { scale: 1 }, { scale: 1.04, duration: 1.9, ease: "none", transformOrigin: "50% 50%", immediateRender: false }, 2.1);
+      // 3 · el titulo sube y entra la pregunta
+      tl.to(["#se", "#busca", "#personal", "#raya"], { y: -360, scale: 0.78, duration: 0.55, ease: "power3.inOut", transformOrigin: "50% 0%" }, 4.0);
+      tl.fromTo("#pregunta", { opacity: 0, y: 60 }, { opacity: 1, y: -340, ...MUELLE }, 4.45);
+      // salida del bloque para dar paso al contacto
+      tl.to(["#se", "#busca"], { opacity: 0, y: -700, duration: 0.4, ease: "power2.in" }, 5.7);
+      tl.to(["#personal", "#raya"], { y: -760, scale: 0.6, duration: 0.5, ease: "power3.inOut" }, 5.7);
+      tl.to("#pregunta", { opacity: 0, duration: 0.25 }, 5.7);
+
+      // 4 · WhatsApp y numeros
+      tl.fromTo("#wa", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, ...MUELLE }, 6.05);
+      tl.fromTo("#envia", { opacity: 0, y: 40 }, { opacity: 1, y: 0, ...GOLPE }, 6.35);
+      tl.fromTo("#n1", { opacity: 0, x: -900 }, { opacity: 1, x: 0, ...MUELLE }, 6.9);
+      tl.fromTo("#n2", { opacity: 0, x: 900 }, { opacity: 1, x: 0, ...MUELLE }, 7.5);
+      tl.fromTo(["#n1", "#n2"], { scale: 1 }, { scale: 1.05, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut", stagger: 0.3 }, 8.4);
+
+      // 5 · cierre: PERSONAL se va, contacto sube, entra el logo y la frase
+      tl.to(["#personal", "#raya"], { opacity: 0, duration: 0.25 }, 9.7);
+      tl.fromTo("#logo", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, ...MUELLE }, 10.0);
+      tl.fromTo("#familia", { opacity: 0, y: 50 }, { opacity: 1, y: 0, ...GOLPE }, 10.35);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
