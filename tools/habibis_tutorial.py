@@ -1,0 +1,62 @@
+"""Tutorial de Habibis: grabacion real de la web + pasos animados (Hyperframes).
+Uso: python3 tools/habibis_tutorial.py <carpeta_grabacion> <carpeta_composicion>
+1. Une los cuadros del screencast (cuadros.json, con su hora real) en un mp4 a 30 fps, acelerado VEL veces.
+2. Escribe fuentes/habibis-tutorial.src.html con los pasos en los tiempos de las marcas y lo arma con build_comp.py."""
+import json, subprocess, sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+GRAB, COMP = Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve()
+VEL = 1.2           # aceleracion de la grabacion
+T_GRAB = 3.0        # la grabacion entra despues del gancho
+CIERRE = 5.0        # segundos de cierre
+
+d = json.loads((GRAB / "cuadros.json").read_text())
+lista, marcas, t0 = d["lista"], dict(d["marcas"]), d["t0"]
+# 1 · concat con la duracion real de cada cuadro
+inicio = lista[0][1]
+conc = []
+for i, (f, ts) in enumerate(lista):
+    sig = lista[i + 1][1] if i + 1 < len(lista) else ts + 1.0
+    conc.append(f"file '{(GRAB / 'cuadros' / f).as_posix()}'\nduration {max(0.001, sig - ts):.4f}")
+conc.append(f"file '{(GRAB / 'cuadros' / lista[-1][0]).as_posix()}'")
+(GRAB / "concat.txt").write_text("\n".join(conc) + "\n")
+(COMP / "assets").mkdir(parents=True, exist_ok=True)
+subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(GRAB / "concat.txt"),
+                "-vf", f"setpts=PTS/{VEL},fps=30,scale=780:1688,format=yuv420p", "-c:v", "libx264", "-crf", "16", "-preset", "medium",
+                "-an", str(COMP / "assets" / "grabacion.mp4")], check=True)
+dur_grab = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(COMP / "assets" / "grabacion.mp4")]))
+# hora de cada marca dentro del video final
+desfase = inicio - t0  # el screencast empieza un poco despues de t0
+T = {k: round(T_GRAB + (v - desfase) / VEL, 2) for k, v in marcas.items()}
+dur_total = round(T_GRAB + dur_grab + CIERRE, 2)
+
+PASOS = [  # (marca de inicio, numero, titulo, detalle)
+    ("inicio", 1, "Entra a la web", "Mira el menú y los favoritos"),
+    ("categoria", 2, "Elige tu plato", "Toca la categoría y el plato"),
+    ("adicional", 3, "Personalízalo", "Adicionales, vegetales y cantidad"),
+    ("agregar", 4, "Agrégalo al pedido", "Toca «Agregar»"),
+    ("ver-pedido", 5, "Revisa tu pedido", "Toca «Ver pedido» y «Continuar»"),
+    ("datos", 6, "Tus datos", "Nombre y WhatsApp"),
+    ("entrega", 7, "Delivery o retiro", "Dirección y ubicación en el mapa"),
+    ("cuando", 8, "¿Para cuándo?", "Lo antes posible o programado"),
+    ("pago", 9, "Forma de pago", "Binance, bolívares o efectivo"),
+    ("confirmar", 10, "Confirma", "Toca «Confirmar pedido»"),
+]
+pasos = []
+for i, (m, n, tit, det) in enumerate(PASOS):
+    t1 = T[PASOS[i + 1][0]] if i + 1 < len(PASOS) else T_GRAB + dur_grab
+    pasos.append({"n": n, "tit": tit, "det": det, "t0": T[m], "t1": round(t1, 2)})
+fin_grab = round(T_GRAB + dur_grab, 2)
+info = {"T": T, "dur_grab": dur_grab, "dur_total": dur_total, "pasos": pasos}
+(GRAB / "tiempos.json").write_text(json.dumps(info, ensure_ascii=False, indent=1))
+print(json.dumps(info, ensure_ascii=False))
+
+src = (ROOT / "fuentes/habibis-tutorial.plantilla.html").read_text()
+src = src.replace("__DUR__", str(dur_total)).replace("__TGRAB__", str(T_GRAB)).replace("__DURGRAB__", f"{dur_grab:.2f}") \
+         .replace("__FINGRAB__", str(fin_grab)).replace("__PASOS__", json.dumps(pasos, ensure_ascii=False)) \
+         .replace("__TRESULTADO__", str(T.get("resultado", fin_grab)))
+(ROOT / "fuentes/habibis-tutorial.src.html").write_text(src)
+subprocess.run(["python3", str(ROOT / "tools/build_comp.py"), str(ROOT / "fuentes/habibis-tutorial.src.html"), str(COMP)], check=True)
+import shutil
+shutil.copy(ROOT / "assets/habibis/logo-habibis.png", COMP / "assets" / "logo-habibis.png")
