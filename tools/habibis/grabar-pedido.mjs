@@ -79,7 +79,12 @@ await boton.scrollIntoViewIfNeeded(); await pausa(900);
 await p.screenshot({ path: out + '/antes-de-confirmar.png' });
 if (enviar) {
   const bb = await boton.boundingBox(); await p.touchscreen.tap(bb.x + bb.width / 2, bb.y + bb.height / 2);
-  await pausa(4500); marca('resultado');
+  await pausa(3000);
+  if ((await p.evaluate(() => document.body.innerText)).includes('tasa del día se actualizó')) {
+    console.log('AVISO tasa: se confirma de nuevo'); marca('reconfirmar'); await pausa(1500);
+    const b2 = await boton.boundingBox(); await p.touchscreen.tap(b2.x + b2.width / 2, b2.y + b2.height / 2); await pausa(3000);
+  }
+  await pausa(1500); marca('resultado');
   console.log('URL final', p.url());
   console.log((await p.evaluate(() => document.body.innerText)).slice(0, 1500));
   await p.screenshot({ path: out + '/resultado.png' });

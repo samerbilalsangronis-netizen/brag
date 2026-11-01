@@ -15,6 +15,9 @@ d = json.loads((GRAB / "cuadros.json").read_text())
 lista, marcas, t0 = d["lista"], dict(d["marcas"]), d["t0"]
 # 1 · concat con la duracion real de cada cuadro
 inicio = lista[0][1]
+desfase = inicio - t0  # el screencast empieza un poco despues de t0
+# se quita lo que la web tarda en cargar (pantalla en blanco)
+SKIP = max(0.0, round((marcas['inicio'] - desfase) / VEL - 0.4, 2))
 conc = []
 for i, (f, ts) in enumerate(lista):
     sig = lista[i + 1][1] if i + 1 < len(lista) else ts + 1.0
@@ -23,25 +26,25 @@ conc.append(f"file '{(GRAB / 'cuadros' / lista[-1][0]).as_posix()}'")
 (GRAB / "concat.txt").write_text("\n".join(conc) + "\n")
 (COMP / "assets").mkdir(parents=True, exist_ok=True)
 subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(GRAB / "concat.txt"),
-                "-vf", f"setpts=PTS/{VEL},fps=30,scale=780:1688,format=yuv420p", "-c:v", "libx264", "-crf", "16", "-preset", "medium",
+                "-vf", f"setpts=PTS/{VEL},trim=start={SKIP},setpts=PTS-STARTPTS,fps=30,scale=780:1688,format=yuv420p", "-c:v", "libx264", "-crf", "16", "-preset", "medium",
                 "-an", str(COMP / "assets" / "grabacion.mp4")], check=True)
 dur_grab = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(COMP / "assets" / "grabacion.mp4")]))
 # hora de cada marca dentro del video final
-desfase = inicio - t0  # el screencast empieza un poco despues de t0
-T = {k: round(T_GRAB + (v - desfase) / VEL, 2) for k, v in marcas.items()}
+T = {k: round(T_GRAB + (v - desfase) / VEL - SKIP, 2) for k, v in marcas.items()}
+# la pantalla de pedido recibido aparece unos 1,5 s despues del toque final
+T['listo'] = round(T.get('resultado', T['confirmar'] + 3) - 3.0 / VEL, 2)
 dur_total = round(T_GRAB + dur_grab + CIERRE, 2)
 
 PASOS = [  # (marca de inicio, numero, titulo, detalle)
     ("inicio", 1, "Entra a la web", "Mira el menú y los favoritos"),
     ("categoria", 2, "Elige tu plato", "Toca la categoría y el plato"),
-    ("adicional", 3, "Personalízalo", "Adicionales, vegetales y cantidad"),
-    ("agregar", 4, "Agrégalo al pedido", "Toca «Agregar»"),
-    ("ver-pedido", 5, "Revisa tu pedido", "Toca «Ver pedido» y «Continuar»"),
-    ("datos", 6, "Tus datos", "Nombre y WhatsApp"),
-    ("entrega", 7, "Delivery o retiro", "Dirección y ubicación en el mapa"),
-    ("cuando", 8, "¿Para cuándo?", "Lo antes posible o programado"),
-    ("pago", 9, "Forma de pago", "Binance, bolívares o efectivo"),
-    ("confirmar", 10, "Confirma", "Toca «Confirmar pedido»"),
+    ("adicional", 3, "Personaliza y agrega", "Adicionales, cantidad y «Agregar»"),
+    ("ver-pedido", 4, "Revisa tu pedido", "Toca «Ver pedido» y «Continuar»"),
+    ("datos", 5, "Tus datos", "Nombre y WhatsApp"),
+    ("entrega", 6, "Delivery o retiro", "Dirección y ubicación en el mapa"),
+    ("cuando", 7, "Hora y forma de pago", "Binance, bolívares o efectivo"),
+    ("confirmar", 8, "Confirma", "Toca «Confirmar pedido»"),
+    ("listo", 9, "¡Pedido recibido!", "Síguelo en vivo o envía copia por WhatsApp"),
 ]
 pasos = []
 for i, (m, n, tit, det) in enumerate(PASOS):
