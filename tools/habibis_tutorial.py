@@ -13,11 +13,10 @@ CIERRE = 5.0        # segundos de cierre
 
 d = json.loads((GRAB / "cuadros.json").read_text())
 lista, marcas, t0 = d["lista"], dict(d["marcas"]), d["t0"]
-# 1 · concat con la duracion real de cada cuadro
-inicio = lista[0][1]
-desfase = inicio - t0  # el screencast empieza un poco despues de t0
-# se quita lo que la web tarda en cargar (pantalla en blanco)
-SKIP = max(0.0, round((marcas['inicio'] - desfase) / VEL - 0.4, 2))
+# 1 · concat con la duracion real de cada cuadro. Se quita lo que la web tarda en cargar (pantalla en blanco):
+# la grabacion empieza 0,5 s antes de la marca "inicio".
+CORTE = t0 + max(0.0, marcas["inicio"] - 0.5)
+lista = [c for c in lista if c[1] >= CORTE]
 conc = []
 for i, (f, ts) in enumerate(lista):
     sig = lista[i + 1][1] if i + 1 < len(lista) else ts + 1.0
@@ -26,13 +25,14 @@ conc.append(f"file '{(GRAB / 'cuadros' / lista[-1][0]).as_posix()}'")
 (GRAB / "concat.txt").write_text("\n".join(conc) + "\n")
 (COMP / "assets").mkdir(parents=True, exist_ok=True)
 subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(GRAB / "concat.txt"),
-                "-vf", f"setpts=PTS/{VEL},trim=start={SKIP},setpts=PTS-STARTPTS,fps=30,scale=780:1688,format=yuv420p", "-c:v", "libx264", "-crf", "16", "-preset", "medium",
+                "-vf", f"setpts=PTS/{VEL},fps=30,scale=780:1688,format=yuv420p", "-c:v", "libx264", "-crf", "16", "-preset", "medium",
                 "-an", str(COMP / "assets" / "grabacion.mp4")], check=True)
 dur_grab = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(COMP / "assets" / "grabacion.mp4")]))
 # hora de cada marca dentro del video final
-T = {k: round(T_GRAB + (v - desfase) / VEL - SKIP, 2) for k, v in marcas.items()}
+inicio = lista[0][1]
+T = {k: round(T_GRAB + (t0 + v - inicio) / VEL, 2) for k, v in marcas.items()}
 # la pantalla de pedido recibido aparece unos 1,5 s despues del toque final
-T['listo'] = round(T.get('resultado', T['confirmar'] + 3) - 3.0 / VEL, 2)
+T["listo"] = round(T.get("resultado", T["confirmar"] + 3) - 3.0 / VEL, 2)
 dur_total = round(T_GRAB + dur_grab + CIERRE, 2)
 
 PASOS = [  # (marca de inicio, numero, titulo, detalle)
@@ -50,7 +50,7 @@ pasos = []
 for i, (m, n, tit, det) in enumerate(PASOS):
     t1 = T[PASOS[i + 1][0]] if i + 1 < len(PASOS) else T_GRAB + dur_grab
     pasos.append({"n": n, "tit": tit, "det": det, "t0": T[m], "t1": round(t1, 2)})
-fin_grab = round(T_GRAB + dur_grab, 2)
+fin_grab = round(T_GRAB + dur_grab - 0.45, 2)  # el cierre tapa el ultimo cuadro
 info = {"T": T, "dur_grab": dur_grab, "dur_total": dur_total, "pasos": pasos}
 (GRAB / "tiempos.json").write_text(json.dumps(info, ensure_ascii=False, indent=1))
 print(json.dumps(info, ensure_ascii=False))
