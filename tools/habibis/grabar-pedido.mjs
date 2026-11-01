@@ -57,11 +57,11 @@ marca('agregar'); await toque(p.getByRole('button', { name: /^Agregar/ }), true)
 marca('ver-pedido'); await toque(p.getByRole('button', { name: /Ver pedido/ }), true); await pausa(1800);
 marca('continuar'); await toque(p.getByRole('link', { name: 'Continuar' }), true); await p.waitForLoadState('networkidle'); await pausa(1300);
 marca('datos');
-await escribir(p.getByPlaceholder('¿A nombre de quién?'), 'PRUEBA Video Tutorial', 55); await pausa(300);
-await escribir(p.getByPlaceholder(/0412 123 4567/), '0412 000 0000', 60); await pausa(700);
+await escribir(p.getByPlaceholder('¿A nombre de quién?'), 'María', 90); await pausa(300);
+await escribir(p.getByPlaceholder(/0412 123 4567/), '0412 602 4425', 60); await pausa(700);
 marca('entrega'); await toque(p.locator('label', { hasText: 'Agregar delivery' })); await pausa(1100);
-await escribir(p.getByPlaceholder(/Urbanización/), 'PEDIDO DE PRUEBA - Calle de ejemplo, casa 1', 35); await pausa(300);
-await escribir(p.getByPlaceholder(/frente a la panadería/), 'Prueba para video', 40); await pausa(500);
+await escribir(p.getByPlaceholder(/Urbanización/), 'Calle 5, casa 12', 55); await pausa(300);
+await escribir(p.getByPlaceholder(/frente a la panadería/), 'Portón negro', 55); await pausa(500);
 marca('mapa'); await toque(p.getByRole('button', { name: /Usar mi ubicación actual/ })); await pausa(2200);
 marca('cuando'); await toque(p.getByRole('button', { name: /Lo antes posible/ })); await pausa(900);
 marca('pago'); const ef = p.getByRole('button', { name: /Efectivo/ }); await toque(ef); await pausa(600);
@@ -71,7 +71,7 @@ marca('pago'); const ef = p.getByRole('button', { name: /Efectivo/ }); await toq
   await escribir(p.getByPlaceholder('50.000'), '70.000', 70); await pausa(700);
   await pausa(500);
 console.log('textareas', await p.evaluate(() => [...document.querySelectorAll('textarea,input')].map(e => e.tagName + ':' + e.placeholder + '=' + e.value).join(' | ')));
-{ const ta = p.locator('textarea').last(); await toque(ta); await pausa(200); await ta.click(); await p.keyboard.type('PEDIDO DE PRUEBA para video tutorial. NO PREPARAR.', { delay: 30 });
+{ const ta = p.locator('textarea').last(); await toque(ta); await pausa(200); await ta.click(); await p.keyboard.type('Con bastante salsa de ajo, por favor', { delay: 40 });
   console.log('comentario', await p.evaluate(() => [...document.querySelectorAll('textarea')].pop().value)); } await pausa(900);
 marca('confirmar');
 const boton = p.getByRole('button', { name: /Confirmar pedido/ });
@@ -85,10 +85,23 @@ if (enviar) {
     const b2 = await boton.boundingBox(); await p.touchscreen.tap(b2.x + b2.width / 2, b2.y + b2.height / 2); await pausa(3000);
   }
   await pausa(1500); marca('resultado');
+  // seguimiento en vivo: se queda en la pagina del pedido y anota cada cambio de estado
+  const num = (await p.evaluate(() => document.body.innerText)).match(/HB-\d+/)?.[0] || '?';
+  const log = (t) => { console.log(t); fs.appendFileSync(out + '/estado.log', t + '\n'); };
+  log('PEDIDO ' + num + ' URL ' + p.url());
+  const estado = async () => (await p.evaluate(() => document.body.innerText)).match(/Estado\n+([^\n]+)/)?.[1] || '';
+  let ult = await estado(); log('ESTADO ' + ult + ' ' + ((Date.now() - t0) / 1000).toFixed(1));
+  const limite = Date.now() + 10 * 60 * 1000;
+  while (Date.now() < limite) {
+    await pausa(1000);
+    const e = await estado();
+    if (e && e !== ult) { ult = e; marca('estado:' + e); log('ESTADO ' + e + ' ' + ((Date.now() - t0) / 1000).toFixed(1)); await p.screenshot({ path: out + '/estado-' + marcas.length + '.png' }); }
+    if (/entregado/i.test(e)) { await pausa(3000); break; }
+  }
   console.log('URL final', p.url());
   console.log((await p.evaluate(() => document.body.innerText)).slice(0, 1500));
   await p.screenshot({ path: out + '/resultado.png' });
-  await deslizar(500, 14); await pausa(1500);
+  
 } else { console.log('ENSAYO: no se envio'); await pausa(1200); }
 marca('fin');
 await cdp.send('Page.stopScreencast');
