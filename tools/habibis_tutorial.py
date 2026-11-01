@@ -16,11 +16,34 @@ lista, marcas, t0 = d["lista"], dict(d["marcas"]), d["t0"]
 # 1 · concat con la duracion real de cada cuadro. Se quita lo que la web tarda en cargar (pantalla en blanco):
 # la grabacion empieza 0,5 s antes de la marca "inicio".
 CORTE = t0 + max(0.0, marcas["inicio"] - 0.5)
+# tramos que se conservan (hora real). En el seguimiento en vivo solo se dejan unos segundos alrededor de cada
+# cambio de estado: la espera entre uno y otro se quita.
+estados = [v for k, v in marcas.items() if k.startswith("estado:")]
+tramos = [(CORTE, t0 + (marcas.get("resultado", marcas["fin"]) + 2.5 if estados else marcas["fin"] + 1))]
+for e in estados:
+    tramos.append((t0 + e - 0.6, t0 + e + 2.8))
+def en_tramo(ts):
+    return any(a <= ts < b for a, b in tramos)
+def a_video(ts):  # hora real -> segundos dentro de la grabacion recortada (antes de acelerar)
+    acc = 0.0
+    for a, b in tramos:
+        if ts >= b: acc += b - a
+        elif ts >= a: return acc + ts - a
+        else: return acc
+    return acc
 lista = [c for c in lista if c[1] >= CORTE]
 conc = []
 for i, (f, ts) in enumerate(lista):
     sig = lista[i + 1][1] if i + 1 < len(lista) else ts + 1.0
-    conc.append(f"file '{(GRAB / 'cuadros' / f).as_posix()}'\nduration {max(0.001, sig - ts):.4f}")
+    if not en_tramo(ts):
+        continue
+    fin_tramo = min(b for a, b in tramos if a <= ts < b)
+    # si el cuadro sigue en pantalla al empezar el siguiente tramo, se repite alli
+    dur = min(sig, fin_tramo) - ts
+    conc.append(f"file '{(GRAB / 'cuadros' / f).as_posix()}'\nduration {max(0.001, dur):.4f}")
+    for a, b in tramos:
+        if ts < a < sig:
+            conc.append(f"file '{(GRAB / 'cuadros' / f).as_posix()}'\nduration {max(0.001, min(sig, b) - a):.4f}")
 conc.append(f"file '{(GRAB / 'cuadros' / lista[-1][0]).as_posix()}'")
 (GRAB / "concat.txt").write_text("\n".join(conc) + "\n")
 (COMP / "assets").mkdir(parents=True, exist_ok=True)
@@ -29,10 +52,11 @@ subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-f", "concat"
                 "-an", str(COMP / "assets" / "grabacion.mp4")], check=True)
 dur_grab = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(COMP / "assets" / "grabacion.mp4")]))
 # hora de cada marca dentro del video final
-inicio = lista[0][1]
-T = {k: round(T_GRAB + (t0 + v - inicio) / VEL, 2) for k, v in marcas.items()}
+T = {k: round(T_GRAB + a_video(t0 + v) / VEL, 2) for k, v in marcas.items()}
 # la pantalla de pedido recibido aparece unos 1,5 s despues del toque final
 T["listo"] = round(T.get("resultado", T["confirmar"] + 3) - 3.0 / VEL, 2)
+for k in list(T):
+    if k.startswith("estado:"): T[k] = round(T[k] - 0.2, 2)
 dur_total = round(T_GRAB + dur_grab + CIERRE, 2)
 
 PASOS = [  # (marca de inicio, numero, titulo, detalle)
@@ -44,8 +68,15 @@ PASOS = [  # (marca de inicio, numero, titulo, detalle)
     ("entrega", 6, "Delivery o retiro", "Dirección y ubicación en el mapa"),
     ("cuando", 7, "Hora y forma de pago", "Binance, bolívares o efectivo"),
     ("confirmar", 8, "Confirma", "Toca «Confirmar pedido»"),
-    ("listo", 9, "¡Pedido recibido!", "Síguelo en vivo o envía copia por WhatsApp"),
+    ("listo", 9, "¡Pedido recibido!", "Síguelo en vivo, sin recargar"),
 ]
+for k in marcas:
+    if k.startswith("estado:"):
+        txt = k.split(":", 1)[1]
+        n = PASOS[-1][1] + 1
+        if "prepar" in txt.lower(): PASOS.append((k, n, "Lo están preparando", "Cada paso se marca solo"))
+        elif "sale" in txt.lower() or "camino" in txt.lower(): PASOS.append((k, n, "¡Va en camino!", "Lo ves en tiempo real"))
+        elif "entreg" in txt.lower(): PASOS.append((k, n, "¡Entregado!", "Buen provecho"))
 pasos = []
 for i, (m, n, tit, det) in enumerate(PASOS):
     t1 = T[PASOS[i + 1][0]] if i + 1 < len(PASOS) else T_GRAB + dur_grab
